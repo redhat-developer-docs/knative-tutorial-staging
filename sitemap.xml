@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial/sitemap-knative-tutorial.xml</loc>
+<loc>https://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial.xml</loc>
 </sitemap>
 <sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial/sitemap-knative-tutorial-basics.xml</loc>
+<loc>https://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-basics.xml</loc>
 </sitemap>
 <sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial/sitemap-knative-tutorial-camelk.xml</loc>
+<loc>https://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-camelk.xml</loc>
 </sitemap>
 </sitemapindex>
