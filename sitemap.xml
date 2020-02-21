@@ -7,9 +7,9 @@
 <loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-adv.xml</loc>
 </sitemap>
 <sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-basics.xml</loc>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-camelk.xml</loc>
 </sitemap>
 <sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-camelk.xml</loc>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-serving.xml</loc>
 </sitemap>
 </sitemapindex>

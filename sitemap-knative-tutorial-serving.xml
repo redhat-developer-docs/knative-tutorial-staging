@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/basic-fundas.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/faq.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/index.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/knative-client.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/scaling.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/setup.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/traffic-distribution.html</loc>
+<lastmod>2020-02-21T13:52:51.300Z</lastmod>
+</url>
+</urlset>
