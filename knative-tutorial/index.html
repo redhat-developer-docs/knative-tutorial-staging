@@ -35,10 +35,10 @@
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Serverless computing refers to the concept of building and running applications that do not require server management. It describes a finer-grained deployment model where applications, bundled as one or more functions, are uploaded to a platform and then executed, scaled, and billed in response to the exact demand needed at the moment”</p>
+<p>Deploying applications as Serverless services is becoming a popular architectural style. It seems like many organizations assume that <em>Functions as a Service (FaaS)</em> is serverless. But we think it is more accurate to say that FaaS is one way to do serverless, not the only way. This raises a super critical question for enterprises that may have applications which could be monolith or a microservice: What is the easiest path to serverless application deployment?</p>
 </div>
-<div class="paragraph small text-right">
-<p><em><strong>Source</strong></em>:  <a href="https://www.cncf.io/blog/2018/02/14/cncf-takes-first-step-towards-serverless-computing/" class="bare">https://www.cncf.io/blog/2018/02/14/cncf-takes-first-step-towards-serverless-computing/</a></p>
+<div class="paragraph">
+<p>The answer is a platform that can run serverless workloads, while enabling you to have complete control how to configure, build, deploy and run. Ideally, the platform  that supports deploying the applications as linux containers. In this chapter we introduce you to one such platform&#8201;&#8212;&#8201;<a href="https://knative.dev">Knative</a> --, that helps you to run the serverless workloads in a Kubernetes-native way.</p>
 </div>
 </div>
 </div>
@@ -87,19 +87,19 @@
 </ul>
 </div>
 <div class="ulist tile">
-<div class="title"><a href="../knative-tutorial-camelk/index.html" class="page">Serverless Integration using Camel-K</a></div>
+<div class="title"><a href="../knative-tutorial-camelk/index.html" class="page">Apache Camel-K</a></div>
 <ul>
 <li>
 <p><a href="../knative-tutorial-camelk/setup.html" class="page">Setup</a></p>
 </li>
 <li>
-<p><a href="#knative-tutorial-camelk:ROOT:getting-started.adoc" class="page unresolved">Message Filter</a></p>
+<p><a href="../knative-tutorial-camelk/camel-k-basics.html#deploy-camel-k-kn-integration" class="page">Camel-K with Knative Serving</a></p>
 </li>
 <li>
-<p><a href="#knative-tutorial-camelk:ROOT:poll-enrich.adoc" class="page unresolved">Poll Enrich</a></p>
+<p><a href="../knative-tutorial-camelk/camel-k-eventing.html" class="page">Camel-K with Knative Eventing</a></p>
 </li>
 <li>
-<p><a href="#knative-tutorial-camelk:ROOT:content-based-router.adoc" class="page unresolved">Content Based Router</a></p>
+<p><a href="../knative-tutorial-camelk/camel-k-eventing.html#camel-k-es-sink" class="page">CamelSource to Sink</a></p>
 </li>
 </ul>
 </div>
