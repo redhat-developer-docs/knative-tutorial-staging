@@ -10,6 +10,9 @@
 <loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-camelk.xml</loc>
 </sitemap>
 <sitemap>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-eventing.xml</loc>
+</sitemap>
+<sitemap>
 <loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-serving.xml</loc>
 </sitemap>
 </sitemapindex>
