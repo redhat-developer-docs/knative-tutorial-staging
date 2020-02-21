@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitled :: Knative Tutorial(Staging)</title>
-    <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-basics/eventing/deploy-apache-kafka.html">
+    <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-adv/deploy-apache-kafka.html">
     <meta name="generator" content="Antora 2.2.0">
-    <link rel="stylesheet" href="../../_/css/site.css">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
   </head>
@@ -27,242 +27,20 @@
   </nav>
 </header>
 <div class="main-wrapper">
-<div class="navigation-container"  data-component="knative-tutorial-basics"
+<div class="navigation-container"  data-component="knative-tutorial-adv"
   data-version="master" >
   <aside class="navigation">
     <div class="panels">
       <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Introduction to Knative</a></h3>
+    <h3 class="title"><a href="index.html">Knative Tutorial Advanced</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../setup.html">Setup</a>
+    <span class="nav-text">Knative Eventing</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../setup.html#download-tutorial-sources">Download Tutorial Sources</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../setup.html#tutorial-dev-env">Development Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../setup.html#tutorial-all-local">CLI Tools</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../setup.html#dev-env-all-in-one">All in one Environment</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../basic-fundas.html">Serving</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#basics-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#basics-build-containers">Build Containers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#basics-deploy-service">Deploy Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#basics-invoke-service">Invoke Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#basics-see-what-you-have-deployed">See What You Have Deployed</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#deploying-new-revision">Deploy a New Revision of a Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-fundas.html#basics-cleanup">Cleanup</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../knative-client.html">Knative Client</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../knative-client.html#kn-install">Install</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../knative-client.html#kn-ksvc">Knative Service Commands</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-create-ksvc">Create Knative Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-list-services">List Knative Services</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-update-ksvc">Update Knative Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-desc-ksvc">Describe Knative Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-delete-ksvc">Delete Knative Service</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../knative-client.html#kn-revisons">Knative Revision Commands</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-revisions-list">Knative Revision List</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-revisions-desc">Knative Revision Describe</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-revisions-delete">Knative Revision Delete</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../knative-client.html#kn-routes">Knative Route Commands</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../knative-client.html#kn-route-list">Knative Revision List</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../traffic-distribution.html">Traffic Distribution</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../traffic-distribution.html#deploying-revisions">Arbitrary Revision Names</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../traffic-distribution.html#blue-green">Blue-Green Deployment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../traffic-distribution.html#canary-release">Canary Release</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../traffic-distribution.html#service-visibility">Service Visibility</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../scaling.html">Scaling</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scaling.html#scaling-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scaling.html#scaling-build-containers">Build Containers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scaling.html#scaling-deploy-service">Deploy Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scaling.html#scaling-invoke-service">Invoke Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../scaling.html#scaling-scale-to-zero">Scale to Zero</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-observer-scale-to-zero">Observing Default Scale Down</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-observer-scale-to-zero-1m">Change Scale-to-Zero Time</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-reset-to-defaults">Reset to Defaults</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../scaling.html#scaling-auto-scaling">Auto Scaling</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-autoscaling-deploy-service">Deploy Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-autoscaling-invoke-service">Invoke Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-load-service">Load Service</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../scaling.html#scaling-min-scale">Minimum Scale</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../scaling.html#scaling-deploy-service-minscale">Deploy Service</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../scaling.html#scaling-cleanup">Cleanup</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="eventing.html">Eventing</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="eventing.html#eventing-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="eventing.html#usage-patterns">Usage Patterns</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="eventing-src-to-sink.html">Source to Sink</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-source">Event Source</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-create-event-source">Create Event Source</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-verify-event-source">Verify</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-sink-service">Sink Service</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-gen-sink-service">Generate Service</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-deploy-sink-service">Deploy Service</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-cleanup">Cleanup</a>
-  </li>
-</ul>
-  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="deploy-apache-kafka.html">Deploy Apache Kafka</a>
@@ -280,92 +58,32 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="channel-and-subscribers.html">Channel and Subscribers</a>
+    <a class="nav-link" href="eventing-with-kafka.html">Knative Eventing with Apache Kafka</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-channel">Channel</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-create-event-channel">Create Event Channel</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-verify-event-channel">Verify</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="default-knative-channel.html">Default Knative Channel</a>
-  </li>
-</ul>
+    <a class="nav-link" href="eventing-with-kafka.html#kn-eventing-kafka-source">Deploy KafkaSource</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-source">Event Source</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-create-event-source">Create Event Source</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-verify-event-source">Verify</a>
-  </li>
-</ul>
+    <a class="nav-link" href="eventing-with-kafka.html#kn-eventing-adv-default-knative-channel">Kafka Knative Channel</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-subscriber">Event Subscriber</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-create-subscriber">Create Event Subscriber</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-verify-subscriber">Verify</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
-  </li>
-</ul>
+    <a class="nav-link" href="eventing-with-kafka.html#kn-eventing-kafka-source-to-sink">Kafka Source to Sink</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="eventing-trigger-broker.html">Brokers and Triggers</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#events-triggers-brokers">Events, Triggers and Brokers</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#broker">Broker</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#eventing-service">Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#eventing-event-source">Event Source</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#eventing-trigger">Trigger</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#eventing-trigger-verification">Verification</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-trigger-broker.html#eventing-cleanup">Cleanup</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="eventing.html#eventing-watch-logs">Watching Logs</a>
+    <a class="nav-link" href="eventing-with-kafka.html#kn-kafka-src-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../faq.html">Frequently Asked Questions</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Apache Camel-K</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="camel-k-cbr.html">Content Based Routing with Camel-K</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -383,11 +101,11 @@
   <main class="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="../../knative-tutorial/index.html" class="home-link"></a>
+  <a href="../knative-tutorial/index.html" class="home-link"></a>
   <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="../index.html">Introduction to Knative</a></li>
-    <li class="crumb"><a href="eventing.html">Eventing</a></li>
+    <li class="crumb"><a href="index.html">Knative Tutorial Advanced</a></li>
+    <li class="crumb">Knative Eventing</li>
     <li class="crumb"><a href="deploy-apache-kafka.html">Deploy Apache Kafka</a></li>
   </ul>
 </nav>
@@ -397,7 +115,7 @@
 <h2 id="deploy-apache-kafka"><a class="anchor" href="#deploy-apache-kafka"></a>Deploying Apache Kafka Cluster</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As part of the upcoming section of this chapter, we will be deploying a <a href="#eventing-source">Knative Source</a>, that will respond to Apache Kafka Topic messages(events). Before getting to other exercies, we need to first deploy Apache Kafka inside in your Kubernetes cluster.</p>
+<p>As part of the upcoming section of this chapter, we will be deploying a <a href="#eventing-source">Knative Source</a>, that will respond to Apache Kafka Topic messages(events). Before getting to other exercises, we need to first deploy Apache Kafka inside in your Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
 <p>The <a href="https://operatorhub.io/operator/strimzi-kafka-operator">strimzi</a> Kubernetes <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">operator</a> can be used to deploy the Apache Kafka Cluster in your Kubernetes cluster.</p>
@@ -832,8 +550,8 @@ my-topic   10           1</code></pre>
     </div>
   </div>
 </footer>
-<script src="../../_/js/site.js"></script>
-<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../_/js/site.js"></script>
+<script src="../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
