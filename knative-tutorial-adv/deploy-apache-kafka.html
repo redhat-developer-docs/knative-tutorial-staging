@@ -148,6 +148,15 @@
 <p>The <a href="https://operatorhub.io/operator/strimzi-kafka-operator">strimzi</a> Kubernetes <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">operator</a> can be used to deploy the Apache Kafka Cluster in your Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
+<p>Before beginning to run the exercises, navigate to the tutorial chapter&#8217;s <code>eventing</code> folder:</p>
+</div>
+<div id="eventing-navigate-to-folder" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
+</div>
+</div>
+<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#eventing-navigate-to-folder"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
 <p>Run the following command to create the <code>kafka</code> namespace and deploy Apache Kafka into it:</p>
 </div>
 <div class="tabset is-loading">
@@ -169,7 +178,7 @@
 curl -L \
 <a href="https://github.com/strimzi/strimzi-kafka-operator\" class="bare">https://github.com/strimzi/strimzi-kafka-operator\</a>
 /releases/download/v0.16.2/strimzi-cluster-operator-v0.16.2.yaml \
-  | sed 's/namespace: .*/namespace: kafka/' \
+  | sed 's/namespace:.*/namespace: kafka/' \
   | kubectl apply -n kafka -f -</code></pre>
 </div>
 </div>
@@ -476,7 +485,7 @@ my-topic   10           1</code></pre>
 </div>
 <div id="run-kafka-consumer" class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>$TUTORIAL_HOME/bin/kafka-consumer.sh</strong></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-consumer.sh</code></pre>
 </div>
 </div>
 <button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#run-kafka-consumer"><i class="fa fa-clipboard"></i></button><br/>
