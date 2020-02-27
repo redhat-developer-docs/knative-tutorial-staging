@@ -168,9 +168,6 @@
     <a class="nav-link" href="#scaling-prerequisite">Prerequisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#scaling-build-containers">Build Containers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#scaling-deploy-service">Deploy Service</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -373,6 +370,15 @@ Kubernetes Version: v1.16.2</code></pre>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>Navigate to the tutorial chapter&#8217;s <code>basics</code> folder:</p>
+</div>
+<div id="scaling-navigate-to-basics" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/basics</code></pre>
+</div>
+</div>
+<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#scaling-navigate-to-basics"><i class="fa fa-clipboard"></i></button><br/>
 </div>
 </div>
 <div class="sect1">
@@ -401,15 +407,6 @@ spec:
             path: /healthz</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Navigate to the tutorial chapter&#8217;s <code>knative</code> folder:</p>
-</div>
-<div id="scaling-navigate-to-basics" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/basics</code></pre>
-</div>
-</div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#scaling-navigate-to-basics"><i class="fa fa-clipboard"></i></button><br/>
 <div class="paragraph">
 <p>The service can be deployed using the command:</p>
 </div>
@@ -496,7 +493,7 @@ http $SVC_URL</code></pre>
 <p>The last <code>http</code> command should return a response like <strong>Hi  greeter &#8658; '9be9ccd9a2e3' : 1</strong></p>
 </div>
 <div class="paragraph">
-<p>Check <a href="#02-basic-fundas.adoc#see-what-you-have-deployed" class="page unresolved">deployed Knative resources</a> for more details on which Knative objects and resources have been created with the service deployment above.</p>
+<p>Check <a href="basic-fundas.html#basics-see-what-you-have-deployed" class="page">deployed Knative resources</a> for more details on which Knative objects and resources have been created with the service deployment above.</p>
 </div>
 </div>
 </div>
@@ -513,7 +510,7 @@ http $SVC_URL</code></pre>
 <p>If another request tries to get to this revision, the activator will get it, instruct the autoscaler to create new pods for the revision as quickly as possible and buffer the request until those new pods are created.</p>
 </div>
 <div class="paragraph">
-<p>By default the <strong>scale-to-zero-grace-period</strong> is <code>30s</code>, and the <strong>stable-window</strong> is <code>60s</code>. Firing a request to the greeter service will bring up the pod (if it is already terminated, as described above) to serve the request. Leaving it without any further requests will automatically cause it to scale to zero in approx <code>110 secs</code>. There are at least 20 seconds after the pod starts to terminate and before it&#8217;s completely terminated. This gives Istio enough time to leave out the pod from its own networking configuration.</p>
+<p>By default the <strong>scale-to-zero-grace-period</strong> is <code>30s</code>, and the <strong>stable-window</strong> is <code>60s</code>. Firing a request to the greeter service will bring up the pod (if it is already terminated, as described above) to serve the request. Leaving it without any further requests will automatically cause it to scale to zero in approx <code>60-70 secs</code>. There are at least 20 seconds after the pod starts to terminate and before it&#8217;s completely terminated. This gives Istio enough time to leave out the pod from its own networking configuration.</p>
 </div>
 <div class="paragraph">
 <p>For better clarity and understanding let us <a href="#scaling-cleanup">clean up</a> the deployed Knative resources before going to next section.</p>
@@ -705,7 +702,7 @@ spec:
 <div class="sect2">
 <h3 id="scaling-deploy-service-minscale"><a class="anchor" href="#scaling-deploy-service-minscale"></a>Deploy service</h3>
 <div class="listingblock">
-<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-scale.yaml">service-min-scale.yaml</a></div>
+<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-max-scale.yaml">service-min-max-scale.yaml</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
 kind: Service
@@ -757,7 +754,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset7_kubectl">
 <div id="scaling-run-min-scale-kn-resources-apply" class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-scale.yaml">service-min-scale.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-max-scale.yaml">service-min-max-scale.yaml</a></code></pre>
 </div>
 </div>
 <button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#scaling-run-min-scale-kn-resources-apply"><i class="fa fa-clipboard"></i></button><br/>
@@ -765,7 +762,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset7_oc">
 <div id="scaling-run-min-scale-oc-kn-resources-apply" class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-scale.yaml">service-min-scale.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-max-scale.yaml">service-min-max-scale.yaml</a></code></pre>
 </div>
 </div>
 <button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#scaling-run-min-scale-oc-kn-resources-apply"><i class="fa fa-clipboard"></i></button><br/>
