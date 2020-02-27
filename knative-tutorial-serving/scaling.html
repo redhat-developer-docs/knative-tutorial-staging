@@ -390,7 +390,7 @@ Kubernetes Version: v1.16.2</code></pre>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/service.yaml">service.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: greeter
@@ -531,7 +531,7 @@ http $SVC_URL</code></pre>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-10.yaml">service-10.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: prime-generator
@@ -704,7 +704,7 @@ spec:
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-max-scale.yaml">service-min-max-scale.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: prime-generator

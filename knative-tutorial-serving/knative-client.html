@@ -318,7 +318,7 @@ Build Date:   2020-01-29 21:03:45
 Git Revision: 164cb5f
 Supported APIs:
 * Serving
-  - serving.knative.dev/v1alpha1 (knative-serving v0.12.0)
+  - serving.knative.dev/v1 (knative-serving v0.12.0)
 * Eventing
   - sources.eventing.knative.dev/v1alpha1 (knative-eventing v0.12.0)
   - eventing.knative.dev/v1alpha1 (knative-eventing v0.12.0)</code></pre>
@@ -448,7 +448,7 @@ http $SVC_URL</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   annotations:
@@ -459,7 +459,7 @@ metadata:
   name: greeter
   namespace: knativetutorial
   resourceVersion: "35193"
-  selfLink: /apis/serving.knative.dev/v1alpha1/namespaces/knativetutorial/services/greeter
+  selfLink: /apis/serving.knative.dev/v1/namespaces/knativetutorial/services/greeter
   uid: c4ee1f47-b77f-11e9-96b1-22e0f431a3ed
 spec:
   template:
@@ -584,7 +584,7 @@ greeter-qctxv   greeter   56s   4 OK / 4     True</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Revision
 metadata:
   annotations:
@@ -599,14 +599,14 @@ metadata:
   name: greeter-7cqzq
   namespace: knativetutorial
   ownerReferences:
-  - apiVersion: serving.knative.dev/v1alpha1
+  - apiVersion: serving.knative.dev/v1
     blockOwnerDeletion: true
     controller: true
     kind: Configuration
     name: greeter
     uid: 2f89f930-b7fa-11e9-96b1-22e0f431a3ed
   resourceVersion: "40312"
-  selfLink: /apis/serving.knative.dev/v1alpha1/namespaces/knativetutorial/revisions/greeter-7cqzq
+  selfLink: /apis/serving.knative.dev/v1/namespaces/knativetutorial/revisions/greeter-7cqzq
   uid: 49e30221-b7fa-11e9-96b1-22e0f431a3ed
 spec:
   containers:
