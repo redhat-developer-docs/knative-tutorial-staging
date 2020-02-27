@@ -305,7 +305,7 @@ default-broker-ingress-7479966dc7-99xvm      1/1   Running     18s</code></pre>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-aloha-sink.yaml">eventing-aloha-sink.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: eventingaloha
@@ -323,7 +323,7 @@ spec:
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-bonjour-sink.yaml">eventing-bonjour-sink.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: eventingbonjour
@@ -450,7 +450,7 @@ spec:
       type: greeting <i class="conum" data-value="1"></i><b>(1)</b>
   subscriber:
     ref:
-     apiVersion: serving.knative.dev/v1alpha1
+     apiVersion: serving.knative.dev/v1
      kind: Service
      name: eventingaloha</code></pre>
 </div>
@@ -516,7 +516,7 @@ spec:
       type: greeting
   subscriber:
     ref:
-     apiVersion: serving.knative.dev/v1alpha1
+     apiVersion: serving.knative.dev/v1
      kind: Service
      name: eventingbonjour</code></pre>
 </div>
