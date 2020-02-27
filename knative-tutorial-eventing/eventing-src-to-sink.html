@@ -182,7 +182,15 @@
 <div class="sect1">
 <h2 id="source-to-sink"><a class="anchor" href="#source-to-sink"></a>Eventing Source to Sink</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Before beginning to run the exercises, navigate to the tutorial chapter&#8217;s <code>eventing</code> folder:</p>
+</div>
+<div id="eventing-navigate-to-folder" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
+</div>
+</div>
+<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#eventing-navigate-to-folder"><i class="fa fa-clipboard"></i></button><br/>
 </div>
 </div>
 <div class="sect1">
@@ -205,19 +213,20 @@ sinkbindings      sources.eventing.knative.dev  true         SinkBinding</code><
 </div>
 </div>
 <div class="listingblock">
-<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-hello-sink.yaml">eventing-hello-sink.yaml</a></div>
+<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-hello-sink.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.eventing.knative.dev/v1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.eventing.knative.dev/v1alpha1
 kind: CronJobSource <i class="conum" data-value="1"></i><b>(1)</b>
 metadata:
-  name: event-greeter-cronjob-source
+  name: eventinghello-cronjob-source
 spec: <i class="conum" data-value="2"></i><b>(2)</b>
   schedule: "*/2 * * * *"
-  data: '{"message": "Thanks for doing Knative Tutorial"}'
+  data: '{"key": "every 2 mins"}'
   sink:
-    apiVersion: serving.knative.dev/v1
-    kind: Service
-    name: eventinghello</code></pre>
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: eventinghello</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -312,7 +321,7 @@ spec.  In the above example it defines <strong>schedule</strong>(the cron expres
 <div class="tab-pane" aria-labelledby="tabset1_kubectl">
 <div id="event-src-svc-kn-resources-apply" class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-hello-sink.yaml">event-source-svc.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
 </div>
 </div>
 <button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#event-src-svc-kn-resources-apply"><i class="fa fa-clipboard"></i></button><br/>
@@ -320,7 +329,7 @@ spec.  In the above example it defines <strong>schedule</strong>(the cron expres
 <div class="tab-pane" aria-labelledby="tabset1_oc">
 <div id="event-src-svc-oc-kn-resources-apply" class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-hello-sink.yaml">event-source-svc.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
 </div>
 </div>
 <button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#event-src-svc-oc-kn-resources-apply"><i class="fa fa-clipboard"></i></button><br/>
