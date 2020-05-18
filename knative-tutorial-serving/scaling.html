@@ -165,9 +165,6 @@
     <a class="nav-link" href="scaling.html">Scaling</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#scaling-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#scaling-deploy-service">Deploy Service</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -270,117 +267,13 @@
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="scaling-prerequisite"><a class="anchor" href="#scaling-prerequisite"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following checks ensure that each chapter exercises are done with the right environment settings.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_kubernetes"></a>Kubernetes</p>
-</li>
-<li>
-<p><a id="tabset1_openshift"></a>OpenShift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_kubernetes">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minikube docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minikube-set-env" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes should be v1.16+</p>
-</li>
-</ul>
-</div>
-<div id="kubectl-version" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version --short</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The output should be as shown</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.18.2
-Server Version: v1.18.2</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_openshift">
-<div class="ulist">
-<ul>
-<li>
-<p>OpenShift CLI should be v4.3+</p>
-</li>
-</ul>
-</div>
-<div id="oc-version" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The output should be like</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version
-Client Version: openshift-clients-4.3.0-201910250623-88-g6a937dfe
-Kubernetes Version: v1.16.2</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure to be on <code>knativetutorial</code> OpenShift project</p>
-</li>
-</ul>
-</div>
-<div id="right-openshift-project" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
-</div>
-<div id="change-to-openshift-project" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Navigate to the tutorial chapter&#8217;s <code>basics</code> folder:</p>
 </div>
-<div id="scaling-navigate-to-basics" class="listingblock">
+<div id="scaling-navigate-to-basics" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/basics</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-navigate-to-basics[]</p>
 </div>
 </div>
 </div>
@@ -430,18 +323,18 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset2_kubernetes"></a>Kubernetes</p>
+<p><a id="tabset1_kubernetes"></a>Kubernetes</p>
 </li>
 <li>
-<p><a id="tabset2_openshift"></a>OpenShift</p>
+<p><a id="tabset1_openshift"></a>OpenShift</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubernetes">
+<div class="tab-pane" aria-labelledby="tabset1_kubernetes">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube ip):$(kubectl get svc kourier-external --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
@@ -450,7 +343,7 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_openshift">
+<div class="tab-pane" aria-labelledby="tabset1_openshift">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
@@ -489,7 +382,12 @@ http $SVC_URL</code></pre>
 <p>By default the <strong>scale-to-zero-grace-period</strong> is <code>30s</code>, and the <strong>stable-window</strong> is <code>60s</code>. Firing a request to the greeter service will bring up the pod (if it is already terminated, as described above) to serve the request. Leaving it without any further requests will automatically cause it to scale to zero in approx <code>60-70 secs</code>. There are at least 20 seconds after the pod starts to terminate and before it&#8217;s completely terminated. This gives Istio enough time to leave out the pod from its own networking configuration.</p>
 </div>
 <div class="paragraph">
-<p>For better clarity and understanding let us <a href="#scaling-cleanup">clean up</a> the deployed Knative resources before going to next section.</p>
+<p>For better clarity and understanding let us <a href="#scaling-cleanup">clean up</a> the deployed Knative resources before going to next section, by running:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -563,15 +461,15 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset3_kubernetes"></a>Kubernetes</p>
+<p><a id="tabset2_kubernetes"></a>Kubernetes</p>
 </li>
 <li>
-<p><a id="tabset3_openshift"></a>OpenShift</p>
+<p><a id="tabset2_openshift"></a>OpenShift</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubernetes">
+<div class="tab-pane" aria-labelledby="tabset2_kubernetes">
 <div id="scaling-run-siege" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">hey -c 50 -z 10s \
@@ -580,7 +478,7 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_openshift">
+<div class="tab-pane" aria-labelledby="tabset2_openshift">
 <div id="oc-scaling-run-siege" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">hey -c 50 -z 10s \

@@ -165,9 +165,6 @@
     <a class="nav-link" href="scaling.html">Scaling</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scaling.html#scaling-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scaling.html#scaling-deploy-service">Deploy Service</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -452,7 +449,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset2_kubernetes">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube ip):$(kubectl get svc kourier-external --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
@@ -506,6 +503,12 @@ Sometimes the response might not be returned immediately especially when the pod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get services.serving.knative.dev greeter</code></pre>
 </div>
 </div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          LATESTCREATED   LATESTREADY     READY
+greeter   http://greeter.knativetutorial.example.com   greeter-97nzs   greeter-97nzs   True</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-configs"><a class="anchor" href="#basics-show-knative-configs"></a>configuration</h3>
@@ -514,12 +517,24 @@ Sometimes the response might not be returned immediately especially when the pod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get configurations.serving.knative.dev greeter</code></pre>
 </div>
 </div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      LATESTCREATED   LATESTREADY     READY
+greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-routes"><a class="anchor" href="#basics-show-knative-routes"></a>routes</h3>
 <div id="knative-routes" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          READY
+greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -551,6 +566,12 @@ Sometimes the response might not be returned immediately especially when the pod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
 --sort-by="{.metadata.creationTimestamp}"</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            CONFIG NAME   K8S SERVICE NAME   GENERATION   READY
+greeter-97nzs   greeter       greeter-97nzs      1            True</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -660,6 +681,13 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
 --sort-by="{.metadata.creationTimestamp}"</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            CONFIG NAME   K8S SERVICE NAME   GENERATION   READY
+greeter-97nzs   greeter       greeter-97nzs      1            True
+greeter-v9fxj   greeter       greeter-v9fxj      2            True</code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -165,9 +165,6 @@
     <a class="nav-link" href="scaling.html">Scaling</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scaling.html#scaling-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scaling.html#scaling-deploy-service">Deploy Service</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -385,7 +382,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 <div class="tab-pane" aria-labelledby="tabset1_kubernetes">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube ip):$(kubectl get svc kourier-external --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">

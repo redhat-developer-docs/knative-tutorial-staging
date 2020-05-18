@@ -165,9 +165,6 @@
     <a class="nav-link" href="scaling.html">Scaling</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scaling.html#scaling-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="scaling.html#scaling-deploy-service">Deploy Service</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -306,6 +303,11 @@ spec:
               path: /healthz</code></pre>
 </div>
 </div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kubectl apply -n knativetutorial -f greeter-v1-service.yaml</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Deploy greeter service revision v2:</p>
 </div>
@@ -334,6 +336,11 @@ spec:
               path: /healthz</code></pre>
 </div>
 </div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kubectl apply -n knativetutorial -f greeter-v2-service.yaml</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Check to ensure you have two revisions of the greeter service:</p>
 </div>
@@ -348,6 +355,13 @@ spec:
 </div>
 <div class="paragraph">
 <p>The command above should list two revisions namely <code>greeter-v1</code> and <code>greeter-v2</code>.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME         CONFIG NAME   K8S SERVICE NAME   GENERATION   READY
+greeter-v1   greeter       greeter-v1         1            True
+greeter-v2   greeter       greeter-v2         2            True</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -448,11 +462,11 @@ spec:
 </table>
 </div>
 <div class="paragraph">
-<p>Before you apply the resource <code>$BOOK_HOME/basics/service-pinned.yaml</code>, call the <code>greeter</code> service again to verify that it is still providing the response from <code>greeter-v2</code> that includes <code>Namaste</code>.</p>
+<p>Before you apply the resource <code>$TUTORIAL_HOME/basics/service-pinned.yaml</code>, call the <code>greeter</code> service again to verify that it is still providing the response from <code>greeter-v2</code> that includes <code>Namaste</code>.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$BOOK_HOME/bin/call.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/call.sh</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -520,7 +534,7 @@ greeter-v2-deployment-9984bb56d-gr4gp   2/2     Running   14s</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$BOOK_HOME/bin/call.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/call.sh</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -535,9 +549,13 @@ greeter-v2-deployment-9984bb56d-gr4gp   2/2     Running   14s</code></pre>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                     READY   STATUS    AGE
-greeter-v1-deployment-6f75dfd9d8-s5bvr   2/2     Running   5s</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                        READY   STATUS        RESTARTS   AGE
+greeter-9x8zn-deployment-84c946dd65-x2cbz   2/2     Terminating   0          82s
+greeter-v1-deployment-7ff594cc7b-d9h6l      2/2     Running       0          9s</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Since <code>greeter-v1</code> is the active revision now, the existing <code>greeter-v2</code> pod is getting terminated as no future requests will be served by it.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -612,12 +630,12 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>As in the previous section on <a href="#blue-green">Applying Blue-Green Deployment Pattern</a> deployments, the command will not create any new configuration/revision/deployment. To observe the traffic distribution you need to run the script <code>$BOOK_HOME/bin/poll.sh</code>, which is almost identical to <code>$BOOK_HOME/bin/call.sh</code> but will invoke the Knative service in a loop.</p>
+<p>As in the previous section on <a href="#blue-green">Applying Blue-Green Deployment Pattern</a> deployments, the command will not create any new configuration/revision/deployment. To observe the traffic distribution you need to run the script <code>$TUTORIAL_HOME/bin/poll.sh</code>, which is almost identical to <code>$TUTORIAL_HOME/bin/call.sh</code> but will invoke the Knative service in a loop.</p>
 </div>
 <div class="listingblock console-input">
 <div class="title">Verify Canary rollout</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$BOOK_HOME/bin/poll.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/poll.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -652,7 +670,7 @@ Hi  greeter =&gt; '9861675f8845' : 16
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods"</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
