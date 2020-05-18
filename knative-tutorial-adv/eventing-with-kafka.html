@@ -2,47 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-adv/eventing-with-kafka.html">
     <meta name="generator" content="Antora 2.2.0">
     <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
   </head>
   <body class="article">
-<header class="header" role="banner">
+<header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <div class="navbar-item">
-        <a href="http://redhat-developer-docs.github.io/knative-tutorial-staging">Knative Tutorial(Staging)</a>
-      </div>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="http://redhat-developer-docs.github.io/knative-tutorial-staging">Knative Tutorial(Staging)</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
 </header>
-<div class="main-wrapper">
-<div class="navigation-container"  data-component="knative-tutorial-adv"
-  data-version="master" >
-  <aside class="navigation">
+<div class="body">
+<div class="nav-container" data-component="knative-tutorial-adv" data-version="master">
+  <aside class="nav">
     <div class="panels">
-      <div class="navigation-menu is-active" data-panel="menu">
+<div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Knative Tutorial Advanced</a></h3>
+    <h3 class="title"><a href="index.html"></a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Knative Eventing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="deploy-apache-kafka.html">Deploy Apache Kafka</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -57,7 +69,7 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-toggle"></button>
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="eventing-with-kafka.html">Knative Eventing with Apache Kafka</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -77,11 +89,11 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">EIP with Apache Camel-K</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-cbr.html">Content Based Routing</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -119,26 +131,23 @@
 </div>
     </div>
   </aside>
-  <div class="navigation-explore" data-panel="explore">
-  <div class="context">
-    <!-- Just a place holder to fill in  explorer for each context -->
-  </div>
 </div>
-</div>
-  <main class="main">
+<main class="article">
 <div class="toolbar" role="navigation">
-  <button class="navigation-toggle"></button>
+<button class="nav-toggle"></button>
   <a href="../knative-tutorial/index.html" class="home-link"></a>
-  <nav class="crumbs" aria-label="breadcrumbs">
+<nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Knative Tutorial Advanced</a></li>
-    <li class="crumb">Knative Eventing</li>
-    <li class="crumb"><a href="eventing-with-kafka.html">Knative Eventing with Apache Kafka</a></li>
+    <li><a href="index.html">Knative Tutorial Advanced</a></li>
+    <li>Knative Eventing</li>
+    <li><a href="eventing-with-kafka.html">Knative Eventing with Apache Kafka</a></li>
   </ul>
 </nav>
-</div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial-module-advanced/edit/master/modules/ROOT/pages/eventing-with-kafka.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
 <article class="doc">
-<h1>Knative Tutorial(Staging)</h1>
+<h1 class="page">Knative Tutorial(Staging)</h1>
 <div class="sect1">
 <h2 id="kn-eventing-with-kafka"><a class="anchor" href="#kn-eventing-with-kafka"></a>Apache Kafka Events with Knative Eventing</h2>
 <div class="sectionbody">
@@ -191,7 +200,9 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#minikube-set-env"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::minikube-set-env[]</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -204,7 +215,9 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kubectl-version"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kubectl-version[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_minishift">
 <div class="ulist">
@@ -219,7 +232,9 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift docker-env)</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#minishift-set-env"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::minishift-set-env[]</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -233,7 +248,9 @@
 oc version</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#oc-version"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::oc-version[]</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -246,7 +263,9 @@ oc version</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#right-openshift-project"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::right-openshift-project[]</p>
+</div>
 <div class="paragraph">
 <p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
 </div>
@@ -255,7 +274,9 @@ oc version</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#change-to-openshift-project"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::change-to-openshift-project[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -267,7 +288,9 @@ oc version</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#eventing-navigate-to-folder"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::eventing-navigate-to-folder[]</p>
+</div>
 <div class="sect2">
 <h3 id="kn-eventing-kafka-source"><a class="anchor" href="#kn-eventing-kafka-source"></a>Deploy Knative Eventing KafkaSource</h3>
 <div class="paragraph">
@@ -293,7 +316,9 @@ oc version</code></pre>
 releases/download/v0.12.2/kafka-source.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-adv-deploy-kafkasource"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-adv-deploy-kafkasource[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset2_oc">
 <div class="admonitionblock note">
@@ -334,7 +359,9 @@ releases/download/v0.12.2/kafka-source.yaml</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knative-sources</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#watch-kafkasource-controller-pod"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::watch-kafkasource-controller-pod[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset3_oc">
 <div id="oc-watch-kafkasource-controller-pod" class="listingblock">
@@ -342,7 +369,9 @@ releases/download/v0.12.2/kafka-source.yaml</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knative-sources</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#oc-watch-kafkasource-controller-pod"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::oc-watch-kafkasource-controller-pod[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -379,7 +408,9 @@ releases/download/v0.12.2/kafka-channel.yaml" \
  | kubectl apply --filename -</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-deploy-kafka-channel"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-deploy-kafka-channel[]</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -434,7 +465,9 @@ releases/download/v0.12.2/kafka-channel.yaml" \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knative-eventing</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-list-kafka-source-pods"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-list-kafka-source-pods[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset5_oc">
 <div id="kn-eventing-list-kafka-source-pods-oc" class="listingblock">
@@ -442,7 +475,9 @@ releases/download/v0.12.2/kafka-channel.yaml" \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n knative-eventing</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-list-kafka-source-pods-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-list-kafka-source-pods-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -483,7 +518,9 @@ sources-controller-694f8df9c4-pss2w    1/1     Running   64m</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='sources.eventing.knative.dev'</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-list-api-res-sources"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-list-api-res-sources[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset6_oc">
 <div id="kn-eventing-list-api-res-sources-oc" class="listingblock">
@@ -491,7 +528,9 @@ sources-controller-694f8df9c4-pss2w    1/1     Running   64m</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources --api-group='sources.eventing.knative.dev'</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-list-api-res-sources-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-list-api-res-sources-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -526,7 +565,9 @@ sinkbindings       sources.eventing.knative.dev   true        SinkBinding</code>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='messaging.knative.dev'</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-list-api-res-messaging"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-list-api-res-messaging[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset7_oc">
 <div id="kn-eventing-list-api-res-messaging-oc" class="listingblock">
@@ -534,7 +575,9 @@ sinkbindings       sources.eventing.knative.dev   true        SinkBinding</code>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources --api-group='messaging.knative.dev'</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-list-api-res-messaging-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-list-api-res-messaging-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -609,7 +652,9 @@ data:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f default-kafka-channel.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#eventing-default-channel-create"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::eventing-default-channel-create[]</p>
+</div>
 <div class="paragraph">
 <p>Since you have now made all Knative Eventing Channels of <strong>knativetutorial</strong> to be KafkaChannel, creating a Knative Eventing Channel in namespace <strong>knativetutorial</strong> will result in a corresponding Kafka Topic created. Let us now verify it by creating a sample Channel as show in listing,</p>
 </div>
@@ -634,7 +679,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-list-topics.sh</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#list-kn-eventing-channel-topics"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::list-kn-eventing-channel-topics[]</p>
+</div>
 <div class="paragraph">
 <p>The command should return an output like <code>knative-messaging-kafka.knativetutorial.my-events-ch</code>.</p>
 </div>
@@ -662,7 +709,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f channels.messaging.knative.dev my-events-ch</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#eventing-default-channel-cleanup2"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::eventing-default-channel-cleanup2[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset8_oc">
 <div id="eventing-default-channel-cleanup-oc" class="listingblock">
@@ -670,7 +719,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f channels.messaging.knative.dev my-events-ch</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#eventing-default-channel-cleanup-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::eventing-default-channel-cleanup-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -697,7 +748,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f eventing-hello-sink.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-src-eventing-hello"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-src-eventing-hello[]</p>
+</div>
 <div class="paragraph">
 <p>Check the Knative Service that was created by the command above:</p>
 </div>
@@ -706,7 +759,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get ksvc</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-src-eventing-hello-ksvc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-src-eventing-hello-ksvc[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset9_oc">
 <div id="kn-kafka-src-eventing-hello-oc" class="listingblock">
@@ -714,7 +769,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f eventing-hello-sink.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-src-eventing-hello-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-src-eventing-hello-oc[]</p>
+</div>
 <div class="paragraph">
 <p>Check the Knative Service that was created by the command above:</p>
 </div>
@@ -723,7 +780,9 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get ksvc</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-src-eventing-hello-ksvc-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-src-eventing-hello-ksvc-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -744,7 +803,9 @@ eventinghello   http://eventinghello.kafka.example.com   True</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stern eventinghello -c user-container</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-src-sink-stern"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-src-sink-stern[]</p>
+</div>
 <div class="paragraph">
 <p>The initial deployment of <code>eventinghello</code> will cause it to scale up to 1 pod.  It will be around until it hits its scale-down time limit.  Allow it to scale down to zero pods before continuing.</p>
 </div>
@@ -805,13 +866,17 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial apply -f mykafka-source.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-source-deploy"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-source-deploy[]</p>
+</div>
 <div id="kn-kafka-source-status-watch" class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-source-status-watch"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-source-status-watch[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset10_oc">
 <div id="kn-kafka-source-deploy-oc" class="listingblock">
@@ -819,13 +884,17 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial apply -f mykafka-source.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-source-deploy-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-source-deploy-oc[]</p>
+</div>
 <div id="kn-kafka-source-status-watch-oc" class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kafka-source-status-watch-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kafka-source-status-watch-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -860,7 +929,9 @@ mykafka-source-vxs2k-56548756cc-j7m7v         1/1    Running  0         11s</cod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-producer.sh</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-kakfa-source-producer-events"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-kakfa-source-producer-events[]</p>
+</div>
 <div class="paragraph">
 <p>And then enter the following JSON-formatted messages:</p>
 </div>
@@ -897,7 +968,9 @@ mykafka-source-vxs2k-56548756cc-j7m7v         1/1    Running  0         11s</cod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stern eventinghello -c user-container</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#stern-kafka-src-events"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::stern-kafka-src-events[]</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ce-id=partition:1/offset:1
@@ -947,7 +1020,9 @@ kubectl delete -n knativetutorial  -f eventing-hello-sink.yaml
 kubectl delete -n kafka -f kafka-topic-my-topic.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-kafka-src-cleanup"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-kafka-src-cleanup[]</p>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset11_oc">
 <div id="kn-eventing-kafka-src-cleanup-oc" class="listingblock">
@@ -957,7 +1032,9 @@ oc delete -n knativetutorial  -f eventing-hello-sink.yaml
 oc delete -n kafka -f kafka-topic-my-topic.yaml</code></pre>
 </div>
 </div>
-<button class="copybtn float-right" title="Copy to clipboard" data-clipboard-target="#kn-eventing-kafka-src-cleanup-oc"><i class="fa fa-clipboard"></i></button><br/>
+<div class="paragraph">
+<p>copyToClipboard::kn-eventing-kafka-src-cleanup-oc[]</p>
+</div>
 </div>
 </div>
 </div>
@@ -965,94 +1042,17 @@ oc delete -n kafka -f kafka-topic-my-topic.yaml</code></pre>
 </div>
 </div>
 </article>
-  </main>
-</div>
-<footer role="contentinfo">
-  <div class="region region-rhd-footer">
-    <div id="block-rhdfooter" class="rhd-footer">
-      <nav class="rhd-footer-nav" aria-label="Secondary Navigation" role="navigation">
-  <ul class="rhd-menu">
-    <li class="menu-item menu-item--expanded">
-      <h3 class="section-toggle">GitHub</h3>
-      <ul class="rhd-menu">
-        <li class="menu-item">
-          <a href="https://github.com/redhat-developer-demos/knative-tutorial" title="Knative Tutorial">Knative
-            Tutorial</a>
-        </li>
-        <li class="menu-item">
-          <a href="https://github.com/redhat-developer-demos/knative-tutorial/issues" title="Issue Tracker">Issue
-            Tracker</a>
-        </li>
-        <li class="menu-item">
-          <a href="https://github.com/openshift-cloud-functions/Documentation"
-            title="OpenShift Cloud Functions">OpenShift Cloud Functions</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-      <div class="rhd-footer-sidebar">
-        <p class="rhd-footer-sidebar-title">Red Hat Developer</p>
-        <p class="rhd-footer-sidebar-subtitle">Build here. Go anywhere.</p>
-        <p class="rhd-footer-sidebar-content">
-          We serve the builders. The problem solvers who create careers with
-          code.<br /><br /><a href="https://developer.redhat.com/register">Join us</a>
-          if you’re a developer, software engineer, web designer, front-end
-          designer, UX designer, computer scientist, architect, tester,
-          product manager, project manager or team lead.
-        </p>
-        <ul class="rhd-footer-sidebar-social">
-          <li>
-            <a href="https://www.youtube.com/channel/UC7noUdfWp-ukXUlAsJnSm-Q" target="_blank"
-              rel="noopener noreferrer"><svg class="svg-inline--fa fa-youtube fa-w-18" aria-hidden="true"
-                data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512" data-fa-i2svg="">
-                <path fill="currentColor"
-                  d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
-                </path>
-              </svg><!-- <i class="fab fa-youtube"></i> --></a>
-          </li>
-          <li>
-            <a href="https://www.facebook.com/RedHatDeveloperProgram" target="_blank" rel="noopener noreferrer"><svg
-                class="svg-inline--fa fa-facebook fa-w-14" aria-hidden="true" data-prefix="fab" data-icon="facebook"
-                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor"
-                  d="M448 56.7v398.5c0 13.7-11.1 24.7-24.7 24.7H309.1V306.5h58.2l8.7-67.6h-67v-43.2c0-19.6 5.4-32.9 33.5-32.9h35.8v-60.5c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9h-58.4v67.6h58.4V480H24.7C11.1 480 0 468.9 0 455.3V56.7C0 43.1 11.1 32 24.7 32h398.5c13.7 0 24.8 11.1 24.8 24.7z">
-                </path>
-              </svg><!-- <i class="fab fa-facebook"> </i> --></a>
-          </li>
-          <li>
-            <a href="https://twitter.com/rhdevelopers" target="_blank" rel="noopener noreferrer"><svg
-                class="svg-inline--fa fa-twitter fa-w-16" aria-hidden="true" data-prefix="fab" data-icon="twitter"
-                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor"
-                  d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
-                </path>
-              </svg><!-- <i class="fab fa-twitter"> </i> --></a>
-          </li>
-          <li>
-            <a href="https://github.com/redhat-developer" target="_blank" rel="noopener noreferrer"><svg
-                class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" data-prefix="fab" data-icon="github"
-                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
-                <path fill="currentColor"
-                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
-                </path>
-              </svg><!-- <i class="fab fa-github"> </i> --></a>
-          </li>
-        </ul>
-        <a class="rhd-footer-sidebar-signup" href="https://developers.redhat.com/register">Sign me up ▸</a>
-      </div>
-    </div>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
   </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
+<script src="../_/js/vendor/clipboard.js"></script>
 <script src="../_/js/site.js"></script>
-<script src="../_/js/vendor/highlight.js"></script>
-<script>hljs.initHighlighting()</script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
   </body>
 </html>
