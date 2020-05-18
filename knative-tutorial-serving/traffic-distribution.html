@@ -54,22 +54,13 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#download-tutorial-sources">Download Tutorial Sources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#tutorial-all-local">CLI Tools</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#dev-env-all-in-one">All in one Environment</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -348,42 +339,11 @@ spec:
 </div>
 <div class="sect2">
 <h3 id="rev1-basics-show-knative-revisions"><a class="anchor" href="#rev1-basics-show-knative-revisions"></a>revisions</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset1_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_kubectl">
-<div id="td-all-revsknative-revisions" class="listingblock">
+<div id="td-all-revsknative-revisions" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
 --sort-by="{.metadata.creationTimestamp}"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}knative-revisions[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_oc">
-<div id="td-all-revs-oc-knative-revisions" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial get rev \
- --selector=serving.knative.dev/service=greeter \
- --sort-by="{.metadata.creationTimestamp}"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-oc-knative-revisions[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -490,20 +450,31 @@ spec:
 <div class="paragraph">
 <p>Before you apply the resource <code>$BOOK_HOME/basics/service-pinned.yaml</code>, call the <code>greeter</code> service again to verify that it is still providing the response from <code>greeter-v2</code> that includes <code>Namaste</code>.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>$BOOK_HOME/bin/call.sh</strong>
-Namaste  greeter => '9861675f8845' : 1
-
-$ <strong>kubectl get pods</strong>
-NAME                                    READY   STATUS    AGE
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$BOOK_HOME/bin/call.sh</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Namaste  greeter => '9861675f8845' : 1</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get pods</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                    READY   STATUS    AGE
 greeter-v2-deployment-9984bb56d-gr4gp   2/2     Running   14s</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Now apply the update Knative service configuration using the command as shown in following listing:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="title">Create greeter deployment (blue)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial apply -f service-pinned.yaml</code></pre>
@@ -512,40 +483,10 @@ greeter-v2-deployment-9984bb56d-gr4gp   2/2     Running   14s</code></pre>
 <div class="paragraph">
 <p>Let us list the available sub-routes:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="run-traffic-sub-routes" class="listingblock">
+<div id="run-traffic-sub-routes" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get ksvc greeter -oyaml \
  | yq r - 'status.traffic[*].url'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::run-traffic-sub-routes[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="run-oc-traffic-sub-routes" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial get ksvc greeter -oyaml \
-  | yq r - 'status.traffic[*].url'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::run-oc-traffic-sub-routes[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -577,13 +518,24 @@ greeter-v2-deployment-9984bb56d-gr4gp   2/2     Running   14s</code></pre>
 <div class="paragraph">
 <p>You will notice that the command does not create any new configuration/revision/deployment as there was no application update (e.g. image tag, env var, etc), but when you call the service, Knative scales up the <code>greeter-v1</code> and the service responds with the text <strong>Hi  greeter &#8658; '9861675f8845' : 1</strong>.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>$BOOK_HOME/bin/call.sh</strong>
-Hi  greeter =&gt; '9861675f8845' : 1
-
-$ <strong>kubectl get pods</strong>
-NAME                                     READY   STATUS    AGE
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$BOOK_HOME/bin/call.sh</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hi  greeter =&gt; '9861675f8845' : 1</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get pods</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                     READY   STATUS    AGE
 greeter-v1-deployment-6f75dfd9d8-s5bvr   2/2     Running   5s</code></pre>
 </div>
 </div>
@@ -653,25 +605,25 @@ spec:
 <div class="paragraph">
 <p>To roll out the greeter canary deployment use the following command:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="title">Create greeter canary Deployment</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>kubectl -n knativetutorial apply -f service-canary.yaml</strong></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial apply -f service-canary.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>As in the previous section on <a href="#blue-green">Applying Blue-Green Deployment Pattern</a> deployments, the command will not create any new configuration/revision/deployment. To observe the traffic distribution you need to run the script <code>$BOOK_HOME/bin/poll.sh</code>, which is almost identical to <code>$BOOK_HOME/bin/call.sh</code> but will invoke the Knative service in a loop.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="title">Verify Canary rollout</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>$BOOK_HOME/bin/poll.sh</strong></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$BOOK_HOME/bin/poll.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>With the poll.sh script running you will see that approximately 80% of the responses are returned from <code>greeter-v1</code> and approximately 20% from <code>greeter-v2</code>. See the listing below for sample output:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">Sample greeter Canary roll out output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hi  greeter =&gt; '9861675f8845' : 1
@@ -698,10 +650,14 @@ Hi  greeter =&gt; '9861675f8845' : 16
 <div class="paragraph">
 <p>You should also notice that two pods are running representing both <code>greeter-v1</code> and <code>greeter-v2</code>:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>watch kubectl get pods</strong>
-NAME                                     READY   STATUS    AGE
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                     READY   STATUS    AGE
 greeter-v1-deployment-6f75dfd9d8-86q89   2/2     Running   12s
 greeter-v2-deployment-9984bb56d-n7xvm    2/2     Running   2s</code></pre>
 </div>
@@ -725,38 +681,9 @@ greeter-v2-deployment-9984bb56d-n7xvm    2/2     Running   2s</code></pre>
 <div class="sect1">
 <h2 id="basics-cleanup"><a class="anchor" href="#basics-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="basics-run-cleanup" class="listingblock">
+<div id="basics-run-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-run-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="basics-run-oc-cleanup" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial delete services.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-run-oc-cleanup[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>

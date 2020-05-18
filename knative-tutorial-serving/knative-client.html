@@ -54,22 +54,13 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#download-tutorial-sources">Download Tutorial Sources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#tutorial-all-local">CLI Tools</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#dev-env-all-in-one">All in one Environment</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -289,7 +280,7 @@
 <p>Knative Client (<code>kn</code>) is still under aggressive development, so commands and options might change rapidly.</p>
 </li>
 <li>
-<p>As of writing the tutorial v0.12.0 was the latest version of the Knative Client</p>
+<p>As of writing the tutorial v0.14.0 was the latest version of the Knative Client</p>
 </li>
 </ul>
 </div>
@@ -303,33 +294,31 @@
 <h2 id="kn-install"><a class="anchor" href="#kn-install"></a>Install</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Download the <a href="https://github.com/knative/client/releases/tag/v0.12.0">latest</a> Knative Client and add to your <code>PATH</code>.</p>
+<p>Download the <a href="https://github.com/knative/client/releases/tag/v0.14.0">latest</a> Knative Client and add to your <code>PATH</code>.</p>
 </div>
 <div class="paragraph">
 <p>Verify installation by running the command:</p>
 </div>
-<div id="kn-verify-install" class="listingblock">
+<div id="kn-verify-install" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn version</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kn-verify-install[]</p>
-</div>
-<div class="paragraph">
 <p>The above command will return a response like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Version:      v0.12.0
-Build Date:   2020-01-29 21:03:45
-Git Revision: 164cb5f
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn version
+Version:      v0.14.0
+Build Date:   2020-04-22 08:56:32
+Git Revision: c41e9fd
 Supported APIs:
 * Serving
-  - serving.knative.dev/v1 (knative-serving v0.12.0)
+  - serving.knative.dev/v1 (knative-serving v0.14.0)
 * Eventing
-  - sources.eventing.knative.dev/v1alpha1 (knative-eventing v0.12.0)
-  - eventing.knative.dev/v1alpha1 (knative-eventing v0.12.0)</code></pre>
+  - sources.knative.dev/v1alpha2 (knative-eventing v0.14.1)
+  - eventing.knative.dev/v1alpha1 (knative-eventing v0.14.1)</code></pre>
 </div>
 </div>
 </div>
@@ -348,18 +337,17 @@ Supported APIs:
 <div class="paragraph">
 <p>To create the <code>greeter</code> service using <code>kn</code> run the following command:</p>
 </div>
-<div id="kn-create-ksvc-greeter" class="listingblock">
+<div id="kn-create-ksvc-greeter" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create greeter --namespace knativetutorial --image quay.io/rhdevelopers/knative-tutorial-greeter:quarkus</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create greeter \
+  --namespace knativetutorial \
+  --image quay.io/rhdevelopers/knative-tutorial-greeter:quarkus</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-create-ksvc-greeter[]</p>
 </div>
 <div class="paragraph">
 <p>A successful create of the <code>greeter</code> service should show a response like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Service 'greeter' successfully created in namespace 'knativetutorial'.
 Waiting for service 'greeter' to become ready ... OK
@@ -374,13 +362,10 @@ http://greeter.knativetutorial.example.com</code></pre>
 <div class="paragraph">
 <p>You can list the created services using the command:</p>
 </div>
-<div id="kn-list-ksvc" class="listingblock">
+<div id="kn-list-ksvc" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service list --namespace knativetutorial</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-list-ksvc[]</p>
 </div>
 </div>
 <div class="sect2">
@@ -398,32 +383,23 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 <div class="content">
 <div class="tab-pane" aria-labelledby="tabset1_kubernetes">
-<div id="bis-kubectl-svc-gateway-env" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube ip):$(kubectl get svc kourier-external --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::bis-kubectl-svc-gateway-env[]</p>
-</div>
-<div id="bis-kubectl-svc-call" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::bis-kubectl-svc-call[]</p>
-</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_openshift">
-<div id="bis-openshift-oc-svc-call" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`oc get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
 http $SVC_URL</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::bis-openshift-oc-svc-call[]</p>
 </div>
 </div>
 </div>
@@ -440,16 +416,18 @@ http $SVC_URL</code></pre>
 <div class="paragraph">
 <p>In previous chapter we deployed a new revision of Knative service by adding an environment variable. Lets try do the same thing with <code>kn</code> to trigger a new deployment:</p>
 </div>
-<div id="run-kn-update-ksvc" class="listingblock">
+<div id="run-kn-update-ksvc" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service update greeter --env "MESSAGE_PREFIX=Namaste"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-update-ksvc[]</p>
+<p>Now <a href="#kn-invoke-service">Invoking the service</a> will return me a response like:</p>
 </div>
-<div class="paragraph">
-<p>Now <a href="#kn-invoke-service">Invoking the service</a> will return me a response like <strong>Namaste  greeter &#8658; '9861675f8845' : 1</strong></p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Namaste  greeter =&gt; '9861675f8845' : 1</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -457,18 +435,15 @@ http $SVC_URL</code></pre>
 <div class="paragraph">
 <p>Sometime you wish you get the YAML of the Knative service to build a new service or to compare with with another service. <code>kn</code> makes it super easy for you to get the YAML:</p>
 </div>
-<div id="run-kn-desc-ksvc" class="listingblock">
+<div id="run-kn-desc-ksvc" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service describe greeter</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-desc-ksvc[]</p>
-</div>
-<div class="paragraph">
 <p>The describe should show you a short summary of your service :</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name:       greeter
 Namespace:  knativetutorial
@@ -506,18 +481,15 @@ Conditions:
 <div class="paragraph">
 <p>You can also use <code>kn</code> to delete the service that were created, to delete the service named <code>greeter</code> run the following command:</p>
 </div>
-<div id="run-kn-delete-ksvc" class="listingblock">
+<div id="run-kn-delete-ksvc" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service delete greeter</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-delete-ksvc[]</p>
-</div>
-<div class="paragraph">
 <p>A successful delete should show an output like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Service 'greeter' successfully deleted in namespace 'knativetutorial'.</code></pre>
 </div>
@@ -539,18 +511,15 @@ Conditions:
 <div class="paragraph">
 <p>You can list the available revisions of a Knative service using:</p>
 </div>
-<div id="run-kn-list-rev" class="listingblock">
+<div id="run-kn-list-rev" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision list</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-list-rev[]</p>
-</div>
-<div class="paragraph">
 <p>The command should show a list of revisions like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              SERVICE   TRAFFIC   TAGS   GENERATION   AGE   CONDITIONS   READY   REASON
 greeter-tjtpm-2   greeter   100%             2            98s   3 OK / 4     True
@@ -563,18 +532,15 @@ greeter-twpgf-1   greeter                    1            11h   3 OK / 4     Tru
 <div class="paragraph">
 <p>To get the details about a specific revision you can use the command:</p>
 </div>
-<div id="run-kn-desc-rev" class="listingblock">
+<div id="run-kn-desc-rev" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision describe greeter-twpgf-1</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-desc-rev[]</p>
-</div>
-<div class="paragraph">
 <p>The command should return a output like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name:       greeter-twpgf-1
 Namespace:  knativetutorial
@@ -596,18 +562,15 @@ Conditions:
 <div class="paragraph">
 <p>To delete a specific revision you can use the command:</p>
 </div>
-<div id="run-kn-del-rev" class="listingblock">
+<div id="run-kn-del-rev" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision delete greeter-7cqzq</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-del-rev[]</p>
-</div>
-<div class="paragraph">
 <p>The command should return an output like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Revision 'greeter-7cqzq' successfully deleted in namespace 'knativetutorial'.</code></pre>
 </div>
@@ -626,18 +589,15 @@ Conditions:
 </div>
 <div class="sect2">
 <h3 id="kn-routes-list"><a class="anchor" href="#kn-routes-list"></a>List Routes</h3>
-<div id="run-kn-rt-list" class="listingblock">
+<div id="run-kn-rt-list" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn route list</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-kn-rt-list[]</p>
-</div>
-<div class="paragraph">
 <p>The command should return an output like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          AGE   CONDITIONS   TRAFFIC
 greeter   http://greeter.knativetutorial.example.com   10m   3 OK / 3     100% -&gt; greeter-zd7jk</code></pre>
@@ -663,13 +623,10 @@ greeter   http://greeter.knativetutorial.example.com   10m   3 OK / 3     100% -
 <div class="sect1">
 <h2 id="kn-cleanup"><a class="anchor" href="#kn-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div id="cleanup-kn-delete-ksvc" class="listingblock">
+<div id="cleanup-kn-delete-ksvc" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service delete greeter</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::cleanup-kn-delete-ksvc[]</p>
 </div>
 </div>
 </div>

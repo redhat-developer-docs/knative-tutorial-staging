@@ -54,22 +54,13 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#download-tutorial-sources">Download Tutorial Sources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#tutorial-all-local">CLI Tools</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#dev-env-all-in-one">All in one Environment</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -307,50 +298,50 @@
 </li>
 </ul>
 </div>
-<div id="minikube-set-env" class="listingblock">
+<div id="minikube-set-env" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Kubernetes should be v1.15+</p>
+<p>Kubernetes should be v1.16+</p>
 </li>
 </ul>
 </div>
-<div id="kubectl-version" class="listingblock">
+<div id="kubectl-version" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version --short</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
+<p>The output should be as shown</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.18.2
+Server Version: v1.18.2</code></pre>
+</div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_openshift">
 <div class="ulist">
 <ul>
 <li>
-<p>OpenShift CLI should be v4.1+</p>
+<p>OpenShift CLI should be v4.3+</p>
 </li>
 </ul>
 </div>
-<div id="oc-version" class="listingblock">
+<div id="oc-version" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="paragraph">
 <p>The output should be like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version
 Client Version: openshift-clients-4.3.0-201910250623-88-g6a937dfe
@@ -364,24 +355,18 @@ Kubernetes Version: v1.16.2</code></pre>
 </li>
 </ul>
 </div>
-<div id="right-openshift-project" class="listingblock">
+<div id="right-openshift-project" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
 <p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
 </div>
-<div id="change-to-openshift-project" class="listingblock">
+<div id="change-to-openshift-project" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
 </div>
 </div>
 </div>
@@ -428,42 +413,9 @@ spec:
 <div class="paragraph">
 <p>The service can be deployed using the command:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="crtd-rev1-apply-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/service.yaml">service.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::crtd-rev1-apply-kn-resources-apply[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="crtd-rev1-apply-oc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/service.yaml">service.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::crtd-rev1-apply-oc-kn-resources-apply[]</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -478,47 +430,43 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset3_kubernetes"></a>Kubernetes</p>
+<p><a id="tabset2_kubernetes"></a>Kubernetes</p>
 </li>
 <li>
-<p><a id="tabset3_openshift"></a>OpenShift</p>
+<p><a id="tabset2_openshift"></a>OpenShift</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubernetes">
-<div id="scaling-is-kubectl-svc-gateway-env" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset2_kubernetes">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube ip):$(kubectl get svc kourier-external --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-is-kubectl-svc-gateway-env[]</p>
-</div>
-<div id="scaling-is-kubectl-svc-call" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-is-kubectl-svc-call[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_openshift">
-<div id="scaling-is-minishift-oc-svc-call" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset2_openshift">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`oc get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
 http $SVC_URL</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-is-minishift-oc-svc-call[]</p>
-</div>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>The last <code>http</code> command should return a response like <strong>Hi  greeter &#8658; '9be9ccd9a2e3' : 1</strong></p>
+<p>The last <code>http</code> command should return a response like:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hi  greeter =&gt; '9be9ccd9a2e3' : 1</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Check <a href="basic-fundas.html#basics-see-what-you-have-deployed" class="page">deployed Knative resources</a> for more details on which Knative objects and resources have been created with the service deployment above.</p>
@@ -586,42 +534,9 @@ spec:
 </div>
 <div class="sect2">
 <h3 id="scaling-autoscaling-deploy-service"><a class="anchor" href="#scaling-autoscaling-deploy-service"></a>Deploy service</h3>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset4_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
-<div id="scaling-run-autoscale-10-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-10.yaml">service-10.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-run-autoscale-10-kn-resources-apply[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_oc">
-<div id="scaling-run-autoscale-10-oc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-10.yaml">service-10.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-run-autoscale-10-oc-kn-resources-apply[]</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -633,38 +548,9 @@ spec:
 <div class="paragraph">
 <p>Open a new terminal and run the following command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset5_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
-<div id="autoscale-kubectl-watch-scale" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch 'kubectl get pods -n knativetutorial'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::autoscale-kubectl-watch-scale[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_oc">
-<div id="autoscale-oc-watch-scale" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch 'oc get pods -n knativetutorial'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::autoscale-oc-watch-scale[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -677,35 +563,29 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset6_kubernetes"></a>Kubernetes</p>
+<p><a id="tabset3_kubernetes"></a>Kubernetes</p>
 </li>
 <li>
-<p><a id="tabset6_openshift"></a>OpenShift</p>
+<p><a id="tabset3_openshift"></a>OpenShift</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kubernetes">
-<div id="scaling-run-siege" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset3_kubernetes">
+<div id="scaling-run-siege" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">hey -c 50 -z 10s \
   -host "prime-generator.knativetutorial.example.com" \
   "http://${IP_ADDRESS}/?sleep=3&amp;upto=10000&amp;memload=100"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-run-siege[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_openshift">
-<div id="oc-scaling-run-siege" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset3_openshift">
+<div id="oc-scaling-run-siege" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">hey -c 50 -z 10s \
   "${SVC_URL}/?sleep=3&amp;upto=10000&amp;memload=100"</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-scaling-run-siege[]</p>
 </div>
 </div>
 </div>
@@ -716,7 +596,7 @@ spec:
 <div class="paragraph">
 <p>The autoscale pods is computed using the formula:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">totalPodsToScale = inflightRequests / concurrencyTarget</code></pre>
 </div>
@@ -777,42 +657,9 @@ spec:
 </li>
 </ul>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset7_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kubectl">
-<div id="scaling-run-min-scale-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-max-scale.yaml">service-min-max-scale.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-run-min-scale-kn-resources-apply[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_oc">
-<div id="scaling-run-min-scale-oc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/scaling/service-min-max-scale.yaml">service-min-max-scale.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::scaling-run-min-scale-oc-kn-resources-apply[]</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -821,38 +668,9 @@ spec:
 <div class="paragraph">
 <p>Open a new terminal and run the following command :</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset8_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset8_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset8_kubectl">
-<div id="min-scale-kubectl-watch-scale" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch 'kubectl get pods -n knativetutorial'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::min-scale-kubectl-watch-scale[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset8_oc">
-<div id="min-scale-oc-watch-scale" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch 'oc get pods -n knativetutorial'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::min-scale-oc-watch-scale[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -867,40 +685,10 @@ spec:
 <div class="sect1">
 <h2 id="scaling-cleanup"><a class="anchor" href="#scaling-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset9_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset9_oc"></a>oc</p>
-</li>
-</ul>
-</div>
+<div id="run-scaling-cleanup" class="listingblock console-input">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset9_kubectl">
-<div id="run-scaling-cleanup" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter  &amp;&amp;\
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter
 kubectl -n knativetutorial delete services.serving.knative.dev prime-generator</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::run-scaling-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset9_oc">
-<div id="run-oc-scaling-cleanup" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial delete services.serving.knative.dev greeter &amp;&amp;\
-oc -n knativetutorial delete services.serving.knative.dev prime-generator</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::run-oc-scaling-cleanup[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>

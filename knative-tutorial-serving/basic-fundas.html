@@ -54,22 +54,13 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#download-tutorial-sources">Download Tutorial Sources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#tutorial-all-local">CLI Tools</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="setup.html#dev-env-all-in-one">All in one Environment</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -298,50 +289,50 @@
 </li>
 </ul>
 </div>
-<div id="minikube-set-env" class="listingblock">
+<div id="minikube-set-env" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Kubernetes should be v1.15+</p>
+<p>Kubernetes should be v1.16+</p>
 </li>
 </ul>
 </div>
-<div id="kubectl-version" class="listingblock">
+<div id="kubectl-version" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version --short</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
+<p>The output should be as shown</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.18.2
+Server Version: v1.18.2</code></pre>
+</div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_openshift">
 <div class="ulist">
 <ul>
 <li>
-<p>OpenShift CLI should be v4.1+</p>
+<p>OpenShift CLI should be v4.3+</p>
 </li>
 </ul>
 </div>
-<div id="oc-version" class="listingblock">
+<div id="oc-version" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="paragraph">
 <p>The output should be like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version
 Client Version: openshift-clients-4.3.0-201910250623-88-g6a937dfe
@@ -355,24 +346,18 @@ Kubernetes Version: v1.16.2</code></pre>
 </li>
 </ul>
 </div>
-<div id="right-openshift-project" class="listingblock">
+<div id="right-openshift-project" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
 <p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
 </div>
-<div id="change-to-openshift-project" class="listingblock">
+<div id="change-to-openshift-project" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
 </div>
 </div>
 </div>
@@ -385,13 +370,10 @@ Kubernetes Version: v1.16.2</code></pre>
 <div class="paragraph">
 <p>Navigate to the tutorial chapter&#8217;s folder basics:</p>
 </div>
-<div id="basics-nav-folder" class="listingblock">
+<div id="basics-nav-folder" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/basics</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-nav-folder[]</p>
 </div>
 <div class="paragraph">
 <p>The following snippet shows what a Knative service YAML looks like:</p>
@@ -419,79 +401,17 @@ spec:
 <div class="paragraph">
 <p>The service can be deployed using the following command:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="basics-rev1-deploy-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::basics-rev1-deploy-kn-resources-apply[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="basics-rev1-deploy-oc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-rev1-deploy-oc-kn-resources-apply[]</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>After successful deployment of the service we should see a Kubernetes Deployment named similar to <code>greeter-nsrbr-deployment</code> available:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="basics-run-get-deployments" class="listingblock">
+<div id="basics-run-get-deployments" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get deployments -n knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-run-get-deployments[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="basics-run-oc-get-deployments" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get deployments -n knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-run-oc-get-deployments[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -521,47 +441,43 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset4_kubernetes"></a>Kubernetes</p>
+<p><a id="tabset2_kubernetes"></a>Kubernetes</p>
 </li>
 <li>
-<p><a id="tabset4_openshift"></a>OpenShift</p>
+<p><a id="tabset2_openshift"></a>OpenShift</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubernetes">
-<div id="bis-kubectl-svc-gateway-env" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset2_kubernetes">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube ip):$(kubectl get svc kourier-external --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::bis-kubectl-svc-gateway-env[]</p>
-</div>
-<div id="bis-kubectl-svc-call" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::bis-kubectl-svc-call[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_openshift">
-<div id="bis-openshift-oc-svc-call" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset2_openshift">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`oc get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
 http $SVC_URL</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::bis-openshift-oc-svc-call[]</p>
-</div>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>http</code> command should return a response containing a line similar to <strong>Hi  greeter &#8658; '6fee83923a9f' : 1</strong></p>
+<p>The <code>http</code> command should return a response containing a line similar to:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hi  greeter =&gt; '6fee83923a9f' : 1</code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -585,112 +501,25 @@ Sometimes the response might not be returned immediately especially when the pod
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-services"><a class="anchor" href="#basics-show-knative-services"></a>service</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset5_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
-<div id="knative-services" class="listingblock">
+<div id="knative-services" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get services.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::knative-services[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_oc">
-<div id="oc-knative-services" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial  get services.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-knative-services[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-configs"><a class="anchor" href="#basics-show-knative-configs"></a>configuration</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset6_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset6_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kubectl">
-<div id="knative-configs" class="listingblock">
+<div id="knative-configs" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get configurations.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::knative-configs[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_oc">
-<div id="oc-knative-configs" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial get configurations.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-knative-configs[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-routes"><a class="anchor" href="#basics-show-knative-routes"></a>routes</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset7_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kubectl">
-<div id="knative-routes" class="listingblock">
+<div id="knative-routes" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::knative-routes[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_oc">
-<div id="oc-knative-routes" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-knative-routes[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -717,42 +546,11 @@ Sometimes the response might not be returned immediately especially when the pod
 </div>
 <div class="sect2">
 <h3 id="rev1-basics-show-knative-revisions"><a class="anchor" href="#rev1-basics-show-knative-revisions"></a>revisions</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset8_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset8_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset8_kubectl">
-<div id="rev1knative-revisions" class="listingblock">
+<div id="rev1knative-revisions" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
 --sort-by="{.metadata.creationTimestamp}"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::bisknative-revisions[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset8_oc">
-<div id="rev1-oc-knative-revisions" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial get rev \
- --selector=serving.knative.dev/service=greeter \
- --sort-by="{.metadata.creationTimestamp}"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::bis-oc-knative-revisions[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -843,42 +641,9 @@ spec:
 <div class="paragraph">
 <p>Let us deploy the new revision using the command:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset9_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset9_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset9_kubectl">
-<div id="basics-rev2-deploy-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-rev2-deploy-kn-resources-apply[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset9_oc">
-<div id="basics-rev2-deploy-oc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-rev2-deploy-oc-kn-resources-apply[]</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -890,20 +655,7 @@ spec:
 </div>
 <div class="sect2">
 <h3 id="rev2-basics-show-knative-revisions"><a class="anchor" href="#rev2-basics-show-knative-revisions"></a>revisions</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset10_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset10_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset10_kubectl">
-<div id="rev2knative-revisions" class="listingblock">
+<div id="rev2knative-revisions" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
@@ -911,25 +663,15 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::basics-rev2-deployknative-revisions[]</p>
+<p><a href="#basics-invoke-service">Invoking Service</a> will now show an output like:</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset10_oc">
-<div id="rev2-oc-knative-revisions" class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial get rev \
- --selector=serving.knative.dev/service=greeter \
- --sort-by="{.metadata.creationTimestamp}"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Namaste  greeter =&gt; '6fee83923a9f' : 1**</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::basics-rev2-deploy-oc-knative-revisions[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><a href="#basics-invoke-service">Invoking Service</a> will now show an output like <strong>Namaste  greeter &#8658; '6fee83923a9f' : 1</strong>, where <em>Namaste</em> is the value we configured via environment variable in the Knative service resource file.</p>
+<p>Where <em>Namaste</em> is the value we configured via environment variable in the Knative service resource file.</p>
 </div>
 </div>
 </div>
@@ -937,38 +679,9 @@ spec:
 <div class="sect1">
 <h2 id="basics-cleanup"><a class="anchor" href="#basics-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset11_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset11_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset11_kubectl">
-<div id="basics-run-cleanup" class="listingblock">
+<div id="basics-run-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-run-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset11_oc">
-<div id="basics-run-oc-cleanup" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial delete services.serving.knative.dev greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::basics-run-oc-cleanup[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>
