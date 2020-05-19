@@ -54,9 +54,6 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html#camelk-prerequisite">Prerequisite</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#install-camel-k">Install Camel-K </a>
   </li>
 </ul>
@@ -65,9 +62,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-basics.html">Camel-K with Knative Serving</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="camel-k-basics.html#camel-k-prerequisite">Prerequisite</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="camel-k-basics.html#deploy-camel-k-integration">Deploy Camel-K integration</a>
   </li>
@@ -83,9 +77,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-eventing.html">Camel-K with Knative Eventing</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#camel-k-eve-prerequisite">Prerequisite</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy-camel-k-source">Deploy Knative CamelSource</a>
   </li>
@@ -141,119 +132,6 @@
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="camel-k-eve-prerequisite"><a class="anchor" href="#camel-k-eve-prerequisite"></a>Prerequisite</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following checks ensure that each chapter exercises are done with the right environment settings.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset1_minishift"></a>Minishift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minikube">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minikube docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minikube-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes should be v1.12+</p>
-</li>
-</ul>
-</div>
-<div id="kubectl-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_minishift">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minishift docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minishift-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minishift-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>OpenShift CLI should be v3.11.0+</p>
-</li>
-</ul>
-</div>
-<div id="oc-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift oc-env)
-oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure to be on <code>knativetutorial</code> OpenShift project</p>
-</li>
-</ul>
-</div>
-<div id="right-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
-<p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
-</div>
-<div id="change-to-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
-</div>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="deploy-camel-k-source"><a class="anchor" href="#deploy-camel-k-source"></a>Deploy Knative Eventing CamelSource</h3>
 <div class="paragraph">
@@ -262,51 +140,16 @@ oc version</code></pre>
 <div class="paragraph">
 <p>To deploy CamelSource run the following command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="deploy-camelsource" class="listingblock">
+<div id="deploy-camelsource" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  -f "https://github.com/knative/eventing-contrib/releases/download/v0.12.2/camel.yaml"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::deploy-camelsource[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Use the OperatorHub in OpenShift web console to deploy the Knative Camel operator that will install the Knative Eventing CamelSource</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
+  -f "https://github.com/knative/eventing-contrib/releases/download/v0.14.1/camel.yaml"</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Once you deploy, thee following new pod showing up the <code>knative-sources</code> namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                         READY   STATUS    RESTARTS   AGE
 camel-controller-manager-0   1/1     Running   0          12h</code></pre>
@@ -315,44 +158,15 @@ camel-controller-manager-0   1/1     Running   0          12h</code></pre>
 <div class="paragraph">
 <p>Plus, CamelSource is now part of the API for your Kubernetes cluster:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="camel-k-camelsource-api" class="listingblock">
+<div id="camel-k-camelsource-api" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group=sources.eventing.knative.dev</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camel-k-camelsource-api[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="oc-camel-k-camelsource-api" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group=sources.eventing.knative.dev</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camel-k-camelsource-api[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
 <p>The command above should list:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               APIGROUP                       NAMESPACED   KIND
 apiserversources   sources.eventing.knative.dev   true         ApiServerSource
@@ -369,46 +183,16 @@ kafkasources       sources.eventing.knative.dev   true         KafkaSource</code
 <div class="paragraph">
 <p>In order for you to view the events drained from the CamelSource <code>timed-greeter</code>, you need to deploy a utility service called <code>event-display</code>. Run the following command to deploy the service:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset4_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
-<div id="deploy-ce-event-display" class="listingblock">
+<div id="deploy-ce-event-display" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.12.0/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.12.0/event-display.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::deploy-ce-event-display[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_oc">
-<div id="oc-deploy-ce-event-display" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply \
-  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.12.0/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.12.0/event-display.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-deploy-ce-event-display[]</p>
-</div>
-</div>
+  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.14.0/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.14.0/event-display.yaml</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>A successful event display should show the following pod in the <code>knativetutorial</code>:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                                      READY
 event-display   <a href="http://event-display.knativetutorial.example.com" class="bare">http://event-display.knativetutorial.example.com</a>         True</code></pre>
@@ -483,81 +267,23 @@ spec:
 <div class="paragraph">
 <p>To deploy the CamelSource run the following command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset5_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
-<div id="deploy-greeter-camelsource" class="listingblock">
+<div id="deploy-greeter-camelsource" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f get-started/timed-greeter-source.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::deploy-greeter-camelsource[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_oc">
-<div id="oc-deploy-greeter-camelsource" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f get-started/timed-greeter-source.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-deploy-greeter-camelsource[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>A successful deployment will show the CamelSource <code>timed-greeter</code> in ready state along with its pods in the knativetutorial namespace.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset6_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset6_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kubectl">
-<div id="camel-k-watch-camelsources" class="listingblock">
+<div id="camel-k-watch-camelsources" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get camelsources</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::camel-k-watch-camelsources[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_oc">
-<div id="oc-camel-k-watch-camelsources" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc -n knativetutorial get camelsources</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camel-k-watch-camelsources[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>When the camel source is successfully running you will see it in "READY" state <code>True</code>:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            READY   AGE
 timed-greeter   True    114s</code></pre>
@@ -566,7 +292,7 @@ timed-greeter   True    114s</code></pre>
 <div class="paragraph">
 <p>You will also see the <code>event-display</code> pod scaling up to receive the events from <code>timed-greeter</code>.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">CamelSource <code>timed-greeter</code> pod and event-display pod</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># watch kubectl -n knativetutorial get pods
@@ -579,18 +305,15 @@ timed-greeter-m4chq-7cbf4ddc66-kxpqd              1/1     Running   86s</code></
 <div class="paragraph">
 <p>Open a new terminal and run the following command to start watching the events that are being drained into the <code>event-display</code> Knative service using the command:</p>
 </div>
-<div id="camel-k-kn-eventing-logs" class="listingblock">
+<div id="camel-k-kn-eventing-logs" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stern -n knativetutorial event-display -c user-container</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::camel-k-kn-eventing-logs[]</p>
-</div>
-<div class="paragraph">
 <p>The <code>stern</code> command above should show the following output:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">event-... user-container   id: ID-timed-greeter-m4chq-7cbf4ddc66-kxpqd-1577072133461-0-19
 event-... user-container   time: 2019-12-23T03:37:03.432Z
@@ -607,38 +330,9 @@ event-... user-container   source: camel-source:knativetutorial/timed-greeter</c
 </div>
 <div class="sect2">
 <h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset7_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kubectl">
-<div id="camelk-eventing-cleanup" class="listingblock">
+<div id="camelk-eventing-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete camelsource timed-greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camelk-eventing-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_oc">
-<div id="oc-camelk-eventing-cleanup" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial delete camelsource timed-greeter</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camelk-eventing-cleanup[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">

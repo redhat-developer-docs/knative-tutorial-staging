@@ -54,9 +54,6 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#camelk-prerequisite">Prerequisite</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#install-camel-k">Install Camel-K </a>
   </li>
 </ul>
@@ -65,9 +62,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-basics.html">Camel-K with Knative Serving</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="camel-k-basics.html#camel-k-prerequisite">Prerequisite</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="camel-k-basics.html#deploy-camel-k-integration">Deploy Camel-K integration</a>
   </li>
@@ -83,9 +77,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-eventing.html">Camel-K with Knative Eventing</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="camel-k-eventing.html#camel-k-eve-prerequisite">Prerequisite</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="camel-k-eventing.html#deploy-camel-k-source">Deploy Knative CamelSource</a>
   </li>
@@ -129,119 +120,6 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="camelk-prerequisite"><a class="anchor" href="#camelk-prerequisite"></a>Prerequisite</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following checks ensure that each chapter exercises are done with the right environment settings.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset1_minishift"></a>Minishift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minikube">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minikube docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minikube-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes should be v1.12+</p>
-</li>
-</ul>
-</div>
-<div id="kubectl-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_minishift">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minishift docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minishift-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minishift-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>OpenShift CLI should be v3.11.0+</p>
-</li>
-</ul>
-</div>
-<div id="oc-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift oc-env)
-oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure to be on <code>knativetutorial</code> OpenShift project</p>
-</li>
-</ul>
-</div>
-<div id="right-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
-<p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
-</div>
-<div id="change-to-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="install-camel-k"><a class="anchor" href="#install-camel-k"></a>Install Camel-k</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -265,34 +143,28 @@ oc version</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
+<p><a id="tabset1_kubectl"></a>kubectl</p>
 </li>
 <li>
-<p><a id="tabset2_oc"></a>oc</p>
+<p><a id="tabset1_oc"></a>oc</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="camel-k-k8s-install" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset1_kubectl">
+<div id="camel-k-k8s-install" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel install --wait</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::camel-k-k8s-install[]</p>
-</div>
-<div class="paragraph">
 <p>As with other installations in this tutorial, this process will take a few minutes for the Camel-K pods to be up and running.  You can monitor the progress of the installation by watching the pods in namespace <code>knativetutorial</code>.</p>
 </div>
-<div id="camel-k-watch-pods" class="listingblock">
+<div id="camel-k-watch-pods" class="listingblock console-input">
 <div class="title">Camel K Pods</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get pods</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl -n knativetutorial get pods"</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camel-k-watch-pods[]</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -311,14 +183,14 @@ oc version</code></pre>
 <div class="paragraph">
 <p>A successful camel-K setup will have the following pods running/completed in <code>knativetutorial</code> namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                READY   STATUS      RESTARTS   AGE
 camel-k-operator-84d7896b68-9mfdv   1/1     Running     0          2m7s</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
+<div class="tab-pane" aria-labelledby="tabset1_oc">
 <div class="paragraph">
 <p>Camel-K is installed using its <a href="https://operatorhub.io/operator/camel-k">operator</a>.Use the Operator Hub in OpenShift webconsole to install the Camel-K operator.</p>
 </div>
@@ -358,42 +230,13 @@ camel-k-operator-84d7896b68-9mfdv   1/1     Running     0          2m7s</code></
 <div class="paragraph">
 <p>Edit the ConfigMap using the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="camel-k-maven-config" class="listingblock">
+<div id="camel-k-maven-config" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl edit -n knativetutorial cm camel-k-maven-settings</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::camel-k-maven-config[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="oc-camel-k-maven-config" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc edit  -n knativetutorial cm camel-k-maven-settings</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camel-k-maven-config[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The command above by default opens the ConfigMap YAML in vi. We can use the environment variable <code>KUBE_EDITOR</code>, to allow us to edit the YAML with the editor of our choice. For example setting <code>export KUBE_EDITOR=code -w</code>, will make the <code>kubectl edit</code> commands to open the Kubernetes resource YAML in <a href="https://code.visualstudio.com/">vscode</a>.</p>
+<p>The command above by default opens the ConfigMap YAML in vi.Using an environment variable <code>KUBE_EDITOR</code> allow us to edit the YAML with the editor of our choice. For example setting <code>export KUBE_EDITOR=code -w</code>, will make the <code>kubectl edit</code> commands to open the Kubernetes resource YAML in <a href="https://code.visualstudio.com/">vscode</a>.</p>
 </div>
 <div class="paragraph">
 <p>The following listing shows the Camel-K maven settings configured to use a Sonatype Nexus repository as its mirror:</p>

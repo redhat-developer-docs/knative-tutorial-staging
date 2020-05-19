@@ -54,9 +54,6 @@
     <a class="nav-link" href="setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html#camelk-prerequisite">Prerequisite</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html#install-camel-k">Install Camel-K </a>
   </li>
 </ul>
@@ -65,9 +62,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-basics.html">Camel-K with Knative Serving</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#camel-k-prerequisite">Prerequisite</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy-camel-k-integration">Deploy Camel-K integration</a>
   </li>
@@ -83,9 +77,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="camel-k-eventing.html">Camel-K with Knative Eventing</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="camel-k-eventing.html#camel-k-eve-prerequisite">Prerequisite</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="camel-k-eventing.html#deploy-camel-k-source">Deploy Knative CamelSource</a>
   </li>
@@ -147,129 +138,13 @@
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="camel-k-prerequisite"><a class="anchor" href="#camel-k-prerequisite"></a>Prerequisite</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following checks ensure that each chapter exercises are done with the right environment settings.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset1_minishift"></a>Minishift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minikube">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minikube docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minikube-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes should be v1.12+</p>
-</li>
-</ul>
-</div>
-<div id="kubectl-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_minishift">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minishift docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minishift-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minishift-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>OpenShift CLI should be v3.11.0+</p>
-</li>
-</ul>
-</div>
-<div id="oc-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift oc-env)
-oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure to be on <code>knativetutorial</code> OpenShift project</p>
-</li>
-</ul>
-</div>
-<div id="right-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
-<p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
-</div>
-<div id="change-to-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Navigate to the tutorial chapter&#8217;s folder advanced/camel-k:</p>
 </div>
-<div id="camelk-repo-nav-folder" class="listingblock">
+<div id="camelk-repo-nav-folder" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/advanced/camel-k</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camelk-repo-nav-folder[]</p>
 </div>
 <div class="sect2">
 <h3 id="deploy-camel-k-integration"><a class="anchor" href="#deploy-camel-k-integration"></a>Deploy Camel-K integration</h3>
@@ -353,14 +228,11 @@ oc version</code></pre>
 <div class="paragraph">
 <p><code>kamel</code> CLI tool is used to deploy the integrations. Run the following command to</p>
 </div>
-<div id="deploy-integration-dev-mode" class="listingblock">
+<div id="deploy-integration-dev-mode" class="listingblock console-input">
 <div class="title">Deploy the greeter integration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel run --dev --dependency 'camel:log' get-started/timed-greeter.yaml</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::deploy-integration-dev-mode[]</p>
 </div>
 <div class="paragraph">
 <p>A typical Camel K integration deployment will take approximately 2-5 minutes, as it involves multiple steps such as:</p>
@@ -381,7 +253,7 @@ oc version</code></pre>
 <div class="paragraph">
 <p>Once the integration is built, you sill see the terminal populated with logs from the integration like:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">timed-greeter logs</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># kamel run --dev --dependency 'camel:log' get-started/timed-greeter.yaml
@@ -420,7 +292,7 @@ oc version</code></pre>
 <div class="sect2">
 <h3 id="deploy-camel-k-kn-integration"><a class="anchor" href="#deploy-camel-k-kn-integration"></a>Deploy Camel-K Knative Integration</h3>
 <div class="paragraph">
-<p>Any Camel-K integration can be converted into a serverless service using Knative. For an integration to be deployed as a Knative Service you need to use the Camel-K&#8217;s <code>knative</code> component.</p>
+<p>Any Camel-K integration can be converted into a serverless service using Knative. For an integration to be deployed as a Knative Service you need to use the Camel-K's <code>knative</code> component.</p>
 </div>
 <div class="paragraph">
 <p>The Camel-K Knative component provides two consumers: <code>knative:endpoint</code> and <code>knative:channel</code>. The former is used to deploy the integration as Knative Service, while the later is used to handle events from a Knative Event channel.</p>
@@ -491,14 +363,11 @@ oc version</code></pre>
 <div class="paragraph">
 <p>You can run this integration as shown in the following listing. If you notice that you are now deploying the integration in production mode i.e without <code>--dev</code> option.</p>
 </div>
-<div id="camel-k-kn-run" class="listingblock">
+<div id="camel-k-kn-run" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel run --wait --dependency camel:log --dependency camel:bean \
     get-started/echoer.yaml</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camel-k-kn-run[]</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -515,7 +384,7 @@ oc version</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Since its the production mode and it takes some time for the integration to come up, you need to watch the integration&#8217;s logs using the command <code>kamel log &lt;integration name&gt;</code> i.e. <code>kamel log echoer</code> and you can get the name of the integration using the command <code>kamel get</code>.</p>
+<p>Since its the production mode and it takes some time for the integration to come up, you need to watch the integration's logs using the command <code>kamel log &lt;integration name&gt;</code> i.e. <code>kamel log echoer</code> and you can get the name of the integration using the command <code>kamel get</code>.</p>
 </div>
 <div class="paragraph">
 <p>In the integration that you had deployed, you had applied the <a href="https://camel.apache.org/manual/latest/choice-eip.html">Choice EIP</a> when processing the exchange body. When the body has content then it simply converts the body to upper case otherwise it returns a canned response of "no body received". In either case, the content type header is set to <code>text/plain</code>.</p>
@@ -523,44 +392,15 @@ oc version</code></pre>
 <div class="paragraph">
 <p>Camel-K defines an <code>integration</code> via Custom Resource Definition (CRD) and you can view those CRDs and the actual <code>integrations</code> via the following commands:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="camel-k-crds" class="listingblock">
+<div id="camel-k-crds" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group=camel.apache.org</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::camel-k-crds[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="oc-camel-k-crds" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources --api-group=camel.apache.org</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camel-k-crds[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>The command above shows the following output:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                   SHORTNAMES   APIGROUP           NAMESPACED   KIND
 builds                              camel.apache.org   true         Build
@@ -570,38 +410,9 @@ integrationplatforms   ip           camel.apache.org   true         IntegrationP
 integrations           it           camel.apache.org   true         Integration</code></pre>
 </div>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="camel-k-list-int" class="listingblock">
+<div id="camel-k-list-int" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get integrations</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camel-k-list-int[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="oc-camel-k-list-int" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc -n knativetutorial get integrations</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camel-k-list-int[]</p>
-</div>
-</div>
 </div>
 </div>
 <div class="paragraph">
@@ -616,69 +427,34 @@ echoer            Running   kit-bodug9d83u4bmr3uh8jg   1</code></pre>
 <div class="paragraph">
 <p>Once the integration is started, you can check the Knative service using the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset4_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
-<div id="camel-k-chk-kn-svc" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get ksvc echoer</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::camel-k-chk-kn-svc[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_oc">
-<div id="oc-camel-k-chk-kn-svc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial get ksvc echoer</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-camel-k-chk-kn-svc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>When the service is in a ready state use the call script <code>$TUTORIAL/bin/call.sh</code> with parameter <code>echoer</code> and a request body of "Hello World":</p>
 </div>
-<div id="call-echoer-with-param" class="listingblock">
+<div id="call-echoer-with-param" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/call.sh echoer 'Hello World'</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::call-echoer-with-param[]</p>
-</div>
-<div id="call-echoer-without-param" class="listingblock">
+<div id="call-echoer-without-param" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/call.sh echoer ''</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::call-echoer-without-param[]</p>
-</div>
-<div class="paragraph">
 <p>The invocation of a Knative Camel-K Integration is a bit different than previous Knative test calls.  The Knative Camel-K integration service is expecting a POST where the input data is part of the request body.  Therefore, you need to a few different elements to construct the invocation, the following snippet from <code>$TUTORIAL_HOME/bin/call.sh</code> shows how a Knative service call is constructed:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ <strong>NODE_PORT=$(kubectl get svc istio-ingressgateway -n istio-system \
--o 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')</strong> <i class="conum" data-value="1"></i><b>(1)</b>
-$ <strong>IP_ADDRESS="$(minikube ip):$NODE_PORT"</strong> <i class="conum" data-value="2"></i><b>(2)</b>
-$ <strong>HOST_HEADER="Host:echoer.knativetutorial.example.com"</strong> <i class="conum" data-value="3"></i><b>(3)</b>
-$ <strong>curl -X POST -H $HOST_HEADER -d "Hello World" $IP_ADDRESS</strong> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>NODE_PORT=$(kubectl get svc kourier --namespace kourier-system \
+  --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')</strong> <i class="conum" data-value="1"></i><b>(1)</b>
+<strong>IP_ADDRESS="$(minikube ip):$NODE_PORT"</strong> <i class="conum" data-value="2"></i><b>(2)</b>
+<strong>HOST_HEADER="Host:echoer.knativetutorial.example.com"</strong> <i class="conum" data-value="3"></i><b>(3)</b>
+<strong>curl -X POST -H $HOST_HEADER -d "Hello World" $IP_ADDRESS</strong> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -718,13 +494,10 @@ $ <strong>curl -X POST -H $HOST_HEADER -d "Hello World" $IP_ADDRESS</strong> <i 
 </div>
 <div class="sect2">
 <h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
-<div id="camelk-gs-cleanup" class="listingblock">
+<div id="camelk-gs-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel delete echoer</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camelk-gs-cleanup[]</p>
 </div>
 </div>
 </div>
