@@ -167,218 +167,35 @@
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="kn-eventing-kafka-cleanup-prerequisite"><a class="anchor" href="#kn-eventing-kafka-cleanup-prerequisite"></a>Prerequisite</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following checks ensure that each chapter exercises are done with the right environment settings.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset1_minishift"></a>Minishift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minikube">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minikube docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minikube-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes should be v1.12+</p>
-</li>
-</ul>
-</div>
-<div id="kubectl-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_minishift">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minishift docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minishift-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minishift-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>OpenShift CLI should be v3.11.0+</p>
-</li>
-</ul>
-</div>
-<div id="oc-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift oc-env)
-oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure to be on <code>knativetutorial</code> OpenShift project</p>
-</li>
-</ul>
-</div>
-<div id="right-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
-<p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
-</div>
-<div id="change-to-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Before beginning to run the exercises, navigate to the tutorial chapter&#8217;s <code>eventing</code> folder:</p>
-</div>
-<div id="eventing-navigate-to-folder" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-navigate-to-folder[]</p>
 </div>
 <div class="sect2">
 <h3 id="kn-eventing-kafka-source"><a class="anchor" href="#kn-eventing-kafka-source"></a>Deploy Knative Eventing KafkaSource</h3>
 <div class="paragraph">
 <p>Knative Eventing <code>KafkaSource</code> need to be used to have the Kafka messages to flow through the Knative Eventing Channels. You can deploy Knative KafkaSource by running the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="kn-eventing-adv-deploy-kafkasource" class="listingblock">
+<div id="kn-eventing-adv-deploy-kafkasource" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
 -f <a href="https://github.com/knative/eventing-contrib/\" class="bare">https://github.com/knative/eventing-contrib/\</a>
-releases/download/v0.12.2/kafka-source.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-adv-deploy-kafkasource[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Use the OperatorHub in OpenShift web console to install Knative Eventing Kafka operator that will install the KafkaSource.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
+releases/download/v0.14.1/kafka-source.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The previous step deploys Knative KafkaSource in the <code>knative-sources</code> namespace as well as a CRD, ServiceAccount, ClusterRole, etc.  Verify that knative-source namespace includes the <code>kafka-controller-manager-0</code> pod:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
+<div id="watch-kafkasource-controller-pod" class="listingblock console-input">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="watch-kafkasource-controller-pod" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knative-sources</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::watch-kafkasource-controller-pod[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="oc-watch-kafkasource-controller-pod" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knative-sources</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-watch-kafkasource-controller-pod[]</p>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-sources"</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The command above should show the following output:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                         READY   STATUS    AGE
 kafka-controller-manager-0   1/1     Running   1m17s</code></pre>
@@ -387,30 +204,14 @@ kafka-controller-manager-0   1/1     Running   1m17s</code></pre>
 <div class="paragraph">
 <p>You should also deploy the Knative Kafka Channel that can be used to connect the Knative Eventing Channel with a Apache Kafka cluster backend, to deploy a Knative Kafka Channel run:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset4_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
-<div id="kn-eventing-deploy-kafka-channel" class="listingblock">
+<div id="kn-eventing-deploy-kafka-channel" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -L "https://github.com/knative/eventing-contrib/\
-releases/download/v0.12.2/kafka-channel.yaml" \
+releases/download/v0.14.1/kafka-channel.yaml" \
  | sed 's/REPLACE_WITH_CLUSTER_URL/my-cluster-kafka-bootstrap.kafka:9092/' \
  | kubectl apply --filename -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-deploy-kafka-channel[]</p>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -418,180 +219,81 @@ releases/download/v0.12.2/kafka-channel.yaml" \
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p>"my-cluster-kafka-bootstrap.kafka:9092" comes from <code>kubectl get services -n kafka</code></p>
+</li>
+<li>
+<p>On <strong>OpenShift</strong>, Knative Eventing Kafka operator that was done in earlier, will install Knative KafkaChannel as well.</p>
+</li>
+</ul>
 </div>
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_oc">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Knative Eventing Kafka operator that was done in earlier, will install Knative KafkaChannel as well.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
 </div>
 <div class="paragraph">
 <p>Look for 3 new pods in namespace <code>knative-eventing</code> with the prefix "kafka":</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset5_oc"></a>oc</p>
-</li>
-</ul>
-</div>
+<div id="kn-eventing-list-kafka-source-pods" class="listingblock console-input">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
-<div id="kn-eventing-list-kafka-source-pods" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knative-eventing</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-list-kafka-source-pods[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_oc">
-<div id="kn-eventing-list-kafka-source-pods-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n knative-eventing</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-list-kafka-source-pods-oc[]</p>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-eventing"</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The command will shown an output like:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                   READY   STATUS    AGE
-eventing-controller-666b79d867-kq8cc   1/1     Running   64m
-eventing-webhook-5867c98d9b-hzctw      1/1     Running   64m
-imc-controller-7c4f9945d7-s59xd        1/1     Running   64m
-imc-dispatcher-7b55b86649-nsjm2        1/1     Running   64m
-<strong>kafka-ch-controller-7c596b6b55-fzxcx   1/1     Running   33s
-kafka-ch-dispatcher-577958f994-4f2qs   1/1     Running   33s
-kafka-webhook-74bbd99f5c-c84ls         1/1     Running   33s</strong>
-sources-controller-694f8df9c4-pss2w    1/1     Running   64m</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                    READY   STATUS    RESTARTS   AGE
+broker-controller-56b4d58667-mgf4w      1/1     Running   0          3h54m
+broker-filter-5bdbc8d8dd-jqrfc          1/1     Running   0          3h54m
+broker-ingress-d896b6b46-nvg92          1/1     Running   0          3h54m
+eventing-controller-5fc5645584-n42xs    1/1     Running   0          3h54m
+eventing-webhook-7674b867dc-qn44m       1/1     Running   0          3h54m
+imc-controller-6b548d6468-zcspc         1/1     Running   0          3h54m
+imc-dispatcher-655cdf6ff6-x5sxx         1/1     Running   0          3h54m
+<strong>kafka-ch-controller-5cf4bdc98-tl8xv     1/1     Running   0          76s</strong>
+<strong>kafka-webhook-5f8895ccdf-z6qnw          1/1     Running   0          76s</strong>
+mt-broker-controller-6d66c4c6f6-vbpk4   1/1     Running   0          3h54m</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>And you should also find some new api-resources as shown:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset6_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset6_oc"></a>oc</p>
-</li>
-</ul>
-</div>
+<div id="kn-eventing-list-api-res-sources" class="listingblock console-input">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kubectl">
-<div id="kn-eventing-list-api-res-sources" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='sources.eventing.knative.dev'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-list-api-res-sources[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_oc">
-<div id="kn-eventing-list-api-res-sources-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources --api-group='sources.eventing.knative.dev'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-list-api-res-sources-oc[]</p>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='sources.knative.dev'</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The command should show the following APIs in <code>sources.eventing.knative.dev</code> :</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               APIGROUP                       NAMESPACED  KIND
-apiserversources   sources.eventing.knative.dev   true        ApiServerSource
-containersources   sources.eventing.knative.dev   true        ContainerSource
-cronjobsources     sources.eventing.knative.dev   true        CronJobSource
-<strong>kafkasources       sources.eventing.knative.dev   true        KafkaSource</strong>
-sinkbindings       sources.eventing.knative.dev   true        SinkBinding</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP              NAMESPACED   KIND
+apiserversources                sources.knative.dev   true         ApiServerSource
+containersources                sources.knative.dev   true         ContainerSource
+<strong>kafkasources                    sources.knative.dev   true         KafkaSource</strong>
+pingsources                     sources.knative.dev   true         PingSource
+sinkbindings                    sources.knative.dev   true         SinkBinding</code></pre>
 </div>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset7_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kubectl">
-<div id="kn-eventing-list-api-res-messaging" class="listingblock">
+<div id="kn-eventing-list-api-res-messaging" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='messaging.knative.dev'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kn-eventing-list-api-res-messaging[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_oc">
-<div id="kn-eventing-list-api-res-messaging-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources --api-group='messaging.knative.dev'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-list-api-res-messaging-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>The command should show the following APIs in <code>messaging.knative.dev</code> :</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP                NAMESPACED   KIND
 channels           ch           messaging.knative.dev   true         Channel
 inmemorychannels   imc          messaging.knative.dev   true         InMemoryChannel
 <strong>kafkachannels      kc           messaging.knative.dev   true         KafkaChannel</strong>
-parallels                       messaging.knative.dev   true         Parallel
-sequences                       messaging.knative.dev   true         Sequence
 subscriptions      sub          messaging.knative.dev   true         Subscription</code></pre>
 </div>
 </div>
@@ -620,10 +322,10 @@ metadata:
   namespace: knative-eventing
 data:
   default-ch-config: |
-    clusterDefault: #<1>
+    clusterDefault: <i class="conum" data-value="1"></i><b>(1)</b>
       apiVersion: messaging.knative.dev/v1alpha1
       kind: InMemoryChannel
-    namespaceDefaults: #<2>
+    namespaceDefaults: <i class="conum" data-value="2"></i><b>(2)</b>
       knativetutorial:
         apiVersion: messaging.knative.dev/v1alpha1
         kind: KafkaChannel
@@ -647,13 +349,10 @@ data:
 <div class="paragraph">
 <p>Run the following command apply the Knative Eventing Channel configuration:</p>
 </div>
-<div id="eventing-default-channel-create" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f default-kafka-channel.yaml</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-default-channel-create[]</p>
 </div>
 <div class="paragraph">
 <p>Since you have now made all Knative Eventing Channels of <strong>knativetutorial</strong> to be KafkaChannel, creating a Knative Eventing Channel in namespace <strong>knativetutorial</strong> will result in a corresponding Kafka Topic created. Let us now verify it by creating a sample Channel as show in listing,</p>
@@ -674,16 +373,18 @@ EOF</code></pre>
 <div class="paragraph">
 <p>When you now list the topics that are available in Kafka using the script <code>$TUTORIAL_HOME/bin/kafka-list-topics.sh</code>, you should see a topic corresponding to your Channel <code>my-events-ch</code>:</p>
 </div>
-<div id="list-kn-eventing-channel-topics" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-list-topics.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::list-kn-eventing-channel-topics[]</p>
+<p>The command should return an output like:</p>
 </div>
-<div class="paragraph">
-<p>The command should return an output like <code>knative-messaging-kafka.knativetutorial.my-events-ch</code>.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">knative-messaging-kafka.knativetutorial.my-events-ch</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>For each Knative Eventing Channel that you will create, there will be a Kafka Topic created, the topic&#8217;s name will follow a convention like <code>knative-messaging-kafka.&lt;your-channel-namespace&gt;.&lt;your-channel-name&gt;</code>.</p>
@@ -691,38 +392,9 @@ EOF</code></pre>
 <div class="paragraph">
 <p>We can delete the example <code>my-events-ch</code> channel using the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset8_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset8_oc"></a>oc</p>
-</li>
-</ul>
-</div>
+<div class="listingblock console-input">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset8_kubectl">
-<div id="eventing-default-channel-cleanup2" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f channels.messaging.knative.dev my-events-ch</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-default-channel-cleanup2[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset8_oc">
-<div id="eventing-default-channel-cleanup-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f channels.messaging.knative.dev my-events-ch</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-default-channel-cleanup-oc[]</p>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete  channels.messaging.knative.dev my-events-ch</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -730,66 +402,23 @@ EOF</code></pre>
 <div class="paragraph">
 <p>Now, all of your infrastructure is configured, you can deploy the Knative Serving Service(sink) by running the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset9_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset9_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset9_kubectl">
-<div id="kn-kafka-src-eventing-hello" class="listingblock">
+<div id="kn-kafka-src-eventing-hello" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f eventing-hello-sink.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kn-kafka-src-eventing-hello[]</p>
-</div>
-<div class="paragraph">
 <p>Check the Knative Service that was created by the command above:</p>
 </div>
-<div id="kn-kafka-src-eventing-hello-ksvc" class="listingblock">
+<div id="kn-kafka-src-eventing-hello-ksvc" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get ksvc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kn-kafka-src-eventing-hello-ksvc[]</p>
+<p>Check the Knative Service that was created by the command above. The command should show an output like:</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset9_oc">
-<div id="kn-kafka-src-eventing-hello-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f eventing-hello-sink.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-kafka-src-eventing-hello-oc[]</p>
-</div>
-<div class="paragraph">
-<p>Check the Knative Service that was created by the command above:</p>
-</div>
-<div id="kn-kafka-src-eventing-hello-ksvc-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get ksvc</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-kafka-src-eventing-hello-ksvc-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The command should show an output like:</p>
-</div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                      READY
 eventinghello   http://eventinghello.kafka.example.com   True</code></pre>
@@ -798,13 +427,10 @@ eventinghello   http://eventinghello.kafka.example.com   True</code></pre>
 <div class="paragraph">
 <p>Make sure to follow the logs using <code>stern</code>:</p>
 </div>
-<div id="kn-kafka-src-sink-stern" class="listingblock">
+<div id="kn-kafka-src-sink-stern" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stern eventinghello -c user-container</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-kafka-src-sink-stern[]</p>
 </div>
 <div class="paragraph">
 <p>The initial deployment of <code>eventinghello</code> will cause it to scale up to 1 pod.  It will be around until it hits its scale-down time limit.  Allow it to scale down to zero pods before continuing.</p>
@@ -848,60 +474,20 @@ spec:
 <div class="paragraph">
 <p>The deployment of <code>KafkaSource</code> will result in a new pod prefixed with "mykafka-source".</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset10_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset10_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset10_kubectl">
-<div id="kn-kafka-source-deploy" class="listingblock">
+<div id="kn-kafka-source-deploy" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial apply -f mykafka-source.yaml</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::kn-kafka-source-deploy[]</p>
-</div>
-<div id="kn-kafka-source-status-watch" class="listingblock">
+<div id="kn-kafka-source-status-watch" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kn-kafka-source-status-watch[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset10_oc">
-<div id="kn-kafka-source-deploy-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial apply -f mykafka-source.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-kafka-source-deploy-oc[]</p>
-</div>
-<div id="kn-kafka-source-status-watch-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-kafka-source-status-watch-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>When the KafkaSource is ready it will show the following output:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                          READY  STATUS   RESTARTS  AGE
 mykafka-source-vxs2k-56548756cc-j7m7v         1/1    Running  0         11s</code></pre>
@@ -924,18 +510,15 @@ mykafka-source-vxs2k-56548756cc-j7m7v         1/1    Running  0         11s</cod
 </tr>
 </table>
 </div>
-<div id="kn-kakfa-source-producer-events" class="listingblock">
+<div id="kn-kakfa-source-producer-events" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-producer.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kn-kakfa-source-producer-events[]</p>
-</div>
-<div class="paragraph">
 <p>And then enter the following JSON-formatted messages:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"hello":"world"}
 
@@ -963,22 +546,19 @@ mykafka-source-vxs2k-56548756cc-j7m7v         1/1    Running  0         11s</cod
 <div class="paragraph">
 <p>While making sure to monitor the logs of the <code>eventinghello</code> pod:</p>
 </div>
-<div id="stern-kafka-src-events" class="listingblock">
+<div id="stern-kafka-src-events" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stern eventinghello -c user-container</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::stern-kafka-src-events[]</p>
-</div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ce-id=partition:1/offset:1
 ce-source=/apis/v1/namespaces/kafka/kafkasources/mykafka-source#my-topic
 ce-specversion=1.0
 ce-time=2020-01-01T01:16:12.886Z
 ce-type=dev.knative.kafka.event
-content-type=application/json
+content-type=null
 content-length=17
 POST:{"hey": "duniya"}</code></pre>
 </div>
@@ -1000,42 +580,11 @@ POST:{"hey": "duniya"}</code></pre>
 </div>
 <div class="sect2">
 <h3 id="kn-kafka-src-cleanup"><a class="anchor" href="#kn-kafka-src-cleanup"></a>Cleanup</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset11_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset11_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset11_kubectl">
-<div id="kn-eventing-kafka-src-cleanup" class="listingblock">
+<div id="kn-eventing-kafka-src-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl delete -n knativetutorial  -f mykafka-source.yaml
 kubectl delete -n knativetutorial  -f eventing-hello-sink.yaml
 kubectl delete -n kafka -f kafka-topic-my-topic.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-kafka-src-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset11_oc">
-<div id="kn-eventing-kafka-src-cleanup-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -n knativetutorial  -f mykafka-source.yaml
-oc delete -n knativetutorial  -f eventing-hello-sink.yaml
-oc delete -n kafka -f kafka-topic-my-topic.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kn-eventing-kafka-src-cleanup-oc[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>

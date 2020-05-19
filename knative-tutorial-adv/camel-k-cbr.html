@@ -208,120 +208,6 @@
 <div class="paragraph">
 <p>The upcoming recipes will deploy these individual components and finally we test the integration by wiring them all together.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="camelk-cbr-prerequisite"><a class="anchor" href="#camelk-cbr-prerequisite"></a>Prerequisite</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following checks ensure that each chapter exercises are done with the right environment settings.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset1_minishift"></a>Minishift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minikube">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minikube docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minikube-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes should be v1.12+</p>
-</li>
-</ul>
-</div>
-<div id="kubectl-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_minishift">
-<div class="ulist">
-<ul>
-<li>
-<p>Set your local docker to use minishift docker daemon</p>
-</li>
-</ul>
-</div>
-<div id="minishift-set-env" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift docker-env)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::minishift-set-env[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>OpenShift CLI should be v3.11.0+</p>
-</li>
-</ul>
-</div>
-<div id="oc-version" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minishift oc-env)
-oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure to be on <code>knativetutorial</code> OpenShift project</p>
-</li>
-</ul>
-</div>
-<div id="right-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
-<p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
-</div>
-<div id="change-to-openshift-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>Just make sure:</p>
 </div>
@@ -338,13 +224,11 @@ oc version</code></pre>
 <div class="paragraph">
 <p>Finally navigate to the tutorial chapter&#8217;s folder advanced/camel-k:</p>
 </div>
-<div id="camelk-repo-nav-folder" class="listingblock">
+<div id="camelk-repo-nav-folder" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/advanced/camel-k</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::camelk-repo-nav-folder[]</p>
 </div>
 <div class="sect2">
 <h3 id="label-namespace-for-default-broker"><a class="anchor" href="#label-namespace-for-default-broker"></a>Label Namespace</h3>
@@ -355,78 +239,20 @@ oc version</code></pre>
 </li>
 </ul>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="run-label-namespace" class="listingblock">
+<div id="run-label-namespace" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl label namespace knativetutorial knative-eventing-injection=enabled</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::run-label-namespace[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="run-label-namespace-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc label namespace knativetutorial knative-eventing-injection=enabled</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::run-label-namespace-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>If the label is set correctly on the knativetutorial namespace then you should see the following pods corresponding to Knative Eventing&#8217;s default broker&#8217;s filter and ingress:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="watch-default-broker-pods" class="listingblock">
+<div id="watch-default-broker-pods" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knativetutorial</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::watch-default-broker-pods[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="watch-default-broker-pods-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n knativetutorial</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::watch-default-broker-pods-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                       READY   STATUS      AGE
 camel-k-operator-5d74595cdf-4v9qz          1/1     Running     3h59m
@@ -478,7 +304,7 @@ default-broker-ingress-857698bc5b-r4zmf    1/1     Running     59s</code></pre>
 <div class="paragraph">
 <p>Run the following command to deploy the <code>fruit-producer</code> integration:</p>
 </div>
-<div id="kamel-cbr-deploy-fruit-producer" class="listingblock">
+<div id="kamel-cbr-deploy-fruit-producer" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel -n knativetutorial run \
  --wait \
@@ -487,9 +313,6 @@ default-broker-ingress-857698bc5b-r4zmf    1/1     Running     59s</code></pre>
  --dependency camel:jsonpath \
  eip/fruits-producer.yaml</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-cbr-deploy-fruit-producer[]</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -518,44 +341,15 @@ default-broker-ingress-857698bc5b-r4zmf    1/1     Running     59s</code></pre>
 </tr>
 </table>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset4_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
-<div id="dddp-kamel-cbr-watch-pods" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-watch-pods[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_oc">
-<div id="dddp-kamel-cbr-watch-pods-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc -n knativetutorial get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-watch-pods-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>A successful deploy will show the following pods:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">fruits-producer service pods</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                                READY   STATUS    AGE
@@ -565,41 +359,12 @@ default-broker-ingress-857698bc5b-r4zmf             1/1     Running   5m
 <strong><em>fruits-producer-nfngm-deployment-759c797c44-d6r52   2/2     Running   70s</em></strong></code></pre>
 </div>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset5_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
-<div id="dddp-kamel-cbr-get-ksvc" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get ksvc</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-get-ksvc[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_oc">
-<div id="dddp-kamel-cbr-get-ksvc-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial get ksvc</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-get-ksvc-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">fruit-producer Knative services</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              URL                                            READY
@@ -612,29 +377,23 @@ fruits-producer   <a href="http://fruits-producer.knativetutorial.example.com" c
 <div class="paragraph">
 <p>Run the <code>$TUTORIAL_HOME/bin/call.sh</code> with the parameter <code>fruits-producer</code>.</p>
 </div>
-<div id="kamel-cbr-call-fp" class="listingblock">
+<div id="kamel-cbr-call-fp" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/call.sh fruits-producer ''</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-cbr-call-fp[]</p>
-</div>
-<div class="paragraph">
 <p>Open a new terminal and run the start Kafka consumer using the script <code>$TUTORIAL_HOME/bin/kafka-consumer.sh</code> with parameter <code>fruits</code>:</p>
 </div>
-<div id="kamel-cbr-kafka-consumer" class="listingblock">
+<div id="kamel-cbr-kafka-consumer" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-consumer.sh fruits</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-cbr-kafka-consumer[]</p>
-</div>
-<div class="paragraph">
 <p>If the <code>fruit-producer</code> executed well then you should the Kafka Consumer terminal show something like:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"genus":"Citrullus","name":"Watermelon","id":25,"family":"Cucurbitaceae","order":"Cucurbitales","nutritions":{"carbohydrates":8,"protein":0.6,"fat":0.2,"calories":30,"sugar":6}}</code></pre>
 </div>
@@ -752,78 +511,20 @@ spec:
 </tr>
 </table>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset6_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset6_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kubectl">
-<div id="kamel-deploy-data-processor" class="listingblock">
+<div id="kamel-deploy-data-processor" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f eip/fruits-processor.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-deploy-data-processor[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_oc">
-<div id="kamel-deploy-data-processor-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f eip/fruits-processor.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-deploy-data-processor-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>As the Camel-K controller takes few minutes to deploy the CamelSource, you can watch the pods of the <code>knativetutorial</code> namespace for its status:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset7_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kubectl">
-<div id="dproc-kamel-cbr-watch-pods" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-watch-pods[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_oc">
-<div id="dproc-kamel-cbr-watch-pods-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc -n knativetutorial get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-watch-pods-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">fruit-processor Knative service pods</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                      READY   STATUS    AGE
@@ -853,44 +554,15 @@ default-broker-ingress-857698bc5b-r4zmf   1/1     Running   18m
 </tr>
 </table>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset8_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset8_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset8_kubectl">
-<div id="kamel-cbr-query-camelsources" class="listingblock">
+<div id="kamel-cbr-query-camelsources" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get  -n knativetutorial camelsources</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-cbr-query-camelsources[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset8_oc">
-<div id="kamel-cbr-query-camelsources-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get  -n knativetutorial camelsources</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-cbr-query-camelsources-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>When the CamelSource deployment is successful you will see it in <code>READY</code> state as shown:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               READY   REASON   AGE
 fruits-processor   True             2m22s</code></pre>
@@ -905,83 +577,24 @@ fruits-processor   True             2m22s</code></pre>
 <div class="paragraph">
 <p>You can deploy the <code>fruit-events-display</code> application using the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset9_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset9_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset9_kubectl">
-<div id="kamel-cbr-deploy-event-sub" class="listingblock">
+<div id="kamel-cbr-deploy-event-sub" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial \
   -f $TUTORIAL_HOME/install/utils/fruit-events-display.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-cbr-deploy-event-sub[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset9_oc">
-<div id="kamel-cbr-deploy-event-sub-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial \
-  -f $TUTORIAL_HOME/install/utils/fruit-events-display.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-cbr-deploy-event-sub-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>Verify if the <code>fruit-events-display</code> application is up and running:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset10_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset10_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset10_kubectl">
-<div id="desub-kamel-cbr-watch-pods" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-watch-pods[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset10_oc">
-<div id="desub-kamel-cbr-watch-pods-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc -n knativetutorial get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::{doc-sec}-kamel-cbr-watch-pods-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>Once the <code>fruit-events-display</code> is running you will see the following pods in the <code>knativetutorial</code>:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="title">Pods list</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                       READY   STATUS    AGE
@@ -999,43 +612,34 @@ fruits-processor-h45f7-6fdfd74cf9-nmfkn    1/1     Running   4m12s</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset11_minikube"></a>Minikube</p>
+<p><a id="tabset1_minikube"></a>Minikube</p>
 </li>
 <li>
-<p><a id="tabset11_openshift"></a>OpenShift</p>
+<p><a id="tabset1_openshift"></a>OpenShift</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset11_minikube">
-<div id="kamel-open-fruit-ui" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset1_minikube">
+<div id="kamel-open-fruit-ui" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube -n knativetutorial service fruit-events-display</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-open-fruit-ui[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset11_openshift">
-<div id="kamel-open-fruit-expose" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset1_openshift">
+<div id="kamel-open-fruit-expose" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc expose -n knativetutorial service fruit-events-display</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-open-fruit-expose[]</p>
-</div>
-<div class="paragraph">
 <p>Once you have exposed the service, you can open the OpenShift route in the web browser:</p>
 </div>
-<div id="kamel-open-fruit-rt" class="listingblock">
+<div id="kamel-open-fruit-rt" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get -n knativetutorial route fruit-events-display</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-open-fruit-rt[]</p>
 </div>
 </div>
 </div>
@@ -1092,81 +696,23 @@ spec:
 <div class="paragraph">
 <p>You can deploy the Knative Event Trigger using the following command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset12_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset12_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset12_kubectl">
-<div id="kamel-cbr-deploy-trigger" class="listingblock">
+<div id="kamel-cbr-deploy-trigger" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f eip/sugary-fruits.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-cbr-deploy-trigger[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset12_oc">
-<div id="kamel-cbr-deploy-trigger-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f eip/sugary-fruits.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-cbr-deploy-trigger-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>Let us check the status of the Trigger using the command <code>kubectl -n knativetutorial get triggers</code> which should return one trigger called <code>sugary-fruits</code> with ready state as shown below.</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset13_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset13_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset13_kubectl">
-<div id="kamel-cbr-list-triggers" class="listingblock">
+<div id="kamel-cbr-list-triggers" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get triggers</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kamel-cbr-list-triggers[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset13_oc">
-<div id="kamel-cbr-list-triggers-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial get triggers</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-cbr-list-triggers-oc[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
 <p>As the trigger will dispatch its filtered event to <code>fruit-events-display</code> , the subscriber URI of the Trigger will be that of <code>fruit-events-display</code> service.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME           READY BROKER    SUBSCRIBER_URI
 sugary-fruits  True  default   <a href="http://fruits-events-display.knativetutorial.svc.cluster.local/" class="bare">http://fruits-events-display.knativetutorial.svc.cluster.local/</a></code></pre>
@@ -1181,13 +727,10 @@ sugary-fruits  True  default   <a href="http://fruits-events-display.knativetuto
 <div class="paragraph">
 <p>To verify the data flow and processing call the <code>fruits-producer</code> service using the script <code>$TUTORIAL_HOME/bin/call.sh</code> with parameters <code>fruits-producer</code> and ''.</p>
 </div>
-<div id="kamel-cbr-e2e-run" class="listingblock">
+<div id="kamel-cbr-e2e-run" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/call.sh fruits-producer ''</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::kamel-cbr-e2e-run[]</p>
 </div>
 <div class="paragraph">
 <p>Assuming everything worked well, you should see the <code>low-sugar</code> fruits listed in the <code>fruits-event-display</code> as shown below:</p>
@@ -1201,42 +744,11 @@ sugary-fruits  True  default   <a href="http://fruits-events-display.knativetuto
 </div>
 <div class="sect2">
 <h3 id="kamel-cbr-cleanup"><a class="anchor" href="#kamel-cbr-cleanup"></a>Cleanup</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset14_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset14_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset14_kubectl">
-<div id="camelk-cbr-cleanup" class="listingblock">
+<div id="camelk-cbr-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel delete  -n knativetutorial fruit-producer
 kubectl delete  -n knativetutorial -f -f eip/fruits-processor.yaml
 kubectl delete -n knativetutorial -f $TUTORIAL_HOME/install/utils/fruit-events-display.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camelk-cbr-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset14_oc">
-<div id="camelk-cbr-cleanup-oc" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel delete  -n knativetutorial fruit-producer
-oc delete  -n knativetutorial -f -f eip/fruits-processor.yaml
-oc delete -n knativetutorial -f $TUTORIAL_HOME/install/utils/fruit-events-display.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::camelk-cbr-cleanup-oc[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>
