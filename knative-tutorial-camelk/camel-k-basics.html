@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Knative Tutorial(Staging)</title>
+    <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-camelk/camel-k-basics.html">
     <meta name="generator" content="Antora 2.2.0">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -113,6 +113,7 @@
   </div>
   <div class="content">
 <article class="doc">
+<h1 class="page">Knative Tutorial(Staging)</h1>
 <div class="sect1">
 <h2 id="camel-k-basics"><a class="anchor" href="#camel-k-basics"></a>Camel-K Basics</h2>
 <div class="sectionbody">
@@ -177,7 +178,8 @@
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- from:
     uri: "timer:tick" <i class="conum" data-value="1"></i><b>(1)</b>
     parameters: <i class="conum" data-value="2"></i><b>(2)</b>
-      period: "10s"
+      # time in milliseconds (10 seconds)
+      period: 10000
     steps: <i class="conum" data-value="3"></i><b>(3)</b>
       - set-body: <i class="conum" data-value="4"></i><b>(4)</b>
           constant: "Welcome to Apache Camel K"
@@ -325,7 +327,7 @@
     steps:
       - log:
           message: "Got Message: ${body}"
-      - convert-body: "java.lang.String" <i class="conum" data-value="2"></i><b>(2)</b>
+      - convert-body-to: "java.lang.String" <i class="conum" data-value="2"></i><b>(2)</b>
       - choice:
           when:
             - simple: "${body} != null &amp;&amp; ${body.length} &gt; 0"
@@ -387,7 +389,7 @@
 <p>Since its the production mode and it takes some time for the integration to come up, you need to watch the integration's logs using the command <code>kamel log &lt;integration name&gt;</code> i.e. <code>kamel log echoer</code> and you can get the name of the integration using the command <code>kamel get</code>.</p>
 </div>
 <div class="paragraph">
-<p>In the integration that you had deployed, you had applied the <a href="https://camel.apache.org/manual/latest/choice-eip.html">Choice EIP</a> when processing the exchange body. When the body has content then it simply converts the body to upper case otherwise it returns a canned response of "no body received". In either case, the content type header is set to <code>text/plain</code>.</p>
+<p>In the integration that you had deployed, you had applied the <a href="https://camel.apache.org/components/latest/eips/choice-eip.html" class="ext-link" target="_blank" rel="noopener">Choice EIP</a> when processing the exchange body. When the body has content then it simply converts the body to upper case otherwise it returns a canned response of "no body received". In either case, the content type header is set to <code>text/plain</code>.</p>
 </div>
 <div class="paragraph">
 <p>Camel-K defines an <code>integration</code> via Custom Resource Definition (CRD) and you can view those CRDs and the actual <code>integrations</code> via the following commands:</p>
@@ -496,7 +498,8 @@ echoer            Running   kit-bodug9d83u4bmr3uh8jg   1</code></pre>
 <h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
 <div id="camelk-gs-cleanup" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel delete echoer</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/clean-completed.sh
+kamel delete echoer</code></pre>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Knative Tutorial(Staging)</title>
+    <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-camelk/camel-k-eventing.html">
     <meta name="generator" content="Antora 2.2.0">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -113,6 +113,7 @@
   </div>
   <div class="content">
 <article class="doc">
+<h1 class="page">Knative Tutorial(Staging)</h1>
 <div class="sect1">
 <h2 id="camel-k-eventing"><a class="anchor" href="#camel-k-eventing"></a>Camel-K Eventing</h2>
 <div class="sectionbody">
@@ -132,6 +133,14 @@
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Navigate to the tutorial chapter&#8217;s folder advanced/camel-k:</p>
+</div>
+<div id="camelk-repo-nav-folder" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/advanced/camel-k</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="deploy-camel-k-source"><a class="anchor" href="#deploy-camel-k-source"></a>Deploy Knative Eventing CamelSource</h3>
 <div class="paragraph">
@@ -149,18 +158,23 @@
 <div class="paragraph">
 <p>Once you deploy, thee following new pod showing up the <code>knative-sources</code> namespace:</p>
 </div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knative-sources get pods</code></pre>
+</div>
+</div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                         READY   STATUS    RESTARTS   AGE
-camel-controller-manager-0   1/1     Running   0          12h</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                        READY   STATUS    RESTARTS   AGE
+<strong>camel-controller-manager-0                  1/1     Running   0          88s</strong></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Plus, CamelSource is now part of the API for your Kubernetes cluster:</p>
+<p>Plus, CamelSource is now part of the API along with other Knative Eventing Sources that you might have deployed:</p>
 </div>
 <div id="camel-k-camelsource-api" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group=sources.eventing.knative.dev</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group=sources.knative.dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -168,13 +182,12 @@ camel-controller-manager-0   1/1     Running   0          12h</code></pre>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               APIGROUP                       NAMESPACED   KIND
-apiserversources   sources.eventing.knative.dev   true         ApiServerSource
-camelsources       sources.eventing.knative.dev   true         <strong>CamelSource</strong>
-containersources   sources.eventing.knative.dev   true         ContainerSource
-cronjobsources     sources.eventing.knative.dev   true         CronJobSource
-sinkbindings       sources.eventing.knative.dev   true         SinkBinding
-kafkasources       sources.eventing.knative.dev   true         KafkaSource</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP              NAMESPACED   KIND
+apiserversources                sources.knative.dev   true         ApiServerSource
+<strong>camelsources                    sources.knative.dev   true         CamelSource</strong>
+containersources                sources.knative.dev   true         ContainerSource
+pingsources                     sources.knative.dev   true         PingSource
+sinkbindings                    sources.knative.dev   true         SinkBinding</code></pre>
 </div>
 </div>
 </div>
@@ -186,11 +199,16 @@ kafkasources       sources.eventing.knative.dev   true         KafkaSource</code
 <div id="deploy-ce-event-display" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.14.0/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.14.0/event-display.yaml</a></code></pre>
+  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.14.1/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.14.1/event-display.yaml</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>A successful event display should show the following pod in the <code>knativetutorial</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get -n knativetutorial pods</code></pre>
+</div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -213,7 +231,7 @@ event-display   <a href="http://event-display.knativetutorial.example.com" class
 <div class="listingblock">
 <div class="title">timed-greeter CamelSource</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.eventing.knative.dev/v1alpha1 <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha1 <i class="conum" data-value="1"></i><b>(1)</b>
 kind: CamelSource
 metadata:
   name: timed-greeter
@@ -226,7 +244,8 @@ spec:
       from:
         uri: "timer:tick"
         parameters:
-          period: "10s"
+          # time in milliseconds (10 s)
+          period: 10000
         steps:
           - set-body:
               constant: "Welcome to Apache Camel-K"
@@ -248,7 +267,7 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The CamelSource is provided by the API <code>sources.eventing.knative.dev</code>, it is now available as a result of deploying the CamelSource event source.</td>
+<td>The CamelSource is provided by the API <code>sources.knative.dev</code>, it is now available as a result of deploying the CamelSource event source.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -290,7 +309,7 @@ timed-greeter   True    114s</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You will also see the <code>event-display</code> pod scaling up to receive the events from <code>timed-greeter</code>.</p>
+<p>Once the <code>timed-greeter</code> is ready, you will notice Knative sink <code>event-display</code> scale up to receive the events from <code>timed-greeter</code>.</p>
 </div>
 <div class="listingblock console-output">
 <div class="title">CamelSource <code>timed-greeter</code> pod and event-display pod</div>
@@ -303,7 +322,7 @@ timed-greeter-m4chq-7cbf4ddc66-kxpqd              1/1     Running   86s</code></
 </div>
 </div>
 <div class="paragraph">
-<p>Open a new terminal and run the following command to start watching the events that are being drained into the <code>event-display</code> Knative service using the command:</p>
+<p>Open a new terminal and run the following command to start watching the events that are being drained into the sink <code>event-display</code> Knative service using the command:</p>
 </div>
 <div id="camel-k-kn-eventing-logs" class="listingblock console-input">
 <div class="content">
@@ -332,7 +351,8 @@ event-... user-container   source: camel-source:knativetutorial/timed-greeter</c
 <h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
 <div id="camelk-eventing-cleanup" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete camelsource timed-greeter</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/clean-completed.sh
+kubectl -n knativetutorial delete camelsource timed-greeter</code></pre>
 </div>
 </div>
 <div class="paragraph">
