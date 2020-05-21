@@ -233,7 +233,7 @@
 <div id="deploy-integration-dev-mode" class="listingblock console-input">
 <div class="title">Deploy the greeter integration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel run --dev --dependency 'camel:log' get-started/timed-greeter.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel run --dev get-started/timed-greeter.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -258,7 +258,7 @@
 <div class="listingblock console-output">
 <div class="title">timed-greeter logs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># kamel run --dev --dependency 'camel:log' get-started/timed-greeter.yaml
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># kamel run --dev get-started/timed-greeter.yaml
 ...
 [1] 2020-01-13 03:25:28.548 INFO  [Camel (camel-k) thread #1 - timer://tick] info - Exchange[
 [1]   Id: ID-timed-greeter-57b4d49974-vg859-1578885868551-0-13
@@ -367,8 +367,7 @@
 </div>
 <div id="camel-k-kn-run" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel run --wait --dependency camel:log --dependency camel:bean \
-    get-started/echoer.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel run --wait get-started/echoer.yaml</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
