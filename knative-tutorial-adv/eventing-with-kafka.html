@@ -81,6 +81,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#kn-eventing-kafka-source-to-sink">Kafka Source to Sink</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#kn-eventing-kafka-auto-scaling">Auto Scaling with Kafka</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -163,7 +166,7 @@
 <p>Source Kafka Events to Sink</p>
 </li>
 <li>
-<p>Autocaling Knative Services with Apache Kafka Events</p>
+<p>Autoscaling Knative Services with Apache Kafka Events</p>
 </li>
 </ul>
 </div>
@@ -361,13 +364,44 @@ data:
 <div class="title">Create a example Channel</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">cat &lt;&lt;EOF | kubectl apply -f -
-apiVersion: messaging.knative.dev/v1alpha1
+apiVersion: messaging.knative.dev/v1beta1
 kind: Channel
 metadata:
   name: my-events-ch
   namespace: knativetutorial
 spec: {}
 EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Channel <code>my-events-ch</code> creation will result in the following resources in the <code>knativetutorial</code></p>
+</div>
+<div class="paragraph">
+<p>A <code>channel.messaging.knative.dev</code> called <code>my-events-ch</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get -n knativetutorial channels</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME           READY   URL
+my-events-ch   True    <a href="http://my-events-ch-kn-channel.knativetutorial.svc.cluster.local" class="bare">http://my-events-ch-kn-channel.knativetutorial.svc.cluster.local</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And a corresponding <code>kafkachannel.messaging.knative.dev</code> with the same name <code>my-events-ch</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get -n knativetutorial kafkachannels</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME           READY  URL
+my-events-ch   True   <a href="http://my-events-ch-kn-channel.knativetutorial.svc.cluster.local" class="bare">http://my-events-ch-kn-channel.knativetutorial.svc.cluster.local</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -388,6 +422,30 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <p>For each Knative Eventing Channel that you will create, there will be a Kafka Topic created, the topic&#8217;s name will follow a convention like <code>knative-messaging-kafka.&lt;your-channel-namespace&gt;.&lt;your-channel-name&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>When listing the resources of <code>knative-eventing</code> , you should see an extra deployment called <code>kafka-ch-dispatcher</code> with its corrsponding pod started:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get -n knativetutorial pods</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                    READY   STATUS    RESTARTS   AGE
+broker-controller-56b4d58667-tz77k      1/1     Running   0          19h
+broker-filter-5bdbc8d8dd-2b657          1/1     Running   0          19h
+broker-ingress-d896b6b46-xss59          1/1     Running   0          19h
+eventing-controller-5fc5645584-fqz72    1/1     Running   0          19h
+eventing-webhook-7674b867dc-x2lg2       1/1     Running   0          19h
+imc-controller-6b548d6468-v4pr8         1/1     Running   0          19h
+imc-dispatcher-655cdf6ff6-xftlk         1/1     Running   0          19h
+kafka-ch-controller-5cf4bdc98-l8lqg     1/1     Running   0          32m
+<strong>kafka-ch-dispatcher-7fb7896db4-6r7m6    1/1     Running   0          24m</strong>
+kafka-webhook-5f8895ccdf-hf28p          1/1     Running   0          32m
+mt-broker-controller-6d66c4c6f6-56s9s   1/1     Running   0          19h</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>We can delete the example <code>my-events-ch</code> channel using the command:</p>
@@ -434,6 +492,46 @@ eventinghello   http://eventinghello.kafka.example.com   True</code></pre>
 </div>
 <div class="paragraph">
 <p>The initial deployment of <code>eventinghello</code> will cause it to scale up to 1 pod.  It will be around until it hits its scale-down time limit.  Allow it to scale down to zero pods before continuing.</p>
+</div>
+<div class="paragraph">
+<p>Create <code>KafkaTopic</code> called <code>my-topic</code> as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: my-topic
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 10
+  replicas: 1</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n kafka \
+  -f $TUTORIAL_HOME/eventing/kafka-topic-my-topic.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the created topics by:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get -n kafka kafkatopics</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command should show an output like:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                                          PARTITIONS   REPLICATION FACTOR
+consumer-offsets---84e7a678d08f4bd226872e5cdd4eb527fadc1c6a   50           1
+<strong>my-topic                                                      <em>10</em>           1</strong></code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Create a <code>KafkaSource</code> for <code>my-topic</code> by connecting your Kafka topic <code>my-topic</code> to eventinghello:</p>
@@ -516,17 +614,17 @@ mykafka-source-vxs2k-56548756cc-j7m7v         1/1    Running  0         11s</cod
 </div>
 </div>
 <div class="paragraph">
-<p>And then enter the following JSON-formatted messages:</p>
+<p>And then enter the following messages:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"hello":"world"}
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hello World
 
-{"hola":"mundo"}
+Hola Mundo
 
-{"bonjour":"le monde"}
+Bonjour Le Monde
 
-{"hey": "duniya"}</code></pre>
+Namaste Duniya</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -560,7 +658,7 @@ ce-time=2020-01-01T01:16:12.886Z
 ce-type=dev.knative.kafka.event
 content-type=null
 content-length=17
-POST:{"hey": "duniya"}</code></pre>
+POST:Namaste Duniya</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -571,18 +669,98 @@ POST:{"hey": "duniya"}</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The sample output has been modified for readability and formatting reasons. You can see the logging output of all your JSON-based event input in the terminal where you are watching the eventinghello logs.</p>
+<p>If the <code>eventinghello</code> sink was scaled down by Knative due to inactivity, you will see the service comeup to serve the request once the message is sent</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kn-eventing-kafka-auto-scaling"><a class="anchor" href="#kn-eventing-kafka-auto-scaling"></a>Auto Scaling with Apache Kafka</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Allow all the <code>eventinghello</code> sink pods to scale down to zero.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Open a new terminal and watch the pods of <code>knativetutorial</code> namespace:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods -n knativetutorial</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We will use a utility pod called <code>kafka-spammer</code> to send a bunch of messages to KafkaTopic <code>my-topic</code>, which in turn will trigger the Knative sink service <code>eventinghello</code> to scale up to handle the KakaTopic message events.</p>
+</div>
+<div class="paragraph">
+<p>Deploy <code>kafka-spammer</code> application using the command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n kafka run kafka-spammer \
+--image=quay.io/rhdevelopers/kafkaspammer:1.0.2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the <code>kafka-spammer</code> pod to be up and running, you can watch <code>kafka</code> namespace for the pod:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n kafka get pods</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the <code>kafka-spammer</code> is up and running, open a new terminal and exec into the pod by running:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">KAFKA_SPAMMER_POD=$(kubectl -n kafka get pod -l "run=kafka-spammer" \
+-o jsonpath={.items[0].metadata.name})
+kubectl -n kafka exec -it $KAFKA_SPAMMER_POD -- /bin/sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you are in the shell of the <code>kafka-spammer</code> pod run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command should now send three concurrent messages to KafkaTopic <code>my-topic</code>. As the`eventinghello` sink pods were scaled down to zero, you should see three or more <code>eventinghello</code> sink pods being scaled to serve the request.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                                              READY   STATUS    RESTARTS   AGE
+camel-k-operator-65db5d46bb-llc6g                                 1/1     Running   0          20h
+<strong>eventinghello-v1-deployment-57c686cc96-6k9r2                      2/2     Running   0          15s</strong>
+<strong>eventinghello-v1-deployment-57c686cc96-jcv8b                      2/2     Running   0          13s</strong>
+<strong>eventinghello-v1-deployment-57c686cc96-lh8xr                      2/2     Running   0          15s</strong>
+<strong>eventinghello-v1-deployment-57c686cc96-n2slh                      2/2     Running   0          16s</strong>
+kafkasource-mykafka-source-a29a50ca-4d76-4e65-8b96-1507372bfphb   1/1     Running   0          119s</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="kn-kafka-src-cleanup"><a class="anchor" href="#kn-kafka-src-cleanup"></a>Cleanup</h3>
 <div id="kn-eventing-kafka-src-cleanup" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl delete -n knativetutorial  -f mykafka-source.yaml
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl delete -n kafka pod kafka-spammer
+kubectl delete -n knativetutorial  -f mykafka-source.yaml
 kubectl delete -n knativetutorial  -f eventing-hello-sink.yaml
 kubectl delete -n kafka -f kafka-topic-my-topic.yaml</code></pre>
 </div>
