@@ -60,22 +60,13 @@
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-source">Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="eventing-src-to-sink.html#eventing-sink-service">Sink Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-create-event-source">Create Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-verify-event-source">Verify</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-sink-service">Sink Service</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-gen-sink-service">Generate Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-deploy-sink-service">Deploy Service</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
@@ -126,13 +117,10 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="channel-and-subscribers.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
@@ -247,50 +235,50 @@
 </li>
 </ul>
 </div>
-<div id="minikube-set-env" class="listingblock">
+<div id="minikube-set-env" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::minikube-set-env[]</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Kubernetes should be v1.15+</p>
+<p>Kubernetes should be v1.16+</p>
 </li>
 </ul>
 </div>
-<div id="kubectl-version" class="listingblock">
+<div id="kubectl-version" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl version --short</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::kubectl-version[]</p>
+<p>The output should be as shown</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.18.2
+Server Version: v1.18.2</code></pre>
+</div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_openshift">
 <div class="ulist">
 <ul>
 <li>
-<p>OpenShift CLI should be v4.1+</p>
+<p>OpenShift CLI should be v4.3+</p>
 </li>
 </ul>
 </div>
-<div id="oc-version" class="listingblock">
+<div id="oc-version" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::oc-version[]</p>
-</div>
-<div class="paragraph">
 <p>The output should be like</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version
 Client Version: openshift-clients-4.3.0-201910250623-88-g6a937dfe
@@ -304,24 +292,18 @@ Kubernetes Version: v1.16.2</code></pre>
 </li>
 </ul>
 </div>
-<div id="right-openshift-project" class="listingblock">
+<div id="right-openshift-project" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project -q</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::right-openshift-project[]</p>
-</div>
-<div class="paragraph">
 <p>If you are not on <code>knativetutorial</code> project, then run following command to change to <code>knativetutorial</code> project:</p>
 </div>
-<div id="change-to-openshift-project" class="listingblock">
+<div id="change-to-openshift-project" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project knativetutorial</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::change-to-openshift-project[]</p>
 </div>
 </div>
 </div>
@@ -329,13 +311,10 @@ Kubernetes Version: v1.16.2</code></pre>
 <div class="paragraph">
 <p>Before beginning to run the exercises, navigate to the tutorial chapter&#8217;s <code>eventing</code> folder:</p>
 </div>
-<div id="eventing-navigate-to-folder" class="listingblock">
+<div id="eventing-navigate-to-folder" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-navigate-to-folder[]</p>
 </div>
 </div>
 </div>
@@ -343,37 +322,14 @@ Kubernetes Version: v1.16.2</code></pre>
 <h2 id="eventing-watch-logs"><a class="anchor" href="#eventing-watch-logs"></a>Watching Logs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the eventing related subsections of this tutorial, event sources are configured to emit events every minute with a <code>CronJobSource</code> or with a <code>ContainerSource</code>.</p>
+<p>In the eventing related subsections of this tutorial, event sources are configured to emit events every minute with a <code>PingSource</code> or with a <code>ContainerSource</code>.</p>
 </div>
 <div class="paragraph">
 <p>The logs could be watched using the command:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl logs -n knativetutorial -f &lt;pod-name&gt; -c user-container</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc logs -n knativetutorial -f &lt;pod-name&gt; -c user-container</code></pre>
-</div>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kubectl logs -n knativetutorial -f &lt;pod-name&gt; -c user-container</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -402,7 +358,7 @@ Kubernetes Version: v1.16.2</code></pre>
 <div class="paragraph">
 <p>The logs will have the output like below printing every minute.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code>INFO  [com.red.dev.dem.GreetingService] (XNIO-1 task-1) Event Message Received
 event-greeter-g94kp-deployment-89f66cb58-wjl2v user-container  {
@@ -415,7 +371,7 @@ event-greeter-g94kp-deployment-89f66cb58-wjl2v user-container }</code></pre>
 <div class="paragraph">
 <p>(OR)</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code>INFO  [com.red.dev.dem.GreetingService] (XNIO-1 task-1) Event Message Received
 event-greeter-g94kp-deployment-89f66cb58-wjl2v user-container  {

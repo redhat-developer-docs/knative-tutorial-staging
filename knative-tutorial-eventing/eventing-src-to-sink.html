@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Knative Tutorial(Staging)</title>
+    <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-eventing/eventing-src-to-sink.html">
     <meta name="generator" content="Antora 2.2.0">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -60,22 +60,13 @@
     <a class="nav-link" href="#eventing-source">Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#eventing-sink-service">Sink Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#eventing-create-event-source">Create Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#eventing-verify-event-source">Verify</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#eventing-sink-service">Sink Service</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#eventing-gen-sink-service">Generate Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#eventing-deploy-sink-service">Deploy Service</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
@@ -126,13 +117,10 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="channel-and-subscribers.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
@@ -188,19 +176,16 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="sect1">
-<h2 id="source-to-sink"><a class="anchor" href="#source-to-sink"></a>Eventing Source to Sink</h2>
+<h1 class="page">Knative Tutorial(Staging)</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Before beginning to run the exercises, navigate to the tutorial chapter&#8217;s <code>eventing</code> folder:</p>
 </div>
-<div id="eventing-navigate-to-folder" class="listingblock">
+<div id="eventing-navigate-to-folder" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-navigate-to-folder[]</p>
 </div>
 </div>
 </div>
@@ -213,33 +198,33 @@
 <div class="paragraph">
 <p>Knative Eventing Sources installs the following four sources out-of-the-box:</p>
 </div>
-<div id="eventing-get-api-resources" class="listingblock">
+<div id="eventing-get-api-resources" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='sources.eventing.knative.dev'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='sources.knative.dev'</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              APIGROUP                      NAMESPACED   KIND
+apiserversources  sources.knative.dev           true         ApiServerSource
+containersources  sources.knative.dev           true         ContainerSource
+pingsources       sources.knative.dev           true         PingSource
+sinkbindings      sources.knative.dev           true         SinkBinding</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::eventing-get-api-resources[]</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              APIGROUP                      NAMESPACED   KIND
-apiserversources  sources.eventing.knative.dev  true         ApiServerSource
-containersources  sources.eventing.knative.dev  true         ContainerSource
-cronjobsources    sources.eventing.knative.dev  true         CronJobSource
-sinkbindings      sources.eventing.knative.dev  true         SinkBinding</code></pre>
-</div>
+<p>Let&#8217;s see how a simple source, the <strong>PingSource</strong> looks like :</p>
 </div>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.eventing.knative.dev/v1alpha1
-kind: CronJobSource <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha2
+kind: PingSource <i class="conum" data-value="1"></i><b>(1)</b>
 metadata:
-  name: eventinghello-cronjob-source
+  name: eventinghello-ping-source
 spec: <i class="conum" data-value="2"></i><b>(2)</b>
   schedule: "*/2 * * * *"
-  data: '{"key": "every 2 mins"}'
+  jsonData: '{"key": "every 2 mins"}'
   sink:
     ref:
       apiVersion: serving.knative.dev/v1
@@ -270,17 +255,18 @@ spec: <i class="conum" data-value="2"></i><b>(2)</b>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.eventing.knative.dev/v1
-kind: CronJobSource
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha2
+kind: PingSource
 metadata:
-  name: event-greeter-cronjob-source
+  name: eventinghello-ping-source
 spec:
   schedule: "*/2 * * * *"
-  data: '{"message": "Thanks for doing Knative Tutorial"}'
+  jsonData: '{"message": "Thanks for doing Knative Tutorial"}'
   sink:  <i class="conum" data-value="1"></i><b>(1)</b>
-    apiVersion: serving.knative.dev/v1 <i class="conum" data-value="2"></i><b>(2)</b>
-    kind: Service
-    name: eventinghello <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+    ref:
+      apiVersion: serving.knative.dev/v1 <i class="conum" data-value="2"></i><b>(2)</b>
+      kind: Service
+      name: eventinghello <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -308,154 +294,14 @@ spec:
 <td class="content">
 <div class="paragraph">
 <p>Event Source can define the attributes that it wishes to receive via the
-spec.  In the above example it defines <strong>schedule</strong>(the cron expression) and <strong>data</strong> that will be sent as part of the event.</p>
+spec.  In the above example it defines <strong>schedule</strong>(the cron expression) and <strong>jsonData</strong> that will be sent as part of the event.</p>
 </div>
 <div class="paragraph">
-<p>When you <a href="#eventing/eventing.adoc#eventing-watch-logs" class="page unresolved">watch logs</a>, you will notice this data being delivered to the service.</p>
+<p>When you <a href="eventing.html#eventing-watch-logs" class="page">watch logs</a>, you will notice this data being delivered to the service.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Run the following commands to create the event source resources:</p>
-</div>
-<div class="sect2">
-<h3 id="eventing-create-event-source"><a class="anchor" href="#eventing-create-event-source"></a>Create Event Source</h3>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset1_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_kubectl">
-<div id="event-src-svc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::event-src-svc-kn-resources-apply[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_oc">
-<div id="event-src-svc-oc-kn-resources-apply" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::event-src-svc-oc-kn-resources-apply[]</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="eventing-verify-event-source"><a class="anchor" href="#eventing-verify-event-source"></a>Verification</h4>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset2_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="eventing-run-verify-event-source" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get \
-  cronjobsources.sources.eventing.knative.dev \
-  event-greeter-cronjob-source</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-run-verify-event-source[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="eventing-run-oc-verify-event-source" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial get \
-  cronjobsources.sources.eventing.knative.dev \
-  event-greeter-cronjob-source</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-run-oc-verify-event-source[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Running  the above command should return the following result:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                       AGE
-event-greeter-cronjob-source  39s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The cronjob source also creates a service pod,</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset3_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_kubectl">
-<div id="eventing-run-get-pods" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-run-get-pods[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_oc">
-<div id="eventing-run-oc-get-pods" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-run-oc-get-pods[]</p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The above command will return an output like,</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                                          READY     STATUS    RESTARTS   AGE
-cronjob-event-greeter-cronjob-source-4v9vq-6bff96b58f-tgrhj   2/2       Running   0          6m</code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -480,7 +326,7 @@ spec:
         autoscaling.knative.dev/target: "1"
     spec:
       containers:
-      - image: quay.io/burrsutter/eventinghello:0.0.1</code></pre>
+      - image: quay.io/rhdevelopers/eventinghello:0.0.2</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -488,124 +334,67 @@ spec:
 <div class="paragraph">
 <p>Run the following commands to create the service:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset4_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
-<div id="deploy-sink-service-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing/eventing-hello-sink.yaml">eventing-hello-sink.yaml</a></code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="eventing-create-event-source"><a class="anchor" href="#eventing-create-event-source"></a>Create Event Source</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>copyToClipboard::deploy-sink-service-kn-resources-apply[]</p>
+<p>Run the following commands to create the event source resources:</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_oc">
-<div id="deploy-sink-service-oc-kn-resources-apply" class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing/eventing-hello-sink.yaml">eventing-hello-sink.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="eventing-verify-event-source"><a class="anchor" href="#eventing-verify-event-source"></a>Verification</h2>
+<div class="sectionbody">
+<div id="eventing-run-verify-event-source" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get \
+  pingsources.sources.knative.dev \
+  eventinghello-ping-source</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copyToClipboard::deploy-sink-service-oc-kn-resources-apply[]</p>
+<p>Running  the above command should return the following result:</p>
 </div>
-</div>
-</div>
-</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                       AGE
+eventinghello-ping-source  39s</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can <a href="#eventing/eventing.adoc#eventing-watch-logs" class="page unresolved">watch logs</a> to see the cron job source sending an event every 1 minute.</p>
+<p>You can <a href="#eventing/eventing.adoc#eventing-watch-logs" class="page unresolved">watch logs</a> to see the ping job source sending an event every 1 minute.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="eventing-see-what-you-have-deployed"><a class="anchor" href="#eventing-see-what-you-have-deployed"></a>See what you have deployed</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sources"><a class="anchor" href="#_sources"></a>sources</h3>
+<div id="knative-event-sources" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get pingsource.sources.knative.dev  eventinghello-ping-source</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eventing-see-what-you-have-deployed"><a class="anchor" href="#eventing-see-what-you-have-deployed"></a>See what you have deployed</h3>
-<div class="sect3">
-<h4 id="_sources"><a class="anchor" href="#_sources"></a>sources</h4>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset5_oc"></a>oc</p>
-</li>
-</ul>
-</div>
+<h3 id="_services"><a class="anchor" href="#_services"></a>services</h3>
+<div id="knative-services" class="listingblock console-input">
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
-<div id="knative-event-sources" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get cronjobsources.sources.eventing.knative.dev  event-greeter-cronjob-source</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::knative-event-sources[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_oc">
-<div id="oc-knative-event-sources" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial get cronjobsources.sources.eventing.knative.dev event-greeter-cronjob-source</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-knative-event-sources[]</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_services"><a class="anchor" href="#_services"></a>services</h4>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset6_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset6_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kubectl">
-<div id="knative-services" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get \
-  services.serving.knative.dev eventinghello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::knative-services[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_oc">
-<div id="oc-knative-services" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc --namespace knativetutorial  get \
-  services.serving.knative.dev eventinghello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::oc-knative-services[]</p>
-</div>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get service.serving.knative.dev eventinghello</code></pre>
 </div>
 </div>
 </div>
@@ -614,40 +403,10 @@ spec:
 <div class="sect1">
 <h2 id="eventing-cleanup"><a class="anchor" href="#eventing-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_kubectl"></a>kubectl</p>
-</li>
-<li>
-<p><a id="tabset7_oc"></a>oc</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kubectl">
-<div id="eventing-run-src-svc-cleanup" class="listingblock">
+<div id="eventing-run-src-svc-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f eventinghello-source.yaml
 kubectl -n knativetutorial delete -f eventing-hello-sink.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-run-src-svc-cleanup[]</p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_oc">
-<div id="eventing-run-oc-src-svc-cleanup" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n knativetutorial delete -f eventinghello-source.yaml
-oc -n knativetutorial delete -f eventing-hello-sink.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-run-oc-src-svc-cleanup[]</p>
-</div>
-</div>
 </div>
 </div>
 </div>

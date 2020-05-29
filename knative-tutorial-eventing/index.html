@@ -60,22 +60,13 @@
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-source">Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="eventing-src-to-sink.html#eventing-sink-service">Sink Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-create-event-source">Create Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-verify-event-source">Verify</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-sink-service">Sink Service</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-gen-sink-service">Generate Service</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="eventing-src-to-sink.html#eventing-deploy-sink-service">Deploy Service</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="eventing-src-to-sink.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
@@ -126,13 +117,10 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="channel-and-subscribers.html#eventing-see-what-you-have-deployed">See What You Have Deployed</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="channel-and-subscribers.html#eventing-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
@@ -226,7 +214,7 @@
 <dl>
 <dt class="hdlist1">Channel and Subscription</dt>
 <dd>
-<p>With the <em>Channel</em> and <em>Subscription</em>, the Knative Eventing system defines a <em>Channel</em>, which can connect to various backends such as In-Memory, Kafka and GCP PubSub for sourcing the events. Each Channel can have one more subscribers in the form of <em>Sink</em> services as shown in Figure 4-2, which can receive the event messages and process them as needed. Each message from the Channel is formatted as <em>CloudEvent</em> and sent further up in the chain to other Subscribers for further processing. The Channels and Subscription usage pattern does not have the ability to filter messages.</p>
+<p>With the <em>Channel</em> and <em>Subscription</em>, the Knative Eventing system defines a <em>Channel</em>, which can connect to various backends such as In-Memory, Kafka and GCP PubSub for sourcing the events. Each Channel can have one or more subscribers in the form of <em>Sink</em> services as shown in Figure 4-2, which can receive the event messages and process them as needed. Each message from the Channel is formatted as <em>CloudEvent</em> and sent further up in the chain to other Subscribers for further processing. The Channels and Subscription usage pattern does not have the ability to filter messages.</p>
 </dd>
 </dl>
 </div>
