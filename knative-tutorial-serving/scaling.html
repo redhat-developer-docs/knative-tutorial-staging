@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial-serving/scaling.html">
-    <meta name="generator" content="Antora 2.2.0">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
   <body class="article">
@@ -334,7 +334,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset1_kubernetes">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
@@ -428,6 +428,14 @@ spec:
 </div>
 <div class="paragraph">
 <p>The Knative service definition above will allow each service pod to handle max of 10 in-flight requests per pod (configured via <code>autoscaling.knative.dev/target</code> annotation) before automatically scaling to new pod(s)</p>
+</div>
+<div class="paragraph">
+<p>Navigate to the tutorial chapter&#8217;s <code>basics</code> folder:</p>
+</div>
+<div id="scaling-navigate-back" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/scaling</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
