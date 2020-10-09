@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial.xml</loc>
-</sitemap>
-<sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-adv.xml</loc>
-</sitemap>
-<sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-camelk.xml</loc>
-</sitemap>
-<sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-eventing.xml</loc>
-</sitemap>
-<sitemap>
-<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/sitemap-knative-tutorial-serving.xml</loc>
-</sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/index.html</loc>
+<lastmod>2020-10-09T06:49:55.062Z</lastmod>
+</url>
+</urlset>
