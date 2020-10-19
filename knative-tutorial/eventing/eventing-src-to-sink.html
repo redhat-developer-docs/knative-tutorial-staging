@@ -7,7 +7,7 @@
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/eventing/eventing-src-to-sink.html">
     <link rel="prev" href="eventing.html#eventing-prerequisite">
     <link rel="next" href="channel-and-subscribers.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -304,33 +304,33 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#eventing-trigger-broker.adoc">Brokers and Triggers</a>
+    <a class="nav-link" href="eventing-trigger-broker.html">Brokers and Triggers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#events-triggers-brokers">Events, Triggers and Brokers</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#events-triggers-brokers">Events, Triggers and Brokers</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#broker">Broker</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#broker">Broker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-service">Service</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#eventing-service">Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-event-source">Event Source</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#eventing-event-source">Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-trigger">Trigger</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#eventing-trigger">Trigger</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-trigger-verification">Verification</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#eventing-trigger-verification">Verification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-cleanup">Cleanup</a>
+    <a class="nav-link" href="eventing-trigger-broker.html#eventing-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#eventing.adoc#eventing-watch-logs">Watching Logs</a>
+    <a class="nav-link" href="eventing.html#eventing-watch-logs">Watching Logs</a>
   </li>
 </ul>
   </li>
@@ -654,39 +654,32 @@ spec:
 <div class="paragraph">
 <p>Run the following commands to create the service:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset1_kubectl"></a>kubectl</p>
+<p><a id="tabset1_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset1_oc"></a>oc</p>
+<p><a id="tabset1_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_kubectl">
-<div id="deploy-sink-service-kn-resources-apply" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset1_kn">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing/eventing-hello-sink.yaml">eventing-hello-sink.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create eventinghello \
+  --namespace knativetutorial \
+  --concurrency-target=1 \
+  --image=quay.io/rhdevelopers/quay.io/rhdevelopers/eventinghello:0.0.2</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::deploy-sink-service-kn-resources-apply[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_oc">
-<div id="deploy-sink-service-oc-kn-resources-apply" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset1_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing/eventing-hello-sink.yaml">eventing-hello-sink.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::deploy-sink-service-oc-kn-resources-apply[]</p>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/knative/eventing-hello-sink.yaml">eventing-hello-sink.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -701,39 +694,33 @@ spec:
 <div class="paragraph">
 <p>Run the following commands to create the event source resources:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset2_kubectl"></a>kubectl</p>
+<p><a id="tabset2_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset2_oc"></a>oc</p>
+<p><a id="tabset2_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_kubectl">
-<div id="event-src-svc-kn-resources-apply" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset2_kn">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping create \
+  eventinghello-ping-source
+  --namespace knativetutorial \
+  --schedule "*/2 * * * *" \
+  --sink ksvc:eventinghello</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::event-src-svc-kn-resources-apply[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc">
-<div id="event-src-svc-oc-kn-resources-apply" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset2_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::event-src-svc-oc-kn-resources-apply[]</p>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/knative/eventinghello-source.yaml">eventinghello-source.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -744,11 +731,32 @@ spec:
 <div class="sect1">
 <h2 id="eventing-verify-event-source"><a class="anchor" href="#eventing-verify-event-source"></a>Verification</h2>
 <div class="sectionbody">
-<div id="eventing-run-verify-event-source" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset3_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_kn">
+<div class="paragraph">
+<p>kn source ping list -n knativetutorial</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get \
   pingsources.sources.knative.dev \
   eventinghello-ping-source</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -770,17 +778,63 @@ eventinghello-ping-source  39s</code></pre>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_sources"><a class="anchor" href="#_sources"></a>sources</h3>
-<div id="knative-event-sources" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset4_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping --namespace knativetutorial</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get pingsource.sources.knative.dev  eventinghello-ping-source</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_services"><a class="anchor" href="#_services"></a>services</h3>
-<div id="knative-services" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset5_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service --namespace knativetutorial list</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get service.serving.knative.dev eventinghello</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -789,10 +843,34 @@ eventinghello-ping-source  39s</code></pre>
 <div class="sect1">
 <h2 id="eventing-cleanup"><a class="anchor" href="#eventing-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div id="eventing-run-src-svc-cleanup" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping delete -n knativetutorial eventinghello-ping-source
+kn service delete -n knativetutorial eventinghello</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f eventinghello-source.yaml
 kubectl -n knativetutorial delete -f eventing-hello-sink.yaml</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

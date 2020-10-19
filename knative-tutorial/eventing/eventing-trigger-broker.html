@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/eventing/eventing-trigger-broker.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <link rel="prev" href="channel-and-subscribers.html">
+    <link rel="next" href="eventing.html#eventing-watch-logs">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -300,35 +302,35 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#eventing-trigger-broker.adoc">Brokers and Triggers</a>
+    <a class="nav-link" href="eventing-trigger-broker.html">Brokers and Triggers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#events-triggers-brokers">Events, Triggers and Brokers</a>
+    <a class="nav-link" href="#events-triggers-brokers">Events, Triggers and Brokers</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#broker">Broker</a>
+    <a class="nav-link" href="#broker">Broker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-service">Service</a>
+    <a class="nav-link" href="#eventing-service">Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-event-source">Event Source</a>
+    <a class="nav-link" href="#eventing-event-source">Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-trigger">Trigger</a>
+    <a class="nav-link" href="#eventing-trigger">Trigger</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-trigger-verification">Verification</a>
+    <a class="nav-link" href="#eventing-trigger-verification">Verification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-cleanup">Cleanup</a>
+    <a class="nav-link" href="#eventing-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#eventing.adoc#eventing-watch-logs">Watching Logs</a>
+    <a class="nav-link" href="eventing.html#eventing-watch-logs">Watching Logs</a>
   </li>
 </ul>
   </li>
@@ -486,7 +488,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Knative Tutorial</a></li>
-    <li><a href="eventing-trigger-broker.html">Knative Tutorial(Staging)</a></li>
+    <li><a href="index.html">Knative Eventing</a></li>
+    <li><a href="eventing-trigger-broker.html">Brokers and Triggers</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial/edit/staging/documentation/modules/eventing/pages/eventing-trigger-broker.adoc">Edit this Page</a></div>
@@ -505,46 +508,11 @@
 <h2 id="broker"><a class="anchor" href="#broker"></a>Broker</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>By labeling <code>knativetutorial</code> namespace with <code>knative-eventing-injection=enabled</code> as shown below, will make Knative Eventing to deploy a default Knative Eventing Broker and its related Ingress :</p>
+<p>By labeling <code>knativetutorial</code> namespace with <code>eventing.knative.dev/injection=enabled</code> as shown below, will make Knative Eventing to deploy a default Knative Eventing Broker and its related Ingress :</p>
 </div>
-<div id="label-namespace-for-default-broker" class="listingblock console-input">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl label namespace knativetutorial knative-eventing-injection=enabled</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Verify that the default broker is running:</p>
-</div>
-<div id="watch-ns-for-broker" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl --namespace knativetutorial get broker</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Running command above should show an output like:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME     READY REASON URL                                                    AGE
-default  True         http://default-broker.knativetutorial.svc.cluster.local   22s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This will also start two additional pods namely <code>default-broker-filter</code> and <code>default-broker-ingress</code> :</p>
-</div>
-<div id="watch-ns-for-broker-pods" class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get pods</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Running command above should show the following pods in knativetutorial:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                         READY STATUS      AGE
-default-broker-filter-c6654bccf-qb272        1/1   Running     18s
-default-broker-ingress-7479966dc7-99xvm      1/1   Running     18s</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl label namespace knativetutorial eventing.knative.dev/injection=enabled</code></pre>
 </div>
 </div>
 </div>
@@ -610,18 +578,78 @@ spec:
 <div class="paragraph">
 <p>Run the following commands to deploy the <code>eventingaloha</code> and <code>eventingbonjour</code> services:</p>
 </div>
+<div class="sect3">
+<h4 id="_deploy_aloha"><a class="anchor" href="#_deploy_aloha"></a>Deploy Aloha</h4>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset1_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_kn">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-aloha-sink.yaml">eventing-aloha-sink.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create eventingaloha \
+  --namespace knativetutorial \
+  --concurrency-target=1 \
+  --revision-name=eventingaloha-v1 \
+  --image=quay.io/rhdevelopers/quay.io/rhdevelopers/eventinghello:0.0.2</code></pre>
 </div>
 </div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventing-bonjour-sink.yaml">eventing-bonjour-sink.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/knative/eventing-aloha-sink.yaml">eventing-aloha-sink.yaml</a></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deploy_bonjour"><a class="anchor" href="#_deploy_bonjour"></a>Deploy Bonjour</h4>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset2_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create eventingbonjour \
+  --namespace knativetutorial \
+  --concurrency-target=1 \
+  --revision-name=eventingbonjour-v1 \
+  --image=quay.io/rhdevelopers/quay.io/rhdevelopers/eventinghello:0.0.2</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_kubernetes-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/knative/eventing-bonjour-sink.yaml">eventing-bonjour-sink.yaml</a></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>Wait approximately 60 seconds for <code>eventingaloha</code> and <code>eventingbonjour</code> to terminate, scale-down to zero before proceeding.</p>
+</div>
 </div>
 </div>
 </div>
@@ -659,13 +687,45 @@ spec:
 </table>
 </div>
 <div class="paragraph">
-<p>Run the following commands to create the trigger:</p>
+<p>Now create the the trigger for <code>eventingaloha</code> that will associate the filtered events to a service:</p>
 </div>
+<div class="sect2">
+<h3 id="_create_aloha_trigger"><a class="anchor" href="#_create_aloha_trigger"></a>Create Aloha Trigger</h3>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset3_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_kn">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/trigger-helloaloha.yaml">trigger-helloaloha.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn trigger create helloaloha \
+  --namespace knativetutorial \
+  --broker=default \
+  --sink=ksvc:eventingaloha \
+  --filter=type=greeting</code></pre>
 </div>
 </div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_kubernetes-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/knative/trigger-helloaloha.yaml">trigger-helloaloha.yaml</a></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_bonjour_trigger"><a class="anchor" href="#_create_bonjour_trigger"></a>Create Bonjour Trigger</h3>
 <div class="paragraph">
 <p>Now create the the trigger for <code>eventingbonjour</code> that will associate the filtered events to a service:</p>
 </div>
@@ -690,39 +750,33 @@ spec:
 <div class="paragraph">
 <p>Run the following commands to create the trigger:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset1_kubectl"></a>kubectl</p>
+<p><a id="tabset4_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset1_oc"></a>oc</p>
+<p><a id="tabset4_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_kubectl">
-<div id="eventing-trigger-hellobonjour-kn-resources-apply" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset4_kn">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/trigger-hellobonjour.yaml">trigger-hellobonjour.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn trigger create hellobonjour \
+  --namespace knativetutorial \
+  --broker=default \
+  --sink=ksvc:eventingbonjour \
+  --filter=type=greeting</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-trigger-hellobonjour-kn-resources-apply[]</p>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_oc">
-<div id="eventing-trigger-hellobonjour-oc-kn-resources-apply" class="listingblock">
+<div class="tab-pane" aria-labelledby="tabset4_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/trigger-hellobonjour.yaml">trigger-hellobonjour.yaml</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>copyToClipboard::eventing-trigger-hellobonjour-oc-kn-resources-apply[]</p>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/knative/trigger-hellobonjour.yaml">trigger-hellobonjour.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -731,9 +785,32 @@ spec:
 <div class="paragraph">
 <p>Verify that your triggers are ready:</p>
 </div>
-<div id="knative-triggers" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset5_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn trigger list --namespace knativetutorial</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get triggers.eventing.knative.dev</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -744,6 +821,7 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME         READY BROKER  SUBSCRIBER_URI                                      AGE
 helloaloha   True  default http://eventingaloha.knativetutorial.svc.cluster.local   24s
 hellobonjour True  default http://eventingbonjour.knativetutorial.svc.cluster.local 48s</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -885,8 +963,6 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                        READY STATUS  AGE
 curler                                      1/1   Running 59s
-default-broker-filter-c6654bccf-vxm5m       1/1   Running 11m
-default-broker-ingress-7479966dc7-pvtx6     1/1   Running 11m
 eventingaloha-1-deployment-6cdc888d9d-9xnnn 2/2   Running 30s</code></pre>
 </div>
 </div>
@@ -920,8 +996,6 @@ eventingaloha-1-deployment-6cdc888d9d-9xnnn 2/2   Running 30s</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                         READY STATUS  AGE
 curler                                       1/1   Running 82s
-default-broker-filter-c6654bccf-vxm5m        1/1   Running 11m
-default-broker-ingress-7479966dc7-pvtx6      1/1   Running 11m
 eventingaloha-1-deployment-6cdc888d9d-9xnnn  2/2   Running 53s
 eventingbonjour-1-deployment-fc7858b5b-s9prj 2/2   Running 5s</code></pre>
 </div>
@@ -970,8 +1044,6 @@ eventingbonjour-1-deployment-fc7858b5b-s9prj 2/2   Running 5s</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                         READY STATUS  AGE
 curler                                       1/1   Running 3m21s
-default-broker-filter-c6654bccf-vxm5m        1/1   Running 13m
-default-broker-ingress-7479966dc7-pvtx6      1/1   Running 13m
 eventingaloha-1-deployment-6cdc888d9d-nlpm8  2/2   Running 6s
 eventingbonjour-1-deployment-fc7858b5b-btdcr 2/2   Running 6s</code></pre>
 </div>
@@ -984,7 +1056,31 @@ eventingbonjour-1-deployment-fc7858b5b-btdcr 2/2   Running 6s</code></pre>
 <div class="sect1">
 <h2 id="eventing-cleanup"><a class="anchor" href="#eventing-cleanup"></a>Cleanup</h2>
 <div class="sectionbody">
-<div id="eventing-run-trigger-broker-cleanup" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service delete eventingbonjour -n knativetutorial
+kn service delete eventingaloha -n knativetutorial
+kn trigger delete helloaloha -n knativetutorial
+kn trigger delete hellobonjour -n knativetutorial
+kubectl -n knativetutorial delete pod curler</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f eventing-aloha-sink.yaml
 kubectl -n knativetutorial delete -f eventing-bonjour-sink.yaml
@@ -995,6 +1091,13 @@ kubectl -n knativetutorial delete -f curler.yaml</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="channel-and-subscribers.html">Channel and Subscribers</a></span>
+  <span class="next"><a href="eventing.html#eventing-watch-logs">Watching Logs</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

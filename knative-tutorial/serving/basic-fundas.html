@@ -7,7 +7,7 @@
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/serving/basic-fundas.html">
     <link rel="prev" href="knative-client.html">
     <link rel="next" href="traffic-distribution.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -304,33 +304,33 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#eventing-trigger-broker.adoc">Brokers and Triggers</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html">Brokers and Triggers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#events-triggers-brokers">Events, Triggers and Brokers</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#events-triggers-brokers">Events, Triggers and Brokers</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#broker">Broker</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#broker">Broker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-service">Service</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#eventing-service">Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-event-source">Event Source</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#eventing-event-source">Event Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-trigger">Trigger</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#eventing-trigger">Trigger</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-trigger-verification">Verification</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#eventing-trigger-verification">Verification</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#eventing-trigger-broker.adoc#eventing-cleanup">Cleanup</a>
+    <a class="nav-link" href="../eventing/eventing-trigger-broker.html#eventing-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#eventing.adoc#eventing-watch-logs">Watching Logs</a>
+    <a class="nav-link" href="../eventing/eventing.html#eventing-watch-logs">Watching Logs</a>
   </li>
 </ul>
   </li>
@@ -813,9 +813,32 @@ Sometimes the response might not be returned immediately especially when the pod
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-services"><a class="anchor" href="#basics-show-knative-services"></a>service</h3>
-<div id="knative-services" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset5_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service list -n knativetutorial</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get services.serving.knative.dev greeter</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -876,11 +899,32 @@ greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 </div>
 <div class="sect2">
 <h3 id="rev1-basics-show-knative-revisions"><a class="anchor" href="#rev1-basics-show-knative-revisions"></a>revisions</h3>
-<div id="rev1knative-revisions" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_kn">
+<div class="paragraph">
+<p>kn revision list --namespace knativetutorial</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
 --sort-by="{.metadata.creationTimestamp}"</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -981,15 +1025,15 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset5_kn"></a>kn</p>
+<p><a id="tabset7_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset5_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset7_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kn">
+<div class="tab-pane" aria-labelledby="tabset7_kn">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service update greeter \
@@ -998,7 +1042,7 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset5_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset7_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
@@ -1011,15 +1055,15 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset6_kn"></a>kn</p>
+<p><a id="tabset8_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset8_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kn">
+<div class="tab-pane" aria-labelledby="tabset8_kn">
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Service 'greeter' in namespace 'knativetutorial':
@@ -1035,7 +1079,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset8_kubernetes-cli">
 <div class="paragraph">
 <p>After successful deployment of the service we should see a Kubernetes deployment called <code>greeter-v2-deployment</code>.</p>
 </div>
@@ -1048,11 +1092,32 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 <div class="sect2">
 <h3 id="rev2-basics-show-knative-revisions"><a class="anchor" href="#rev2-basics-show-knative-revisions"></a>revisions</h3>
-<div id="rev2knative-revisions" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset9_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset9_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset9_kn">
+<div class="paragraph">
+<p>kn revision list --namespace knativetutorial</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset9_kubernetes-cli">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
 --selector=serving.knative.dev/service=greeter \
 --sort-by="{.metadata.creationTimestamp}"</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -1083,22 +1148,22 @@ greeter-v9fxj   greeter       greeter-v9fxj      2            True</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset7_kn"></a>kn</p>
+<p><a id="tabset10_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset7_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset10_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kn">
+<div class="tab-pane" aria-labelledby="tabset10_kn">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service -n knativetutorial delete greeter</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset7_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset10_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter</code></pre>
