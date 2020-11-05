@@ -551,7 +551,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Kubernetes should be v1.18.0+</p>
+<p>Kubernetes should be v1.19.0+</p>
 </li>
 </ul>
 </div>
@@ -565,8 +565,8 @@
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.18.0
-Server Version: v1.18.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.19.0
+Server Version: v1.19.0</code></pre>
 </div>
 </div>
 </div>
@@ -864,9 +864,32 @@ greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
 </div>
 <div class="sect2">
 <h3 id="basics-show-knative-routes"><a class="anchor" href="#basics-show-knative-routes"></a>routes</h3>
-<div id="knative-routes" class="listingblock console-input">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+</li>
+</ul>
+</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
+<div class="tab-pane" aria-labelledby="tabset6_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn route --namespace knativetutorial list</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -903,20 +926,22 @@ greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset6_kn"></a>kn</p>
+<p><a id="tabset7_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset7_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kn">
-<div class="paragraph">
-<p>kn revision list --namespace knativetutorial</p>
+<div class="tab-pane" aria-labelledby="tabset7_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision list --namespace knativetutorial</code></pre>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
@@ -1025,15 +1050,15 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset7_kn"></a>kn</p>
+<p><a id="tabset8_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset7_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset8_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_kn">
+<div class="tab-pane" aria-labelledby="tabset8_kn">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service update greeter \
@@ -1042,7 +1067,7 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset7_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset8_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
@@ -1055,15 +1080,15 @@ spec:
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset8_kn"></a>kn</p>
+<p><a id="tabset9_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset8_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset9_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset8_kn">
+<div class="tab-pane" aria-labelledby="tabset9_kn">
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Service 'greeter' in namespace 'knativetutorial':
@@ -1079,7 +1104,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset8_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset9_kubernetes-cli">
 <div class="paragraph">
 <p>After successful deployment of the service we should see a Kubernetes deployment called <code>greeter-v2-deployment</code>.</p>
 </div>
@@ -1096,20 +1121,22 @@ http://greeter.knativetutorial.example.com</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset9_kn"></a>kn</p>
+<p><a id="tabset10_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset9_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset10_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset9_kn">
-<div class="paragraph">
-<p>kn revision list --namespace knativetutorial</p>
+<div class="tab-pane" aria-labelledby="tabset10_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision list --namespace knativetutorial</code></pre>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset9_kubernetes-cli">
+</div>
+<div class="tab-pane" aria-labelledby="tabset10_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
@@ -1148,22 +1175,22 @@ greeter-v9fxj   greeter       greeter-v9fxj      2            True</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset10_kn"></a>kn</p>
+<p><a id="tabset11_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset10_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset11_kubernetes-cli"></a>{kubernetes-cli}</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset10_kn">
+<div class="tab-pane" aria-labelledby="tabset11_kn">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service -n knativetutorial delete greeter</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset10_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset11_kubernetes-cli">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter</code></pre>

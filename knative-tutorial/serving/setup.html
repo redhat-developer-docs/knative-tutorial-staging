@@ -544,10 +544,10 @@
 <td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.docker.com/docker-for-windows/install">Docker for Windows</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>kubectl v1.18.0</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>kubectl v1.19.0</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.19.0/bin/darwin/amd64/kubectl">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.19.0/bin/linux/amd64/kubectl">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.19.0/bin/windows/amd64/kubectl.exe">Download</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern">stern</a></p></td>
@@ -875,13 +875,13 @@ export TUTORIAL_HOME="$(pwd)/knative-tutorial"</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Knative <code>v0.17.0</code></p>
+<p>Knative <code>{knative-version}</code></p>
 </li>
 <li>
-<p>Minikube <code>v1.14.0</code></p>
+<p>Minikube <code>{minikube-version}</code></p>
 </li>
 <li>
-<p>OpenShift <code>v4.5+</code></p>
+<p>OpenShift <code>v4.6</code></p>
 </li>
 </ul>
 </div>
@@ -927,7 +927,7 @@ export TUTORIAL_HOME="$(pwd)/knative-tutorial"</code></pre>
 <div class="listingblock console-output">
 <div class="title">Minikube starting</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">😄  [knativetutorial] minikube v1.14.0 on Darwin 10.15.7
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">😄  [knativetutorial] minikube {minikube-version} on Darwin 10.15.7
 ✨  Using the hyperkit driver based on user configuration
 👍  Starting control plane node knativetutorial in cluster knativetutorial
 🔥  Creating hyperkit VM (CPUs=6, Memory=8192MB, Disk=51200MB) ...
@@ -949,8 +949,8 @@ export TUTORIAL_HOME="$(pwd)/knative-tutorial"</code></pre>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  --filename https://github.com/knative/serving/releases/download/v0.17.0/serving-crds.yaml \
-  --filename https://github.com/knative/eventing/releases/download/v0.17.0/eventing-crds.yaml</code></pre>
+  --filename https://github.com/knative/serving/releases/download/{knative-serving-version}/serving-crds.yaml \
+  --filename https://github.com/knative/eventing/releases/download/{knative-eventing-version}/eventing-crds.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1042,7 +1042,7 @@ sinkbindings                    sources.knative.dev   true         SinkBinding</
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
   --filename \
-  https://github.com/knative/serving/releases/download/v0.17.0/serving-core.yaml</code></pre>
+  https://github.com/knative/serving/releases/download/{knative-serving-version}/serving-core.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1070,7 +1070,7 @@ webhook-59585cb6-wqldc        1/1     Running   0          11m</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
   --filename \
-    <a href="https://github.com/knative/net-kourier/releases/download/v0.17.0/kourier.yaml" class="bare">https://github.com/knative/net-kourier/releases/download/v0.17.0/kourier.yaml</a></code></pre>
+    <a href="https://github.com/knative/net-kourier/releases/download/{knative-serving-version}/kourier.yaml" class="bare">https://github.com/knative/net-kourier/releases/download/{knative-serving-version}/kourier.yaml</a></code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
@@ -1082,8 +1082,22 @@ webhook-59585cb6-wqldc        1/1     Running   0          11m</code></pre>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                      READY   STATUS    RESTARTS   AGE
-3scale-kourier-control-77459dcc76-56pkc   1/1     Running   0          55s
 3scale-kourier-gateway-8645d88bf6-gvbf7   1/1     Running   0          56s</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-serving"</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">NAME                                      READY   STATUS    RESTARTS   AGE
+3scale-kourier-control-6f9f49f99b-q7nn4   1/1     Running   0          23m
+activator-ddbb8cfb5-8xw5s                 1/1     Running   0          25m
+autoscaler-55d7dd475b-v49ln               1/1     Running   0          25m
+controller-75f887cfdc-74khc               1/1     Running   0          25m
+webhook-676c9c56dc-lphcs                  1/1     Running   0          25m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1104,11 +1118,11 @@ webhook-59585cb6-wqldc        1/1     Running   0          11m</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
   --filename \
-  https://github.com/knative/eventing/releases/download/v0.17.0/eventing-core.yaml \
+  https://github.com/knative/eventing/releases/download/{knative-eventing-version}/eventing-core.yaml \
   --filename \
-  https://github.com/knative/eventing/releases/download/v0.17.0/in-memory-channel.yaml \
+  https://github.com/knative/eventing/releases/download/{knative-eventing-version}/in-memory-channel.yaml \
   --filename \
-  https://github.com/knative/eventing/releases/download/v0.17.0/mt-channel-broker.yaml</code></pre>
+  https://github.com/knative/eventing/releases/download/{knative-eventing-version}/mt-channel-broker.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">

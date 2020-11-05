@@ -708,15 +708,7 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>The Knative service definition above will allow each service pod to handle max of 10 in-flight requests per pod (configured via <code>autoscaling.knative.dev/target</code> annotation) before automatically scaling to new pod(s)</p>
-</div>
-<div class="paragraph">
-<p>Navigate to the tutorial chapter&#8217;s <code>basics</code> folder:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/scaling</code></pre>
-</div>
+<p>The Knative service definition above will allow each service pod to handle max of 10 in-flight requests per pod (configured via <code>autoscaling.knative.dev/target</code> annotation) before automatically scaling to new pod(s).</p>
 </div>
 </div>
 <div class="sect2">
@@ -926,8 +918,7 @@ spec:
 <div class="sectionbody">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service delete -n knativetutorial greeter
-kn service delete -n knativetutorial prime-generator</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service delete -n knativetutorial prime-generator</code></pre>
 </div>
 </div>
 </div>
