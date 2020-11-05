@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
+    <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/serving/knative-client.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="basic-fundas.html">
@@ -496,7 +496,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Knative Tutorial(Staging)</h1>
+<h1 class="page">Knative Tutorial</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -534,7 +534,7 @@
 <p>Knative Client (<code>kn</code>) is still under aggressive development, so commands and options might change rapidly.</p>
 </li>
 <li>
-<p>As of writing the tutorial {kn-client-version} was the latest version of the Knative Client</p>
+<p>As of writing the tutorial v0.18.0 was the latest version of the Knative Client</p>
 </li>
 </ul>
 </div>
@@ -548,7 +548,7 @@
 <h2 id="kn-install"><a class="anchor" href="#kn-install"></a>Install</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Download the <a href="https://github.com/knative/client/releases/tag/{kn-client-version}">{kn-client-version}</a> Knative Client and add it to your <code>PATH</code>.</p>
+<p>Download the <a href="https://github.com/knative/client/releases/tag/v0.18.0">v0.18.0</a> Knative Client and add it to your <code>PATH</code>.</p>
 </div>
 <div class="paragraph">
 <p>Verify installation by running the command:</p>
@@ -563,15 +563,15 @@
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Version:      {kn-client-version}
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Version:      v0.18.0
 Build Date:   2020-08-26 11:08:52
 Git Revision: 8fcd25c3
 Supported APIs:
 * Serving
-  - serving.knative.dev/v1 (knative-serving {kn-client-version})
+  - serving.knative.dev/v1 (knative-serving v0.18.0)
 * Eventing
-  - sources.knative.dev/v1alpha2 (knative-eventing {kn-client-version})
-  - eventing.knative.dev/v1beta1 (knative-eventing {kn-client-version})</code></pre>
+  - sources.knative.dev/v1alpha2 (knative-eventing v0.18.0)
+  - eventing.knative.dev/v1beta1 (knative-eventing v0.18.0)</code></pre>
 </div>
 </div>
 </div>
@@ -657,7 +657,7 @@ greeter   http://greeter.knativetutorial.example.com   greeter-zyjrq-1   98s   3
 <div class="tab-pane" aria-labelledby="tabset1_openshift">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`{kubernetes-cli} get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
 http $SVC_URL</code></pre>
 </div>
 </div>

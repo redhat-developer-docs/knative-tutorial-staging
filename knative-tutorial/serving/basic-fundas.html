@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
+    <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/serving/basic-fundas.html">
     <link rel="prev" href="knative-client.html">
     <link rel="next" href="traffic-distribution.html">
@@ -496,7 +496,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Knative Tutorial(Staging)</h1>
+<h1 class="page">Knative Tutorial</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -662,7 +662,7 @@ spec:
 <p><a id="tabset2_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset2_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset2_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -675,10 +675,10 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset2_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -691,7 +691,7 @@ spec:
 <p><a id="tabset3_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset3_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset3_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -714,7 +714,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset3_kubectl">
 <div class="paragraph">
 <p>After successful deployment of the service we should see a Kubernetes Deployment named similar to <code>greeter-nsrbr-deployment</code> available:</p>
 </div>
@@ -776,7 +776,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 <div class="tab-pane" aria-labelledby="tabset4_openshift">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`{kubernetes-cli} get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
 http $SVC_URL</code></pre>
 </div>
 </div>
@@ -820,7 +820,7 @@ Sometimes the response might not be returned immediately especially when the pod
 <p><a id="tabset5_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset5_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset5_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -832,7 +832,7 @@ Sometimes the response might not be returned immediately especially when the pod
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset5_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset5_kubectl">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get services.serving.knative.dev greeter</code></pre>
@@ -871,7 +871,7 @@ greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
 <p><a id="tabset6_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset6_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset6_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -883,10 +883,10 @@ greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset6_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset6_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
 </div>
 </div>
 </div>
@@ -929,7 +929,7 @@ greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 <p><a id="tabset7_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset7_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset7_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -941,7 +941,7 @@ greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset7_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset7_kubectl">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
@@ -1053,7 +1053,7 @@ spec:
 <p><a id="tabset8_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset8_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset8_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -1067,10 +1067,10 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset8_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset8_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -1083,7 +1083,7 @@ spec:
 <p><a id="tabset9_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset9_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset9_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -1104,7 +1104,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset9_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset9_kubectl">
 <div class="paragraph">
 <p>After successful deployment of the service we should see a Kubernetes deployment called <code>greeter-v2-deployment</code>.</p>
 </div>
@@ -1124,7 +1124,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 <p><a id="tabset10_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset10_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset10_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -1136,7 +1136,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset10_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset10_kubectl">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get rev \
@@ -1178,7 +1178,7 @@ greeter-v9fxj   greeter       greeter-v9fxj      2            True</code></pre>
 <p><a id="tabset11_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset11_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset11_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -1190,7 +1190,7 @@ greeter-v9fxj   greeter       greeter-v9fxj      2            True</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset11_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset11_kubectl">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete services.serving.knative.dev greeter</code></pre>

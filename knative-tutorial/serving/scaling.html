@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Knative Tutorial(Staging) :: Knative Tutorial(Staging)</title>
+    <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/serving/scaling.html">
     <link rel="prev" href="traffic-distribution.html">
     <link rel="next" href="../eventing/index.html">
@@ -496,7 +496,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Knative Tutorial(Staging)</h1>
+<h1 class="page">Knative Tutorial</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -570,7 +570,7 @@ spec:
 <p><a id="tabset1_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset1_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset1_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -583,10 +583,10 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset1_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -627,7 +627,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset2_openshift">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`{kubernetes-cli} get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export SVC_URL=`kubectl get rt greeter -o yaml | yq read - 'status.url'` &amp;&amp; \
 http $SVC_URL</code></pre>
 </div>
 </div>
@@ -720,7 +720,7 @@ spec:
 <p><a id="tabset3_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset3_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset3_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -734,10 +734,10 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset3_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-10.yaml">service-10.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-10.yaml">service-10.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -869,7 +869,7 @@ spec:
 <p><a id="tabset5_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset5_kubernetes-cli"></a>{kubernetes-cli}</p>
+<p><a id="tabset5_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
@@ -884,10 +884,10 @@ spec:
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset5_kubernetes-cli">
+<div class="tab-pane" aria-labelledby="tabset5_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{kubernetes-cli} apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-min-max-scale.yaml">service-min-max-scale.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-min-max-scale.yaml">service-min-max-scale.yaml</a></code></pre>
 </div>
 </div>
 </div>
