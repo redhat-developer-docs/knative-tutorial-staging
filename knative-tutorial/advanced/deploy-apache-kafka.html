@@ -527,7 +527,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -L \
 <a href="https://github.com/strimzi/strimzi-kafka-operator\" class="bare">https://github.com/strimzi/strimzi-kafka-operator\</a>
-/releases/download/0.19.0/strimzi-cluster-operator-0.19.0.yaml \
+/releases/download/0.20.0/strimzi-cluster-operator-0.20.0.yaml \
   | sed 's/namespace:.*/namespace: kafka/' \
   | kubectl apply -n kafka -f -</code></pre>
 </div>
@@ -569,6 +569,7 @@ kafkaconnects        kc           kafka.strimzi.io   true         KafkaConnect
 kafkaconnects2is     kcs2i        kafka.strimzi.io   true         KafkaConnectS2I
 kafkamirrormaker2s   kmm2         kafka.strimzi.io   true         KafkaMirrorMaker2
 kafkamirrormakers    kmm          kafka.strimzi.io   true         KafkaMirrorMaker
+kafkarebalances      kr           kafka.strimzi.io   true         KafkaRebalance
 kafkas               k            kafka.strimzi.io   true         Kafka
 kafkatopics          kt           kafka.strimzi.io   true         KafkaTopic
 kafkausers           ku           kafka.strimzi.io   true         KafkaUser</code></pre>
