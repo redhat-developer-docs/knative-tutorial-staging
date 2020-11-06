@@ -1153,7 +1153,8 @@ eventingbonjour-1-deployment-fc7858b5b-btdcr 2/2   Running 6s</code></pre>
 kn service delete eventingaloha -n knativetutorial
 kn trigger delete helloaloha -n knativetutorial
 kn trigger delete hellobonjour -n knativetutorial
-kubectl -n knativetutorial delete pod curler</code></pre>
+kubectl -n knativetutorial delete pod curler
+kn broker delete default -n knativetutorial</code></pre>
 </div>
 </div>
 </div>
@@ -1164,7 +1165,8 @@ kubectl -n knativetutorial delete pod curler</code></pre>
 kubectl -n knativetutorial delete -f eventing-bonjour-sink.yaml
 kubectl -n knativetutorial delete -f trigger-helloaloha.yaml
 kubectl -n knativetutorial delete -f trigger-hellobonjour.yaml
-kubectl -n knativetutorial delete -f curler.yaml</code></pre>
+kubectl -n knativetutorial delete -f curler.yaml
+kubectl -n knativetutorial delete -f default-broker.yaml</code></pre>
 </div>
 </div>
 </div>

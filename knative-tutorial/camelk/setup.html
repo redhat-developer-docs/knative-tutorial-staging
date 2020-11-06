@@ -513,7 +513,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>As of building this tutorial the latest <strong>kamel</strong> version was <code>1.0.1</code></p>
+<p>As of building this tutorial the latest <strong>kamel</strong> version was <code>1.2.0</code></p>
 </div>
 </td>
 </tr>
@@ -534,9 +534,7 @@
 <div class="tab-pane" aria-labelledby="tabset1_minikube">
 <div id="camel-k-k8s-install" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel install --olm=false \
-  --maven-repository=https://repository.apache.org/content/repositories/snapshots@id=apache-snapshots@snapshots \
- --wait</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel install --namespace knativetutorial --olm=false --wait</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -625,7 +623,7 @@ camel-k-operator-84d7896b68-9mfdv   1/1     Running     0          2m7s</code></
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel install --force \ <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kamel install --force \<i class="conum" data-value="1"></i><b>(1)</b>
   --maven-settings="configmap:my-camel-k-maven-settings/settings.xml" \
   --wait</code></pre>
 </div>

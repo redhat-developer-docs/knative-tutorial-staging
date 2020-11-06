@@ -535,15 +535,15 @@
 <div id="deploy-camelsource" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  -f "https://github.com/knative/eventing-contrib/releases/download/v0.16.1/camel.yaml"</code></pre>
+  -f "https://github.com/knative/eventing-contrib/releases/download/v0.17.7/camel.yaml"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once you deploy, thee following new pod showing up the <code>knative-sources</code> namespace:</p>
+<p>Once you deploy, thee following new pod showing up the <code>knative-sources</code> namespace, wait for the <code>camel-controller-manager-0</code> to be running:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knative-sources get pods</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch 'kubectl -n knative-sources get pods'</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -567,10 +567,10 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP              NAMESPACED   KIND
 apiserversources                sources.knative.dev   true         ApiServerSource
-<strong>camelsources                    sources.knative.dev   true         CamelSource</strong>
+<mark>camelsources                    sources.knative.dev   true         CamelSource</mark>
 containersources                sources.knative.dev   true         ContainerSource
 pingsources                     sources.knative.dev   true         PingSource
-sinkbindings                    sources.knative.dev   true         SinkBinding</code></pre>
+sinkbindings                    sources.knative.dev   true         SinkBinding    SinkBinding</code></pre>
 </div>
 </div>
 </div>
@@ -582,7 +582,7 @@ sinkbindings                    sources.knative.dev   true         SinkBinding</
 <div id="deploy-ce-event-display" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.16.1/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.16.1/event-display.yaml</a></code></pre>
+  -f <a href="https://github.com/knative/eventing-contrib/releases/download/v0.17.7/event-display.yaml" class="bare">https://github.com/knative/eventing-contrib/releases/download/v0.17.7/event-display.yaml</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -593,10 +593,47 @@ sinkbindings                    sources.knative.dev   true         SinkBinding</
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get -n knativetutorial pods</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>List the Knative Service <code>event-display</code>:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset1_kubectl"></a>kubectl</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_kn">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service -n knativetutorial ls</code></pre>
+</div>
+</div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                                      READY
-event-display   <a href="http://event-display.knativetutorial.example.com" class="bare">http://event-display.knativetutorial.example.com</a>         True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                                LATEST                AGE   CONDITIONS   READY   REASON
+event-display   <a href="http://event-display.knativetutorial.example.com" class="bare">http://event-display.knativetutorial.example.com</a>   event-display-7jvmm   85s   3 OK / 3     True</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_kubectl">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get ksvc</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                                LATESTCREATED         LATESTREADY           READY   REASON
+event-display   http://event-display.knativetutorial.example.com   event-display-7jvmm   event-display-7jvmm   True</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
