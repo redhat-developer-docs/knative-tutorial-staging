@@ -672,7 +672,7 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create eventinghello \
   --namespace knativetutorial \
   --concurrency-target=1 \
-  --image=quay.io/rhdevelopers/quay.io/rhdevelopers/eventinghello:0.0.2</code></pre>
+  --image=quay.io/rhdevelopers/eventinghello:0.0.2</code></pre>
 </div>
 </div>
 </div>
@@ -709,8 +709,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset2_kn">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping create \
-  eventinghello-ping-source
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping create eventinghello-ping-source \
   --namespace knativetutorial \
   --schedule "*/2 * * * *" \
   --sink ksvc:eventinghello</code></pre>
@@ -744,8 +743,10 @@ spec:
 </div>
 <div class="content">
 <div class="tab-pane" aria-labelledby="tabset3_kn">
-<div class="paragraph">
-<p>kn source ping list -n knativetutorial</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping list -n knativetutorial</code></pre>
+</div>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset3_kubectl">
@@ -762,10 +763,34 @@ spec:
 <div class="paragraph">
 <p>Running  the above command should return the following result:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_kn"></a>kn</p>
+</li>
+<li>
+<p><a id="tabset4_kubectl"></a>kubectl</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_kn">
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                       AGE
-eventinghello-ping-source  39s</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                        SCHEDULE      SINK                 AGE   CONDITIONS   READY   REASON
+eventinghello-ping-source   */2 * * * *   ksvc:eventinghello   99s   4 OK / 4     True</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_kubectl">
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                        SINK                                                     AGE   READY   REASON
+eventinghello-ping-source   http://eventinghello.knativetutorial.svc.cluster.local   47s   True</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -782,25 +807,37 @@ eventinghello-ping-source  39s</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset4_kn"></a>kn</p>
+<p><a id="tabset5_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset4_kubectl"></a>kubectl</p>
+<p><a id="tabset5_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_kn">
+<div class="tab-pane" aria-labelledby="tabset5_kn">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping --namespace knativetutorial</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping --namespace knativetutorial list</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                        SCHEDULE      SINK                       AGE   CONDITIONS   READY   REASON
+event-greeter-ping-source   */2 * * * *   Channel:eventinghello-ch   10m   4 OK / 4     True</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset4_kubectl">
+<div class="tab-pane" aria-labelledby="tabset5_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get pingsource.sources.knative.dev  eventinghello-ping-source</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get --namespace knativetutorial get pingsource.sources.knative.dev  event-greeter-ping-source</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                        SINK                                                                   AGE   READY   REASON
+event-greeter-ping-source   http://eventinghello-ch-kn-channel.knativetutorial.svc.cluster.local   12m   True</code></pre>
 </div>
 </div>
 </div>
@@ -813,22 +850,22 @@ eventinghello-ping-source  39s</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset5_kn"></a>kn</p>
+<p><a id="tabset6_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset5_kubectl"></a>kubectl</p>
+<p><a id="tabset6_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_kn">
+<div class="tab-pane" aria-labelledby="tabset6_kn">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service --namespace knativetutorial list</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset5_kubectl">
+<div class="tab-pane" aria-labelledby="tabset6_kubectl">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get service.serving.knative.dev eventinghello</code></pre>
@@ -847,15 +884,15 @@ eventinghello-ping-source  39s</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset6_kn"></a>kn</p>
+<p><a id="tabset7_kn"></a>kn</p>
 </li>
 <li>
-<p><a id="tabset6_kubectl"></a>kubectl</p>
+<p><a id="tabset7_kubectl"></a>kubectl</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_kn">
+<div class="tab-pane" aria-labelledby="tabset7_kn">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source ping delete -n knativetutorial eventinghello-ping-source
@@ -863,7 +900,7 @@ kn service delete -n knativetutorial eventinghello</code></pre>
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset6_kubectl">
+<div class="tab-pane" aria-labelledby="tabset7_kubectl">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial delete -f eventinghello-source.yaml
