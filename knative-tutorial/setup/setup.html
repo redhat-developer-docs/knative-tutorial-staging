@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
-    <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/serving/setup.html">
+    <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/setup/setup.html">
     <link rel="prev" href="../index.html">
-    <link rel="next" href="index.html">
+    <link rel="next" href="kubernetes-cluster.html#kubernetes-cluster">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -57,11 +57,41 @@
     <a class="nav-link" href="#tutorial-dev-env">Development Environment</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="#download-tutorial-sources">Download Tutorial Sources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="kubernetes-cluster.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#kubernetes-cluster">Choose your Kubernetes Cluster</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="minikube.html">Minikube</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#start-minikube">Configure and Start Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#minikube-deploy-registry">Deploy Registry</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#install-knative-serving">Install Knative Serving</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#install-kourier-ingress-gateway">Install Kourier Ingress Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#install-ingress-controller">Install Ingress Controller</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#install-knative-eventing">Install Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="minikube.html#create-tutorial-namespace">Create Tutorial Namespace</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="openshift.html">OpenShift</a>
   </li>
 </ul>
   </li>
@@ -69,155 +99,155 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Knative Serving</a>
+    <a class="nav-link" href="../serving/index.html">Knative Serving</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="knative-client.html">Knative Client</a>
+    <a class="nav-link" href="../serving/knative-client.html">Knative Client</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="knative-client.html#kn-install">Install</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-install">Install</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="knative-client.html#kn-ksvc">Knative Service Commands</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-ksvc">Knative Service Commands</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-create-ksvc">Create Knative Service</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-create-ksvc">Create Knative Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-list-services">List Knative Services</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-list-services">List Knative Services</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-update-ksvc">Update Knative Service</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-update-ksvc">Update Knative Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-desc-ksvc">Describe Knative Service</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-desc-ksvc">Describe Knative Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-delete-ksvc">Delete Knative Service</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-delete-ksvc">Delete Knative Service</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="knative-client.html#kn-revisons">Knative Revision Commands</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-revisons">Knative Revision Commands</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-revisions-list">Knative Revision List</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-revisions-list">Knative Revision List</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-revisions-desc">Knative Revision Describe</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-revisions-desc">Knative Revision Describe</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-revisions-delete">Knative Revision Delete</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-revisions-delete">Knative Revision Delete</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="knative-client.html#kn-routes">Knative Route Commands</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-routes">Knative Route Commands</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="knative-client.html#kn-route-list">Knative Revision List</a>
+    <a class="nav-link" href="../serving/knative-client.html#kn-route-list">Knative Revision List</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="basic-fundas.html">Services</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#basics-prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#basics-build-containers">Build Containers</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#basics-deploy-service">Deploy Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#basics-invoke-service">Invoke Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#basics-see-what-you-have-deployed">See What You Have Deployed</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#deploying-new-revision">Deploy a New Revision of a Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="basic-fundas.html#basics-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="traffic-distribution.html">Traffic Distribution</a>
+    <a class="nav-link" href="../serving/basic-fundas.html">Serving</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="traffic-distribution.html#deploying-revisions">Arbitrary Revision Names</a>
+    <a class="nav-link" href="../serving/basic-fundas.html#basics-prerequisite">Prerequisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="traffic-distribution.html#blue-green">Blue-Green Deployment</a>
+    <a class="nav-link" href="../serving/basic-fundas.html#basics-build-containers">Build Containers</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="traffic-distribution.html#canary-release">Canary Release</a>
+    <a class="nav-link" href="../serving/basic-fundas.html#basics-deploy-service">Deploy Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/basic-fundas.html#basics-invoke-service">Invoke Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/basic-fundas.html#basics-see-what-you-have-deployed">See What You Have Deployed</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/basic-fundas.html#deploying-new-revision">Deploy a New Revision of a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/basic-fundas.html#basics-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="scaling.html">Scaling</a>
+    <a class="nav-link" href="../serving/traffic-distribution.html">Traffic Distribution</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scaling.html#scaling-deploy-service">Deploy Service</a>
+    <a class="nav-link" href="../serving/traffic-distribution.html#deploying-revisions">Arbitrary Revision Names</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scaling.html#scaling-invoke-service">Invoke Service</a>
+    <a class="nav-link" href="../serving/traffic-distribution.html#blue-green">Blue-Green Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/traffic-distribution.html#canary-release">Canary Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../serving/scaling.html">Scaling</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/scaling.html#scaling-deploy-service">Deploy Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../serving/scaling.html#scaling-invoke-service">Invoke Service</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="scaling.html#scaling-scale-to-zero">Scale to Zero</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-scale-to-zero">Scale to Zero</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-observer-scale-to-zero">Observing Default Scale Down</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-observer-scale-to-zero">Observing Default Scale Down</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-observer-scale-to-zero-1m">Change Scale-to-Zero Time</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-observer-scale-to-zero-1m">Change Scale-to-Zero Time</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-reset-to-defaults">Reset to Defaults</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-reset-to-defaults">Reset to Defaults</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="scaling.html#scaling-auto-scaling">Auto Scaling</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-auto-scaling">Auto Scaling</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-autoscaling-deploy-service">Deploy Service</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-autoscaling-deploy-service">Deploy Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-autoscaling-invoke-service">Invoke Service</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-autoscaling-invoke-service">Invoke Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-load-service">Load Service</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-load-service">Load Service</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="scaling.html#scaling-min-scale">Minimum Scale</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-min-scale">Minimum Scale</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scaling.html#scaling-deploy-service-minscale">Deploy Service</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-deploy-service-minscale">Deploy Service</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="scaling.html#scaling-cleanup">Cleanup</a>
+    <a class="nav-link" href="../serving/scaling.html#scaling-cleanup">Cleanup</a>
   </li>
 </ul>
   </li>
@@ -471,7 +501,7 @@
     <span class="nav-text">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="faq.html">Frequently Asked Questions</a>
+    <a class="nav-link" href="../serving/faq.html">Frequently Asked Questions</a>
   </li>
 </ul>
   </li>
@@ -491,7 +521,7 @@
     <li><a href="setup.html">Setup</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial/edit/staging/documentation/modules/serving/pages/setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial/edit/staging/documentation/modules/setup/pages/setup.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -891,360 +921,9 @@ export TUTORIAL_HOME="$(pwd)/knative-tutorial"</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="kubernetes-cluster"><a class="anchor" href="#kubernetes-cluster"></a>Choose your Kubernetes Cluster</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Knative can be installed only on Kubernetes cluster. The following section shows how to install Knative on vanilla <a href="https://kubernetes.io">Kubernetes</a> or on Red Hat <a href="https://www.openshift.com">Openshift</a>&#8201;&#8212;&#8201;an enterprise grade Kubernetes platform&#8201;&#8212;&#8201;</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset2_openshift"></a>OpenShift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_minikube">
-<div id="start-minikube" class="paragraph">
-<p><strong>Configure and Start Minikube</strong></p>
-</div>
-<div class="paragraph">
-<p>Before installing Knative and its components, we need to create a Minikube virtual machine and deploy Kubernetes into it.</p>
-</div>
-<div class="paragraph">
-<p>Download <a href="https://kubernetes.io/docs/setup/minikube">minikube</a> and add it to your path.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/start-minikube.sh</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="title">Minikube starting</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">😄  [knativetutorial] minikube v1.14.1 on Darwin 10.15.7
-✨  Using the hyperkit driver based on user configuration
-👍  Starting control plane node knativetutorial in cluster knativetutorial
-🔥  Creating hyperkit VM (CPUs=6, Memory=8192MB, Disk=51200MB) ...
-🐳  Preparing Kubernetes v1.18.0 on Docker 19.03.12 ...
-    &gt; kubelet.sha256: 65 B / 65 B [--------------------------] 100.00% ? p/s 0s
-    &gt; kubectl.sha256: 65 B / 65 B [--------------------------] 100.00% ? p/s 0s
-    &gt; kubeadm.sha256: 65 B / 65 B [--------------------------] 100.00% ? p/s 0s
-    &gt; kubectl: 41.98 MiB / 41.98 MiB [---------------] 100.00% 1.10 MiB p/s 38s
-    &gt; kubeadm: 37.96 MiB / 37.96 MiB [-----------] 100.00% 450.47 KiB p/s 1m26s
-    &gt; kubelet: 108.01 MiB / 108.01 MiB [---------] 100.00% 822.97 KiB p/s 2m14s
-🔎  Verifying Kubernetes components...
-🌟  Enabled addons: default-storageclass, storage-provisioner
-🏄  Done! kubectl is now configured to use "knativetutorial" by default</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Deploy Registry</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube -p knativetutorial addons enable registry</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">🔎  Verifying registry addon...
-🌟  The 'registry' addon is enabled</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Install Custom Resource Definitions</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  --filename https://github.com/knative/serving/releases/download/v0.17.0/serving-crds.yaml \
-  --filename https://github.com/knative/eventing/releases/download/v0.17.0/eventing-crds.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now that you have installed the Knative Serving and Eventing CRDs, the following sections we will verify the CRDs by querying the <code>api-resources</code>.</p>
-</div>
-<div class="paragraph">
-<p>All <strong>Knative Serving</strong> resources will be under the API group called <code>serving.knative.dev</code>.</p>
-</div>
-<div class="listingblock console-input">
-<div class="title">serving.knative.dev</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='serving.knative.dev'</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME             SHORTNAMES      APIGROUP              NAMESPACED   KIND
-configurations   config,cfg      serving.knative.dev   true         Configuration
-revisions        rev             serving.knative.dev   true         Revision
-routes           rt              serving.knative.dev   true         Route
-services         kservice,ksvc   serving.knative.dev   true         Service</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>All <strong>Knative Eventing</strong> resources will be under the one of following API groups:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>messaging.knative.dev</p>
-</li>
-<li>
-<p>eventing.knative.dev</p>
-</li>
-<li>
-<p>sources.knative.dev</p>
-</li>
-</ul>
-</div>
-<div class="listingblock console-input">
-<div class="title">messaging.knative.dev</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='messaging.knative.dev'</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP                NAMESPACED   KIND
-channels           ch           messaging.knative.dev   true         Channel
-subscriptions      sub          messaging.knative.dev   true         Subscription</code></pre>
-</div>
-</div>
-<div class="listingblock console-input">
-<div class="title">eventing.knative.dev</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='eventing.knative.dev'</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME         SHORTNAMES   APIGROUP               NAMESPACED   KIND
-brokers                   eventing.knative.dev   true         Broker
-eventtypes                eventing.knative.dev   true         EventType
-triggers                  eventing.knative.dev   true         Trigger</code></pre>
-</div>
-</div>
-<div class="listingblock console-input">
-<div class="title">sources.knative.dev</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group='sources.knative.dev'</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP              NAMESPACED   KIND
-apiserversources                sources.knative.dev   true         ApiServerSource
-containersources                sources.knative.dev   true         ContainerSource
-pingsources                     sources.knative.dev   true         PingSource
-sinkbindings                    sources.knative.dev   true         SinkBinding</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The Knative has two main infrastructure components: <a href="https://kubernetes.io/docs/concepts/architecture/controller/">controller</a> and <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">webhook</a> helps in translating the Knative CRDs which are usually written YAML files, into Kubernetes objects like Deployment and Service. Apart from the controller and webhook, the Knative Serving and Eventing also install their respective functional components which are listed in the upcoming sections.</p>
-</div>
-<div class="paragraph">
-<p><strong>Install Knative Serving</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  --filename \
-  https://github.com/knative/serving/releases/download/v0.17.0/serving-core.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This process will take few minutes for the Knative Serving pods to be up and running, you can monitor the status of the Knative Serving installation by watching the pods in the <code>knative-serving</code> namespace, using the command:</p>
-</div>
-<div class="listingblock console-input">
-<div class="title">Knative Serving pods</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-serving"</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                          READY   STATUS    RESTARTS   AGE
-activator-6b49796b46-g66z2    1/1     Running   0          11m
-autoscaler-7b46fcb475-cnbrm   1/1     Running   0          11m
-controller-65f4f4bcb4-mrkgs   1/1     Running   0          11m
-webhook-59585cb6-wqldc        1/1     Running   0          11m</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Install Kourier</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  --filename \
-    <a href="https://github.com/knative/net-kourier/releases/download/v0.17.0/kourier.yaml" class="bare">https://github.com/knative/net-kourier/releases/download/v0.17.0/kourier.yaml</a></code></pre>
-</div>
-</div>
-<div class="listingblock console-input">
-<div class="title">Kourier pods</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n kourier-system"</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                      READY   STATUS    RESTARTS   AGE
-3scale-kourier-gateway-8645d88bf6-gvbf7   1/1     Running   0          56s</code></pre>
-</div>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-serving"</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">NAME                                      READY   STATUS    RESTARTS   AGE
-3scale-kourier-control-6f9f49f99b-q7nn4   1/1     Running   0          23m
-activator-ddbb8cfb5-8xw5s                 1/1     Running   0          25m
-autoscaler-55d7dd475b-v49ln               1/1     Running   0          25m
-controller-75f887cfdc-74khc               1/1     Running   0          25m
-webhook-676c9c56dc-lphcs                  1/1     Running   0          25m</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now configure Knative serving to use Kourier as the ingress:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl patch configmap/config-network \
-  -n knative-serving \
-  --type merge \
-  -p '{"data":{"ingress.class":"kourier.ingress.networking.knative.dev"}}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Install Knative Eventing</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  --filename \
-  https://github.com/knative/eventing/releases/download/v0.17.0/eventing-core.yaml \
-  --filename \
-  https://github.com/knative/eventing/releases/download/v0.17.0/in-memory-channel.yaml \
-  --filename \
-  https://github.com/knative/eventing/releases/download/v0.17.0/mt-channel-broker.yaml</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Like Knative Serving deployment, Knative Eventing deployment will also take few minutes to complete. You can watch <code>knative-eventing</code> namespace pods for live status, using the command:</p>
-</div>
-<div class="listingblock console-input">
-<div class="title">Knative eventing pods</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-eventing"</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                   READY   STATUS    RESTARTS   AGE
-eventing-controller-75b7567ddc-dp5q7   1/1     Running   0          96s
-eventing-webhook-5b859fd7f-mzvbh       1/1     Running   0          96s
-imc-controller-7d465bddc5-2ckww        1/1     Running   0          95s
-imc-dispatcher-f64dcc94d-ztnnx         1/1     Running   0          95s
-mt-broker-controller-d5f96b5b5-2xr9z   1/1     Running   0          95s
-mt-broker-filter-5d994fb97f-kpm5z      1/1     Running   0          95s
-mt-broker-ingress-769b458fd-ghmnc      1/1     Running   0          95s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Configuring Kubernetes namespace</strong></p>
-</div>
-<div class="paragraph">
-<p>All the tutorial exercises will be deployed in namespace called <code>knativetutorial</code>:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl create namespace knativetutorial</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The <a href="https://github.com/ahmetb/kubens">kubens</a> utility installed as part of <a href="https://github.com/ahmetb/kubectx">kubectx</a> allows for easy switching between Kubernetes namespaces.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubens knativetutorial</code></pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_openshift">
-<div id="install-knative-openshift" class="paragraph">
-<p><strong>OpenShift</strong></p>
-</div>
-<div class="paragraph">
-<p>Knative Serving and Eventing install needs OpenShift4, you need to have one provisioned using <a href="https://try.openshift.com">try.openshift.com</a> or can use any existing OpenShift4 cluster.</p>
-</div>
-<div class="paragraph">
-<p>Once you have your cluster, you can download the latest OpenShift client(oc) from <a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/">here</a> and add to your path.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The output should show oc version &gt;=4.5</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: 4.5.8
-Kubernetes Version: v1.18.2-0-g52c56ce</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Please follow the <a href="https://docs.openshift.com/container-platform/4.3/serverless/installing_serverless/installing-openshift-serverless.html">OpenShift</a> documentation, to have Knative components installed on your cluster.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><strong>Navigate to tutorial project</strong></p>
-</div>
-<div id="nav-to-tutorial-project" class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project knativetutorial</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <nav class="pagination">
   <span class="prev"><a href="../index.html">Knative Tutorial</a></span>
-  <span class="next"><a href="index.html">Knative Serving</a></span>
+  <span class="next"><a href="kubernetes-cluster.html#kubernetes-cluster">Choose your Kubernetes Cluster</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

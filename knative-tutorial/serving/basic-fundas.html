@@ -51,17 +51,47 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="../setup/setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
+    <a class="nav-link" href="../setup/setup.html#tutorial-dev-env">Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../setup/setup.html#download-tutorial-sources">Download Tutorial Sources</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html#download-tutorial-sources">Download Tutorial Sources</a>
+    <a class="nav-link" href="../setup/kubernetes-cluster.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../setup/minikube.html">Minikube</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#start-minikube">Configure and Start Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#minikube-deploy-registry">Deploy Registry</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-knative-serving">Install Knative Serving</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-kourier-ingress-gateway">Install Kourier Ingress Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-ingress-controller">Install Ingress Controller</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-knative-eventing">Install Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#create-tutorial-namespace">Create Tutorial Namespace</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../setup/openshift.html">OpenShift</a>
   </li>
 </ul>
   </li>
@@ -127,7 +157,7 @@
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="basic-fundas.html">Services</a>
+    <a class="nav-link" href="basic-fundas.html">Serving</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#basics-prerequisite">Prerequisites</a>
@@ -489,7 +519,7 @@
   <ul>
     <li><a href="../index.html">Knative Tutorial</a></li>
     <li><a href="index.html">Knative Serving</a></li>
-    <li><a href="basic-fundas.html">Services</a></li>
+    <li><a href="basic-fundas.html">Serving</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial/edit/staging/documentation/modules/serving/pages/basic-fundas.adoc">Edit this Page</a></div>
@@ -622,18 +652,18 @@ Kubernetes Version: v1.16.2</code></pre>
 <h2 id="basics-deploy-service"><a class="anchor" href="#basics-deploy-service"></a>Deploy Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Navigate to the tutorial chapter&#8217;s folder basics:</p>
+<p>Navigate to the tutorial chapter&#8217;s folder serving:</p>
 </div>
 <div id="basics-nav-folder" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/basics</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/serving</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>The following snippet shows what a Knative service YAML looks like:</p>
 </div>
 <div class="listingblock">
-<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/service.yaml">service.yaml</a></div>
+<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/serving/service.yaml">service.yaml</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
@@ -678,7 +708,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset2_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service.yaml">service.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/serving/knative/service.yaml">service.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -709,8 +739,8 @@ spec:
   8.660s unsuccessfully observed a new generation
   8.845s Ready to serve.
 
-Service 'greeter' created to latest revision 'greeter-xhdwq-1' is available at URL:
-http://greeter.knativetutorial.example.com</code></pre>
+Service 'greeter' created to latest revision 'greeter-sxnzq-1 ' is available at URL:
+http://greeter.knativetutorial.192.168.64.13.nip.io</code></pre>
 </div>
 </div>
 </div>
@@ -764,12 +794,7 @@ http://greeter.knativetutorial.example.com</code></pre>
 <div class="tab-pane" aria-labelledby="tabset4_minikube">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
-</div>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a></code></pre>
 </div>
 </div>
 </div>
@@ -831,6 +856,12 @@ Sometimes the response might not be returned immediately especially when the pod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service list -n knativetutorial</code></pre>
 </div>
 </div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">NAME      URL                                                   LATEST            AGE   CONDITIONS   READY   REASON
+greeter   http://greeter.knativetutorial.192.168.64.13.nip.io   greeter-sxnzq-1   17m   3 OK / 3     True</code></pre>
+</div>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset5_kubectl">
 <div class="listingblock console-input">
@@ -838,13 +869,13 @@ Sometimes the response might not be returned immediately especially when the pod
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial  get services.serving.knative.dev greeter</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          LATESTCREATED   LATESTREADY     READY
-greeter   http://greeter.knativetutorial.example.com   greeter-97nzs   greeter-97nzs   True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                                   LATESTCREATED     LATESTREADY       READY   REASON
+greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>   greeter-sxnzq-1   greeter-sxnzq-1   True</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -857,8 +888,8 @@ greeter   http://greeter.knativetutorial.example.com   greeter-97nzs   greeter-9
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      LATESTCREATED   LATESTREADY     READY
-greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      LATESTCREATED      LATESTREADY       READY
+greeter   greeter-sxnzq-1    greeter-sxnzq-1    True</code></pre>
 </div>
 </div>
 </div>
@@ -882,6 +913,12 @@ greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn route --namespace knativetutorial list</code></pre>
 </div>
 </div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          READY
+greeter   http://greeter.knativetutorial.192.168.64.13.nip.io   True</code></pre>
+</div>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset6_kubectl">
 <div class="listingblock console-input">
@@ -889,31 +926,27 @@ greeter   greeter-97nzs   greeter-97nzs   True</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl --namespace knativetutorial get routes.serving.knative.dev greeter</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          READY
-greeter   http://greeter.knativetutorial.example.com   True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                                   READY   REASON
+greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>   True</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When the service was invoked with <code>http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code>, you noticed that we added a <strong>Host</strong> header to the request with value <code>greeter.knativetutorial.example.com</code>. This FQDN is automatically assigned to your Knative service by the Knative Routes and uses the following format: <code><strong>&lt;service-name&gt;.&lt;namespace&gt;.&lt;domain-suffix&gt;</strong></code>.</p>
 </div>
-<div class="admonitionblock note">
+</div>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The domain suffix in this case <em>example.com</em> is configurable via the config map <strong>config-domain</strong> of <strong>knative-serving</strong> namespace.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>For all the examples in the tutorial we have configured the <a href="../setup/minikube.html#configure-ingress-to-gateway" class="page">Ingress Controller and domain</a>, which will use the domain suffix format like <code><strong>&lt;service-name&gt;.&lt;namespace&gt;.&lt;minikube ip&gt;.nip.io</strong></code>.</p>
+</div>
+<div class="paragraph">
+<p>If you have not using the Ingress controller configuration then the service has to be invoked like <code>http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code>, you noticed that we added a <strong>Host</strong> header to the request with value <code>greeter.knativetutorial.example.com</code>. This FQDN is automatically assigned to your Knative service by the Knative Routes and uses the following format: <code><strong>&lt;service-name&gt;.&lt;namespace&gt;.&lt;domain-suffix&gt;</strong></code>.</p>
 </div>
 </td>
 </tr>
@@ -955,7 +988,7 @@ greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            CONFIG NAME   K8S SERVICE NAME   GENERATION   READY
-greeter-97nzs   greeter       greeter-97nzs      1            True</code></pre>
+greeter-sxnzq-1    greeter       greeter-sxnzq-1       1            True</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1018,7 +1051,7 @@ greeter-97nzs   greeter       greeter-97nzs      1            True</code></pre>
 <div class="sect2">
 <h3 id="basics-service-rev2"><a class="anchor" href="#basics-service-rev2"></a>Service revision 2</h3>
 <div class="listingblock">
-<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/service-env.yaml">service-env.yaml</a></div>
+<div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/serving/service-env.yaml">service-env.yaml</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: serving.knative.dev/v1
 kind: Service
@@ -1070,7 +1103,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset8_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/basics/knative/service-env.yaml">service-env.yaml</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f <a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/serving/knative/service-env.yaml">service-env.yaml</a></code></pre>
 </div>
 </div>
 </div>
@@ -1091,7 +1124,7 @@ spec:
 <div class="tab-pane" aria-labelledby="tabset9_kn">
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Service 'greeter' in namespace 'knativetutorial':
+<pre class="highlightjs highlight"><code>Updating Service 'greeter' in namespace 'knativetutorial':
 
   0.026s The Configuration is still working to reflect the latest desired specification.
  13.509s Traffic is not yet migrated to the latest revision.
@@ -1099,8 +1132,8 @@ spec:
  13.618s unsuccessfully observed a new generation
  13.781s Ready to serve.
 
-Service 'greeter' updated to latest revision 'greeter-vbcnz-2' is available at URL:
-http://greeter.knativetutorial.example.com</code></pre>
+Service 'greeter' updated to latest revision 'greeter-njxyx-2' is available at URL:
+<a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a></code></pre>
 </div>
 </div>
 </div>
@@ -1149,9 +1182,9 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            CONFIG NAME   K8S SERVICE NAME   GENERATION   READY
-greeter-97nzs   greeter       greeter-97nzs      1            True
-greeter-v9fxj   greeter       greeter-v9fxj      2            True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              SERVICE   TRAFFIC   TAGS   GENERATION   AGE     CONDITIONS   READY   REASON
+greeter-njxyx-2   greeter   100%             2            3m50s   3 OK / 4     True
+greeter-sxnzq-1   greeter                    1            37m     3 OK / 4     True</code></pre>
 </div>
 </div>
 <div class="paragraph">

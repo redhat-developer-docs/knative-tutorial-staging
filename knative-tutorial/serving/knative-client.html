@@ -51,17 +51,47 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="../setup/setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="setup.html#tutorial-dev-env">Development Environment</a>
+    <a class="nav-link" href="../setup/setup.html#tutorial-dev-env">Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../setup/setup.html#download-tutorial-sources">Download Tutorial Sources</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="setup.html#download-tutorial-sources">Download Tutorial Sources</a>
+    <a class="nav-link" href="../setup/kubernetes-cluster.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="setup.html#kubernetes-cluster">Choose your Kubernetes Cluster</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../setup/minikube.html">Minikube</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#start-minikube">Configure and Start Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#minikube-deploy-registry">Deploy Registry</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-knative-serving">Install Knative Serving</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-kourier-ingress-gateway">Install Kourier Ingress Gateway</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-ingress-controller">Install Ingress Controller</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#install-knative-eventing">Install Knative Eventing</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../setup/minikube.html#create-tutorial-namespace">Create Tutorial Namespace</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../setup/openshift.html">OpenShift</a>
   </li>
 </ul>
   </li>
@@ -127,7 +157,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="basic-fundas.html">Services</a>
+    <a class="nav-link" href="basic-fundas.html">Serving</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="basic-fundas.html#basics-prerequisite">Prerequisites</a>
@@ -607,7 +637,7 @@ Supported APIs:
  12.378s Ready to serve.
 
 Service 'greeter' created to latest revision 'greeter-zyjrq-1' is available at URL:
-http://greeter.knativetutorial.example.com</code></pre>
+http://greeter.knativetutorial.192.168.64.13.nip.io</code></pre>
 </div>
 </div>
 </div>
@@ -623,8 +653,8 @@ http://greeter.knativetutorial.example.com</code></pre>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          LATEST            AGE   CONDITIONS   READY   REASON
-greeter   http://greeter.knativetutorial.example.com   greeter-zyjrq-1   98s   3 OK / 3     True</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">NAME      <mark>URL</mark>                                                   LATEST            AGE   CONDITIONS   READY   REASON
+greeter   <mark>http://greeter.knativetutorial.192.168.64.13.nip.io</mark>  greeter-sxnzq-1   10m   3 OK / 3     True</code></pre>
 </div>
 </div>
 </div>
@@ -645,12 +675,7 @@ greeter   http://greeter.knativetutorial.example.com   greeter-zyjrq-1   98s   3
 <div class="tab-pane" aria-labelledby="tabset1_minikube">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export IP_ADDRESS="$(minikube -p knativetutorial ip):$(kubectl get svc kourier --namespace kourier-system --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')"</code></pre>
-</div>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a></code></pre>
 </div>
 </div>
 </div>
@@ -692,7 +717,7 @@ http $SVC_URL</code></pre>
   5.971s Ready to serve.
 
 Service 'greeter' updated to latest revision 'greeter-tmvxm-2' is available at URL:
-<a href="http://greeter.knativetutorial.example.com" class="bare">http://greeter.knativetutorial.example.com</a></code></pre>
+<a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -719,10 +744,10 @@ Service 'greeter' updated to latest revision 'greeter-tmvxm-2' is available at U
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name:       greeter
+<pre class="highlightjs highlight"><code>Name:       greeter
 Namespace:  knativetutorial
 Age:        1m
-URL:        http://greeter.knativetutorial.example.com
+URL:        <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>
 
 Revisions:
   100%  @latest (greeter-twpgf-1) [1] (1m)
@@ -730,8 +755,8 @@ Revisions:
 
 Conditions:
   OK TYPE                   AGE REASON
-  ++ Ready                  34s
-  ++ ConfigurationsReady    34s
+   Ready                  34s
+   ConfigurationsReady    34s
   ++ RoutesReady            34s</code></pre>
 </div>
 </div>
@@ -742,18 +767,18 @@ Conditions:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service describe greeter -v</code></pre>
+<pre class="highlightjs highlight"><code>kn service describe greeter -v</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name:         greeter
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Name:         greeter
 Namespace:    knativetutorial
 Annotations:  serving.knative.dev/creator=minikube-user
               serving.knative.dev/lastModifier=minikube-user
 Age:          14m
-URL:          http://greeter.knativetutorial.example.com
-Cluster:      http://greeter.knativetutorial.svc.cluster.local
+URL:          <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>
+Cluster:      <a href="http://greeter.knativetutorial.svc.cluster.local" class="bare">http://greeter.knativetutorial.svc.cluster.local</a>
 
 Revisions:
   100%  @latest (greeter-tmvxm-2) [2] (10m)
@@ -764,8 +789,8 @@ Revisions:
 
 Conditions:
   OK TYPE                   AGE REASON
-  ++ Ready                  10m
-  ++ ConfigurationsReady    10m
+   Ready                  10m
+   ConfigurationsReady    10m
   ++ RoutesReady            10m</code></pre>
 </div>
 </div>
@@ -782,7 +807,7 @@ Conditions:
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://greeter.knativetutorial.example.com</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://greeter.knativetutorial.192.168.64.13.nip.io</code></pre>
 </div>
 </div>
 </div>
@@ -877,7 +902,8 @@ Conditions:
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          AGE   CONDITIONS   TRAFFIC
-greeter   http://greeter.knativetutorial.example.com   10m   3 OK / 3     100% -&gt; greeter-zd7jk</code></pre>
+greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>
+   10m   3 OK / 3     100% -&gt; greeter-zd7jk</code></pre>
 </div>
 </div>
 </div>
@@ -906,7 +932,7 @@ greeter   http://greeter.knativetutorial.example.com   10m   3 OK / 3     100% -
 </div>
 <nav class="pagination">
   <span class="prev"><a href="index.html">Knative Serving</a></span>
-  <span class="next"><a href="basic-fundas.html">Services</a></span>
+  <span class="next"><a href="basic-fundas.html">Serving</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
