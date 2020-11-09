@@ -555,8 +555,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deploy-camel-k-source"><a class="anchor" href="#deploy-camel-k-source"></a>Deploy Knative Eventing CamelSource</h3>
+<div class="sect1">
+<h2 id="deploy-camel-k-source"><a class="anchor" href="#deploy-camel-k-source"></a>Deploy Knative Eventing CamelSource</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The <code>CamelSource</code> allows you use a Camel-K integration as part of the Knative Eventing architecture. Simply speaking, you can make the Camel-K integration act as a <a href="https://knative.dev/docs/eventing/sources/">Knative Event Source</a> and  send the Camel exchanges (OUT) through a Knative Event Sink.</p>
 </div>
@@ -605,8 +606,10 @@ sinkbindings                    sources.knative.dev   true         SinkBinding  
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="logging-ce-messages"><a class="anchor" href="#logging-ce-messages"></a>View CloudEvents Messages</h3>
+</div>
+<div class="sect1">
+<h2 id="logging-ce-messages"><a class="anchor" href="#logging-ce-messages"></a>View CloudEvents Messages</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>In order for you to view the events drained from the CamelSource <code>timed-greeter</code>, you need to deploy a utility service called <code>event-display</code>. Run the following command to deploy the service:</p>
 </div>
@@ -668,8 +671,10 @@ event-display   http://event-display.knativetutorial.example.com   event-display
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="camel-k-es-sink"><a class="anchor" href="#camel-k-es-sink"></a>CamelSource to a Knative Eventing Sink</h3>
+</div>
+<div class="sect1">
+<h2 id="camel-k-es-sink"><a class="anchor" href="#camel-k-es-sink"></a>CamelSource to a Knative Eventing Sink</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Knative Eventing semantics allows you to link the Event Source to Event Sink using the <strong>sink</strong> block of the Knative Eventing source specification.</p>
 </div>
@@ -798,8 +803,10 @@ event-... user-container   source: camel-source:knativetutorial/timed-greeter</c
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
+</div>
+<div class="sect1">
+<h2 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h2>
+<div class="sectionbody">
 <div id="camelk-eventing-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/clean-completed.sh
@@ -808,6 +815,7 @@ kubectl -n knativetutorial delete camelsource timed-greeter</code></pre>
 </div>
 <div class="paragraph">
 <p>After few seconds you will see the <code>event-display</code> Knative Service scaling down to zero since it no longer receives events via the event source.</p>
+</div>
 </div>
 </div>
 <nav class="pagination">

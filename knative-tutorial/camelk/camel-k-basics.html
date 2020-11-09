@@ -561,8 +561,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deploy-camel-k-integration"><a class="anchor" href="#deploy-camel-k-integration"></a>Deploy Camel-K integration</h3>
+<div class="sect1">
+<h2 id="deploy-camel-k-integration"><a class="anchor" href="#deploy-camel-k-integration"></a>Deploy Camel-K integration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Camel-K helps you in writing the Apache Camel integrations using Java, JS, XML and as YAML.</p>
 </div>
@@ -705,8 +706,10 @@
 <p>The <code>dev</code> mode allows live reload of code. Update the <code>timed-greeter.yaml</code> body text to be "Hi Camel K rocks!" and observe the automatic reloading of the context and the logs printing the new message.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deploy-camel-k-kn-integration"><a class="anchor" href="#deploy-camel-k-kn-integration"></a>Deploy Camel-K Knative Integration</h3>
+</div>
+<div class="sect1">
+<h2 id="deploy-camel-k-kn-integration"><a class="anchor" href="#deploy-camel-k-kn-integration"></a>Deploy Camel-K Knative Integration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Any Camel-K integration can be converted into a serverless service using Knative. For an integration to be deployed as a Knative Service you need to use the Camel-K's <code>knative</code> component.</p>
 </div>
@@ -915,29 +918,13 @@ echoer   http://echoer.knativetutorial.example.com   echoer-g6g68    echoer-g6g6
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>NODE_PORT=$(kubectl get svc kourier --namespace kourier-system \
-  --output 'jsonpath={.spec.ports[?(@.port==80)].nodePort}')</strong> <i class="conum" data-value="1"></i><b>(1)</b>
-<strong>IP_ADDRESS="$(minikube ip):$NODE_PORT"</strong> <i class="conum" data-value="2"></i><b>(2)</b>
-<strong>HOST_HEADER="Host:echoer.knativetutorial.example.com"</strong> <i class="conum" data-value="3"></i><b>(3)</b>
-<strong>curl -X POST -H $HOST_HEADER -d "Hello World" $IP_ADDRESS</strong> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>curl -X POST -d "Hello World" $KSVC_URL</strong> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>All Knative traffic should flow through the Istio Ingress gateway and NodePort is the easiest solution on minikube</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Minikube, which is running as a VM on your local machine, provides a local IP address (e.g. 192.168.99.100)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The host header can be determined by running <code>kubectl get ksvc echoer</code>, just make sure to <strong>remove</strong> the "http://" prefix</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>curl with a POST</td>
 </tr>
 </table>
@@ -957,12 +944,15 @@ echoer   http://echoer.knativetutorial.example.com   echoer-g6g68    echoer-g6g6
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h3>
+</div>
+<div class="sect1">
+<h2 id="cleanup"><a class="anchor" href="#cleanup"></a>Cleanup</h2>
+<div class="sectionbody">
 <div id="camelk-gs-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/clean-completed.sh
 kamel delete echoer</code></pre>
+</div>
 </div>
 </div>
 </div>
