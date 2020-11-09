@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
+    <title>Apache Kafka Events with Knative Eventing :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/advanced/eventing-with-kafka.html">
     <link rel="prev" href="deploy-apache-kafka.html">
     <link rel="next" href="camel-k-cbr.html">
@@ -527,9 +527,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Knative Tutorial</h1>
-<div class="sect1">
-<h2 id="kn-eventing-with-kafka"><a class="anchor" href="#kn-eventing-with-kafka"></a>Apache Kafka Events with Knative Eventing</h2>
+<h1 class="page">Apache Kafka Events with Knative Eventing</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>At the end of this chapter you will be able to:</p>
@@ -552,8 +551,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/eventing</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="kn-eventing-kafka-source"><a class="anchor" href="#kn-eventing-kafka-source"></a>Deploy Knative Eventing KafkaSource</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kn-eventing-kafka-source"><a class="anchor" href="#kn-eventing-kafka-source"></a>Deploy Knative Eventing KafkaSource</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Knative Eventing <code>KafkaSource</code> need to be used to have the Kafka messages to flow through the Knative Eventing Channels. You can deploy Knative KafkaSource by running the command:</p>
 </div>
@@ -701,7 +703,6 @@ channels           ch           messaging.knative.dev   true         Channel
 inmemorychannels   imc          messaging.knative.dev   true         InMemoryChannel
 <strong>kafkachannels      kc           messaging.knative.dev   true         KafkaChannel</strong>
 subscriptions      sub          messaging.knative.dev   true         Subscription</code></pre>
-</div>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
+    <title>Camel-K Eventing :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/camelk/camel-k-eventing.html">
     <link rel="prev" href="camel-k-basics.html">
     <link rel="next" href="../advanced/index.html">
@@ -526,9 +526,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Knative Tutorial</h1>
-<div class="sect1">
-<h2 id="camel-k-eventing"><a class="anchor" href="#camel-k-eventing"></a>Camel-K Eventing</h2>
+<h1 class="page">Camel-K Eventing</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>At the end of this chapter you will be able to:</p>
@@ -552,6 +551,8 @@
 <div id="camelk-repo-nav-folder" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME/advanced/camel-k</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -807,8 +808,6 @@ kubectl -n knativetutorial delete camelsource timed-greeter</code></pre>
 </div>
 <div class="paragraph">
 <p>After few seconds you will see the <code>event-display</code> Knative Service scaling down to zero since it no longer receives events via the event source.</p>
-</div>
-</div>
 </div>
 </div>
 <nav class="pagination">

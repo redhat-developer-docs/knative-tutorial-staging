@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Knative Tutorial :: Knative Tutorial(Staging)</title>
+    <title>Deploying Apache Kafka Cluster :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/advanced/deploy-apache-kafka.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="eventing-with-kafka.html">
@@ -527,9 +527,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Knative Tutorial</h1>
-<div class="sect1">
-<h2 id="deploy-apache-kafka"><a class="anchor" href="#deploy-apache-kafka"></a>Deploying Apache Kafka Cluster</h2>
+<h1 class="page">Deploying Apache Kafka Cluster</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>As part of the upcoming section of this chapter, we will be deploying a <a href="#eventing-source">Knative Source</a>, that will respond to Apache Kafka Topic messages(events). Before getting to other exercises, we need to first deploy Apache Kafka inside in your Kubernetes cluster.</p>
@@ -675,8 +674,11 @@ spec:
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="create-kafka-topic"><a class="anchor" href="#create-kafka-topic"></a>Create Kafka Topic</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-kafka-topic"><a class="anchor" href="#create-kafka-topic"></a>Create Kafka Topic</h2>
+<div class="sectionbody">
 <div id="oc-create-kakfa-topic" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n kafka create -f kafka-topic-my-topic.yaml</code></pre>
@@ -703,8 +705,10 @@ my-topic   10           1</code></pre>
 <p>Verify that your Kafka Topic is working correctly by connecting a simple producer, consumer and creating some test messages.  The sample code repository includes a script for producing Kafka messages called <code>kafka-producer.sh</code>.  Execute the script and type in "one", "two", "three".  Hitting enter/return after each string:</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="kafka-producer"><a class="anchor" href="#kafka-producer"></a>Producer</h3>
+</div>
+<div class="sect1">
+<h2 id="kafka-producer"><a class="anchor" href="#kafka-producer"></a>Producer</h2>
+<div class="sectionbody">
 <div id="run-kafka-producer" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/kafka-producer.sh</code></pre>
@@ -718,7 +722,6 @@ my-topic   10           1</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">&gt;one
 &gt;two
 &gt;three</code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
