@@ -935,23 +935,6 @@ greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="b
 </div>
 </div>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>For all the examples in the tutorial we have configured the <a href="../setup/minikube.html#configure-ingress-to-gateway" class="page">Ingress Controller and domain</a>, which will use the domain suffix format like <code><strong>&lt;service-name&gt;.&lt;namespace&gt;.&lt;minikube ip&gt;.nip.io</strong></code>.</p>
-</div>
-<div class="paragraph">
-<p>If you have not using the Ingress controller configuration then the service has to be invoked like <code>http $IP_ADDRESS 'Host:greeter.knativetutorial.example.com'</code>, you noticed that we added a <strong>Host</strong> header to the request with value <code>greeter.knativetutorial.example.com</code>. This FQDN is automatically assigned to your Knative service by the Knative Routes and uses the following format: <code><strong>&lt;service-name&gt;.&lt;namespace&gt;.&lt;domain-suffix&gt;</strong></code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="rev1-basics-show-knative-revisions"><a class="anchor" href="#rev1-basics-show-knative-revisions"></a>revisions</h3>
