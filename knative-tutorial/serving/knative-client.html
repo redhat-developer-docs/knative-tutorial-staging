@@ -617,7 +617,6 @@ Supported APIs:
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service create greeter \
-  --namespace knativetutorial \
   --image quay.io/rhdevelopers/knative-tutorial-greeter:quarkus</code></pre>
 </div>
 </div>
@@ -648,7 +647,7 @@ http://greeter.knativetutorial.192.168.64.13.nip.io</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service list --namespace knativetutorial</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service list</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -847,7 +846,7 @@ Conditions:
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              SERVICE   TRAFFIC   TAGS   GENERATION   AGE   CONDITIONS   READY   REASON
-greeter-tjtpm-2   greeter   100%             2            98s   3 OK / 4     True
+greeter-tjtpm-2   greeter   100%             2            98s   4 OK / 4     True
 greeter-twpgf-1   greeter                    1            11h   3 OK / 4     True</code></pre>
 </div>
 </div>
@@ -886,16 +885,13 @@ Conditions:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision delete greeter-7cqzq</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision delete greeter-twpgf-1</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Revision 'greeter-7cqzq' successfully deleted in namespace 'knativetutorial'.</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Revision 'greeter-twpgf-1' successfully deleted in namespace 'knativetutorial'.</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Now <a href="#kn-invoke-service">invoking service</a> will return the response from revision <code>greeter-6m45j</code>.</p>
 </div>
 </div>
 </div>
@@ -915,9 +911,8 @@ Conditions:
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          AGE   CONDITIONS   TRAFFIC
-greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>
-   10m   3 OK / 3     100% -&gt; greeter-zd7jk</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                                  READY
+greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>   True</code></pre>
 </div>
 </div>
 </div>
