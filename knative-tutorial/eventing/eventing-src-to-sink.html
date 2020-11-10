@@ -568,7 +568,7 @@ sinkbindings      sources.knative.dev           true         SinkBinding</code><
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/staging/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha2
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1beta1
 kind: PingSource <i class="conum" data-value="1"></i><b>(1)</b>
 metadata:
   name: eventinghello-ping-source
@@ -605,7 +605,7 @@ spec: <i class="conum" data-value="2"></i><b>(2)</b>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/staging/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha2
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1beta1
 kind: PingSource
 metadata:
   name: eventinghello-ping-source
@@ -824,7 +824,7 @@ eventinghello-ping-source   http://eventinghello.knativetutorial.svc.cluster.loc
 </div>
 </div>
 <div class="paragraph">
-<p>You can <a href="#eventing/eventing.adoc#eventing-watch-logs" class="page unresolved">watch logs</a> to see the ping job source sending an event every 1 minute.</p>
+<p>You can <a href="eventing.html#eventing-watch-logs" class="page">watch logs</a> to see the ping job source sending an event every 2 minutes.</p>
 </div>
 </div>
 </div>
@@ -861,7 +861,7 @@ event-greeter-ping-source   */2 * * * *   Channel:eventinghello-ch   10m   4 OK 
 <div class="tab-pane" aria-labelledby="tabset5_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get --namespace knativetutorial get pingsource.sources.knative.dev  event-greeter-ping-source</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get --namespace knativetutorial pingsource.sources.knative.dev  event-greeter-ping-source</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">

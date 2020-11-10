@@ -607,7 +607,7 @@ default   http://broker-ingress.knative-eventing.svc.cluster.local/knativetutori
 <div class="tab-pane" aria-labelledby="tabset2_kubectl">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get broker.eventing.knative.dev -n knativetutorial list</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get broker.eventing.knative.dev -n knativetutorial</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -767,11 +767,12 @@ spec:
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/staging/eventing/trigger-helloaloha.yaml">trigger-helloaloha.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1beta1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
   name: helloaloha
 spec:
+  broker: default
   filter:
     attributes:
       type: greeting <i class="conum" data-value="1"></i><b>(1)</b>
@@ -836,11 +837,12 @@ spec:
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/staging/eventing/trigger-hellobonjour.yaml">trigger-hellobonjour.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1beta1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
   name: hellobonjour
 spec:
+  broker: default
   filter:
     attributes:
       type: greeting
@@ -982,7 +984,7 @@ hellobonjour True  default http://eventingbonjour.knativetutorial.svc.cluster.lo
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://default-broker.knativetutorial.svc.cluster.local</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://broker-ingress.knative-eventing.svc.cluster.local/{tutorial-namespace}/default</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1113,7 +1115,7 @@ eventingbonjour-1-deployment-fc7858b5b-s9prj 2/2   Running 5s</code></pre>
 </div>
 <div id="trigger-verify-trigger-all" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v "http://default-broker.knativetutorial.svc.cluster.local" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v "http://broker-ingress.knative-eventing.svc.cluster.local/knativetutorial/default" \
 -X POST \
 -H "Ce-Id: say-hello" \
 -H "Ce-Specversion: 1.0" \
