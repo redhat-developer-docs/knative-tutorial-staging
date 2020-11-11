@@ -470,7 +470,7 @@
     <a class="nav-link" href="#cbr-app-overview">Application Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#label-namespace-for-default-broker">Label Namespace</a>
+    <a class="nav-link" href="#label-namespace-for-default-broker">Create Broker</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#camel-k-cbr-data-producer">Deploy Data Producer</a>
@@ -821,8 +821,7 @@ default   http://broker-ingress.knative-eventing.svc.cluster.local/knativetutori
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                                READY   STATUS    AGE
 camel-k-operator-5d74595cdf-4v9qz                   1/1     Running   4h4m
-default-broker-filter-c6654bccf-zkw7s               1/1     Running   5m
-default-broker-ingress-857698bc5b-r4zmf             1/1     Running   5m
+fruityvice-proxy-76d6ff5f7f-rlrqh                   1/1     Running   4m1
 <strong><em>fruits-producer-nfngm-deployment-759c797c44-d6r52   2/2     Running   70s</em></strong></code></pre>
 </div>
 </div>
@@ -959,7 +958,7 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Camel route connects to Apache Kakfa broker and the topic <code>fruits</code>.</td>
+<td>The Camel route connects to Apache Kafka broker and the topic <code>fruits</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -997,9 +996,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                      READY   STATUS    AGE
 camel-k-operator-5d74595cdf-4v9qz         1/1     Running   4h17m
-default-broker-filter-c6654bccf-zkw7s     1/1     Running   18m
-default-broker-ingress-857698bc5b-r4zmf   1/1     Running   18m
-<strong><em>fruits-processor-h45f7-6fdfd74cf9-nmfkn   1/1     Running   29s</em></strong></code></pre>
+<strong><em>fruits-processor-h45f7-6fdfd74cf9-nmfkn   1/1     Running   29s</em></strong>
+fruityvice-proxy-76d6ff5f7f-rlrqh         1/1     Running   24m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1069,10 +1067,9 @@ fruits-processor   True             2m22s</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                       READY   STATUS    AGE
 camel-k-operator-5d74595cdf-4v9qz          1/1     Running   4h21m
-default-broker-filter-c6654bccf-zkw7s      1/1     Running   22m
-default-broker-ingress-857698bc5b-r4zmf    1/1     Running   22m
 <strong><em>fruit-events-display-8d47bc98f-6r7zt       1/1     Running   15s</em></strong>
-fruits-processor-h45f7-6fdfd74cf9-nmfkn    1/1     Running   4m12s</code></pre>
+fruits-processor-h45f7-6fdfd74cf9-nmfkn    1/1     Running   4m12s
+fruityvice-proxy-76d6ff5f7f-rlrqh          1/1     Running   24m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1093,7 +1090,7 @@ fruits-processor-h45f7-6fdfd74cf9-nmfkn    1/1     Running   4m12s</code></pre>
 <div class="tab-pane" aria-labelledby="tabset3_minikube">
 <div id="kamel-open-fruit-ui" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube -n knativetutorial service fruit-events-display</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube -p knativetutorial -n knativetutorial service fruit-events-display</code></pre>
 </div>
 </div>
 </div>
@@ -1133,7 +1130,7 @@ fruits-processor-h45f7-6fdfd74cf9-nmfkn    1/1     Running   4m12s</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
   name: sugary-fruits
