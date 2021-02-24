@@ -54,7 +54,10 @@
     <a class="nav-link" href="../setup/setup.html">Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../setup/tutorial-sources.html#download-tutorial-sources">Download Tutorial Sources</a>
+    <a class="nav-link" href="../setup/setup.html#download-tutorial-sources">Tutorial Sources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../setup/setup.html#tools">Tutorial Tools</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -91,9 +94,6 @@
     <a class="nav-link" href="../setup/openshift.html">OpenShift</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../setup/setup.html">Development Environment</a>
   </li>
 </ul>
   </li>
@@ -184,10 +184,16 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="traffic-distribution.html">Traffic Distribution</a>
+    <a class="nav-link" href="traffic-distribution.html">Revisions and Traffic Distribution</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="traffic-distribution.html#deploying-revisions">Arbitrary Revision Names</a>
+    <a class="nav-link" href="traffic-distribution.html#deploy-colors-service">Deploy Colors Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="traffic-distribution.html#deploying-new-revision">Deploy New Revision</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="traffic-distribution.html#tag-service-revisions">Tagging Revisions</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="traffic-distribution.html#blue-green">Blue-Green Deployment</a>
@@ -522,7 +528,7 @@
     <li><a href="knative-client.html">Knative Client</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial/edit/staging/documentation/modules/serving/pages/knative-client.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-developer-demos/knative-tutorial/edit/master/documentation/modules/serving/pages/knative-client.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -578,7 +584,7 @@
 <h2 id="kn-install"><a class="anchor" href="#kn-install"></a>Install</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Download the <a href="https://github.com/knative/client/releases/tag/v0.18.0">v0.18.0</a> Knative Client and add it to your <code>PATH</code>.</p>
+<p>Download the <a href="https://github.com/knative/client/releases/tag/v0.18.0" target="_blank" rel="noopener">v0.18.0</a> Knative Client and add it to your <code>PATH</code>.</p>
 </div>
 <div class="paragraph">
 <p>Verify installation by running the command:</p>
@@ -594,14 +600,14 @@
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Version:      v0.18.0
-Build Date:   2020-08-26 11:08:52
-Git Revision: 8fcd25c3
+Build Date:   2020-11-25 18:27:45
+Git Revision: f128d045
 Supported APIs:
 * Serving
-  - serving.knative.dev/v1 (knative-serving v0.18.0)
+  - serving.knative.dev/v1 (knative-serving v0.19.0)
 * Eventing
-  - sources.knative.dev/v1alpha2 (knative-eventing v0.18.0)
-  - eventing.knative.dev/v1beta1 (knative-eventing v0.18.0)</code></pre>
+  - sources.knative.dev/v1alpha2 (knative-eventing v0.19.0)
+  - eventing.knative.dev/v1beta1 (knative-eventing v0.19.0)</code></pre>
 </div>
 </div>
 </div>
@@ -816,7 +822,7 @@ Conditions:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service describe --namespace {tutorial-namespace}  greeter -o url</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service describe --namespace knativetutorial  greeter -o url</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
