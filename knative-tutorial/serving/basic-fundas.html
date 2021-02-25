@@ -781,7 +781,7 @@ The actual deployment name may vary in your setup
 <div class="tab-pane" aria-labelledby="tabset3_minikube">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http $(kn service describe greeter -n knativetutorial -o url)</code></pre>
 </div>
 </div>
 </div>
