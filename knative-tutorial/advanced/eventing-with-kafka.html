@@ -568,8 +568,7 @@
 <div id="kn-eventing-adv-deploy-kafkasource" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
--f <a href="https://github.com/knative/eventing-contrib/\" class="bare">https://github.com/knative/eventing-contrib/\</a>
-releases/download/v0.17.7/kafka-source.yaml</code></pre>
+-f <a href="https://github.com/knative-sandbox/eventing-kafka/releases/download/{kafka-source-version}/source.yaml" class="bare">https://github.com/knative-sandbox/eventing-kafka/releases/download/{kafka-source-version}/source.yaml</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -594,8 +593,8 @@ kafka-controller-manager-0   1/1     Running   1m17s</code></pre>
 </div>
 <div id="kn-eventing-deploy-kafka-channel" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -L "https://github.com/knative/eventing-contrib/\
-releases/download/v0.17.7/kafka-channel.yaml" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -L "https://github.com/knative-sandbox/eventing-kafka/\
+releases/download/{kafka-source-version}/channel-consolidated.yaml" \
  | sed 's/REPLACE_WITH_CLUSTER_URL/my-cluster-kafka-bootstrap.kafka:9092/' \
  | kubectl apply --filename -</code></pre>
 </div>
@@ -683,12 +682,13 @@ mt-broker-controller-6d66c4c6f6-vbpk4   1/1     Running   0          3h54m</code
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP              NAMESPACED   KIND
-apiserversources                sources.knative.dev   true         ApiServerSource
-containersources                sources.knative.dev   true         ContainerSource
-<strong>kafkasources                    sources.knative.dev   true         KafkaSource</strong>
-pingsources                     sources.knative.dev   true         PingSource
-sinkbindings                    sources.knative.dev   true         SinkBinding</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">TYPE              NAME                                   DESCRIPTION
+ApiServerSource   apiserversources.sources.knative.dev   Watch and send Kubernetes API events to addressable
+CamelSource       camelsources.sources.knative.dev
+ContainerSource   containersources.sources.knative.dev   Generate events by Container image and send to addressable
+<strong>KafkaSource       kafkasources.sources.knative.dev       Route events from Apache Kafka Server to addressable</strong>
+PingSource        pingsources.sources.knative.dev        Send periodically ping events to addressable
+SinkBinding       sinkbindings.sources.knative.dev       Binding for connecting a PodSpecable to addressable</code></pre>
 </div>
 </div>
 <div class="paragraph">
