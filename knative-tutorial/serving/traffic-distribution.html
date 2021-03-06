@@ -990,7 +990,7 @@ blue-green-canary-xjygh-1   blue-green-canary   <mark>100%</mark>      <mark>blu
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get ksvc greeter -oyaml \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n knativetutorial get ksvc blue-green-canary -oyaml \
  | yq r - 'status.traffic[*].url'</code></pre>
 </div>
 </div>
