@@ -919,7 +919,7 @@ spec:
                         name: fruit-sugar-level
                         constant: low
                     - to: "log:low?showAll=true&amp;multiline=true"
-                - simple: "${body[nutritions][sugar]} &gt; 5 || ${body[nutritions][sugar]} &lt;= 10"
+                - simple: "${body[nutritions][sugar]} &gt; 5 &amp;&amp; ${body[nutritions][sugar]} &lt;= 10"
                   steps:
                     - remove-headers: "*"
                     - marshal:
