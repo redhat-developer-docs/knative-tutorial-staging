@@ -565,13 +565,13 @@ sinkbindings      sources.knative.dev           true         SinkBinding</code><
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1beta1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1
 kind: PingSource <i class="conum" data-value="1"></i><b>(1)</b>
 metadata:
   name: eventinghello-ping-source
 spec: <i class="conum" data-value="2"></i><b>(2)</b>
   schedule: "*/2 * * * *"
-  jsonData: '{"key": "every 2 mins"}'
+  data: '{"key": "every 2 mins"}'
   sink:
     ref:
       apiVersion: serving.knative.dev/v1
@@ -602,13 +602,13 @@ spec: <i class="conum" data-value="2"></i><b>(2)</b>
 <div class="listingblock">
 <div class="title"><a href="https://github.com/redhat-developer-demos/knative-tutorial/blob/master/eventing/eventinghello-source.yaml">eventinghello-source.yaml</a></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1beta1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1
 kind: PingSource
 metadata:
   name: eventinghello-ping-source
 spec:
   schedule: "*/2 * * * *"
-  jsonData: '{"message": "Thanks for doing Knative Tutorial"}'
+  data: '{"message": "Thanks for doing Knative Tutorial"}'
   sink:  <i class="conum" data-value="1"></i><b>(1)</b>
     ref:
       apiVersion: serving.knative.dev/v1 <i class="conum" data-value="2"></i><b>(2)</b>
