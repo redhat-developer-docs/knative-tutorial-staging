@@ -559,7 +559,7 @@
 <div id="kn-eventing-adv-deploy-kafkasource" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
--f <a href="https://github.com/knative-sandbox/eventing-kafka/releases/download/{kafka-source-version}/source.yaml" class="bare">https://github.com/knative-sandbox/eventing-kafka/releases/download/{kafka-source-version}/source.yaml</a></code></pre>
+-f <a href="https://github.com/knative-sandbox/eventing-kafka/releases/download/knative-v1.1.0/source.yaml" class="bare">https://github.com/knative-sandbox/eventing-kafka/releases/download/knative-v1.1.0/source.yaml</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -567,7 +567,7 @@
 </div>
 <div id="watch-kafkasource-controller-pod" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-sources"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch "kubectl get pods -n knative-eventing"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -576,7 +576,15 @@
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                         READY   STATUS    AGE
-kafka-controller-manager-0   1/1     Running   1m17s</code></pre>
+NAME                                        READY   STATUS    RESTARTS         AGE
+eventing-controller-6cd47bff4b-vlsjb        1/1     Running   1                92m
+eventing-webhook-87b4f6cb5-btfr4            1/1     Running   12 (2m45s ago)   92m
+imc-controller-5bd45cf5b-2wr9v              1/1     Running   12 (2m43s ago)   92m
+imc-dispatcher-7b9bf546b8-cmf65             1/1     Running   14 (3m27s ago)   92m
+kafka-controller-manager-7c4498d478-fsjxl   1/1     Running   0                67s
+mt-broker-controller-5bb47f9cf5-dfs2z       1/1     Running   2 (52m ago)      92m
+mt-broker-filter-7f468cbd7b-6r28q           1/1     Running   6 (4m35s ago)    92m
+mt-broker-ingress-57db965447-8bv57          1/1     Running   5 (22m ago)      92m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -585,7 +593,7 @@ kafka-controller-manager-0   1/1     Running   1m17s</code></pre>
 <div id="kn-eventing-deploy-kafka-channel" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -L "https://github.com/knative-sandbox/eventing-kafka/\
-releases/download/{kafka-source-version}/channel-consolidated.yaml" \
+releases/download/knative-v1.1.0/channel-consolidated.yaml" \
  | sed 's/REPLACE_WITH_CLUSTER_URL/my-cluster-kafka-bootstrap.kafka:9092/' \
  | kubectl apply --filename -</code></pre>
 </div>
@@ -624,17 +632,17 @@ releases/download/{kafka-source-version}/channel-consolidated.yaml" \
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                    READY   STATUS    RESTARTS   AGE
-broker-controller-56b4d58667-mgf4w      1/1     Running   0          3h54m
-broker-filter-5bdbc8d8dd-jqrfc          1/1     Running   0          3h54m
-broker-ingress-d896b6b46-nvg92          1/1     Running   0          3h54m
-eventing-controller-5fc5645584-n42xs    1/1     Running   0          3h54m
-eventing-webhook-7674b867dc-qn44m       1/1     Running   0          3h54m
-imc-controller-6b548d6468-zcspc         1/1     Running   0          3h54m
-imc-dispatcher-655cdf6ff6-x5sxx         1/1     Running   0          3h54m
-<mark>kafka-ch-controller-5cf4bdc98-tl8xv     1/1     Running   0          76s</mark>
-<mark>kafka-webhook-5f8895ccdf-z6qnw          1/1     Running   0          76s</mark>
-mt-broker-controller-6d66c4c6f6-vbpk4   1/1     Running   0          3h54m</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                        READY   STATUS              RESTARTS        AGE
+eventing-controller-6cd47bff4b-vlsjb        1/1     Running             1               94m
+eventing-webhook-87b4f6cb5-btfr4            1/1     Running             12 (72s ago)    94m
+imc-controller-5bd45cf5b-2wr9v              1/1     Running             13 (26s ago)    94m
+imc-dispatcher-7b9bf546b8-cmf65             1/1     Running             15 (74s ago)    94m
+<mark>kafka-ch-controller-566bb77694-5hmc9        1/1     Running             0               27s</mark>
+<mark>kafka-controller-manager-7c4498d478-fsjxl   1/1     Running             1 (71s ago)     3m5s</mark>
+<mark>kafka-webhook-66fcb6588b-gqpfd              1/1     Running             0               27s</mark>
+mt-broker-controller-5bb47f9cf5-dfs2z       1/1     Running             2 (54m ago)     94m
+mt-broker-filter-7f468cbd7b-6r28q           1/1     Running             6 (6m33s ago)   94m
+mt-broker-ingress-57db965447-8bv57          1/1     Running             5 (24m ago)     94m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -677,7 +685,7 @@ mt-broker-controller-6d66c4c6f6-vbpk4   1/1     Running   0          3h54m</code
 ApiServerSource   apiserversources.sources.knative.dev   Watch and send Kubernetes API events to addressable
 CamelSource       camelsources.sources.knative.dev
 ContainerSource   containersources.sources.knative.dev   Generate events by Container image and send to addressable
-<strong>KafkaSource       kafkasources.sources.knative.dev       Route events from Apache Kafka Server to addressable</strong>
+<mark>KafkaSource       kafkasources.sources.knative.dev       Route events from Apache Kafka Server to addressable</mark>
 PingSource        pingsources.sources.knative.dev        Send periodically ping events to addressable
 SinkBinding       sinkbindings.sources.knative.dev       Binding for connecting a PodSpecable to addressable</code></pre>
 </div>
@@ -698,7 +706,7 @@ SinkBinding       sinkbindings.sources.knative.dev       Binding for connecting 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP                NAMESPACED   KIND
 channels           ch           messaging.knative.dev   true         Channel
 inmemorychannels   imc          messaging.knative.dev   true         InMemoryChannel
-<strong>kafkachannels      kc           messaging.knative.dev   true         KafkaChannel</strong>
+<mark>kafkachannels      kc           messaging.knative.dev   true         KafkaChannel</mark>
 subscriptions      sub          messaging.knative.dev   true         Subscription</code></pre>
 </div>
 </div>

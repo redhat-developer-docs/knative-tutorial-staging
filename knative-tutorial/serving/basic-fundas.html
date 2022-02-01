@@ -578,7 +578,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Kubernetes should be v1.19.0+</p>
+<p>Kubernetes should be v1.23.0+</p>
 </li>
 </ul>
 </div>
@@ -592,8 +592,8 @@
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.19.0
-Server Version: v1.19.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: v1.23.0
+Server Version: v1.23.0</code></pre>
 </div>
 </div>
 </div>
@@ -601,7 +601,7 @@ Server Version: v1.19.0</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>OpenShift CLI should be v4.6+</p>
+<p>OpenShift CLI should be v4.8+</p>
 </li>
 </ul>
 </div>
@@ -616,7 +616,7 @@ Server Version: v1.19.0</code></pre>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: 4.6.9
-Kubernetes Version: v1.19.0</code></pre>
+Kubernetes Version: v1.23.0</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -849,8 +849,8 @@ greeter   http://greeter.knativetutorial.192.168.64.13.nip.io   greeter-sxnzq-1 
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                                   LATESTCREATED     LATESTREADY       READY   REASON
-greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="bare">http://greeter.knativetutorial.192.168.64.13.nip.io</a>   greeter-sxnzq-1   greeter-sxnzq-1   True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      LATESTCREATED   LATESTREADY     READY   REASON
+greeter   greeter-00001   greeter-00001   True</code></pre>
 </div>
 </div>
 </div>
@@ -866,8 +866,8 @@ greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="b
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      LATESTCREATED      LATESTREADY       READY
-greeter   greeter-sxnzq-1    greeter-sxnzq-1    True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      LATESTCREATED   LATESTREADY     READY   REASON
+greeter   greeter-00001   greeter-00001   True</code></pre>
 </div>
 </div>
 </div>
@@ -894,7 +894,7 @@ greeter   greeter-sxnzq-1    greeter-sxnzq-1    True</code></pre>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME      URL                                          READY
-greeter   http://greeter.knativetutorial.192.168.64.13.nip.io   True</code></pre>
+greeter   http://greeter.knativetutorial.example.com   True</code></pre>
 </div>
 </div>
 </div>
@@ -948,8 +948,8 @@ greeter   <a href="http://greeter.knativetutorial.192.168.64.13.nip.io" class="b
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            CONFIG NAME   K8S SERVICE NAME   GENERATION   READY
-greeter-sxnzq-1    greeter       greeter-sxnzq-1       1            True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            SERVICE   TRAFFIC   TAGS   GENERATION   AGE     CONDITIONS   READY   REASON
+greeter-00001   greeter   100%             1            9m37s   3 OK / 4     True</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">

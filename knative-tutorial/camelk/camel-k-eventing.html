@@ -535,7 +535,7 @@
 <p>How to use Knative Eventing Channels with Apache Camel K</p>
 </li>
 <li>
-<p>Using Knative CamelSource</p>
+<p>Using Knative Kamelet</p>
 </li>
 <li>
 <p>Connect Apache Camel K source to Sink</p>
@@ -553,53 +553,38 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy-camel-k-source"><a class="anchor" href="#deploy-camel-k-source"></a>Deploy Knative Eventing CamelSource</h2>
+<h2 id="install-camel-k-plugin"><a class="anchor" href="#install-camel-k-plugin"></a>Install the kn kamelet source plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>CamelSource</code> allows you use a Camel K integration as part of the Knative Eventing architecture. Simply speaking, you can make the Camel K integration act as a <a href="https://knative.dev/docs/eventing/sources/">Knative Event Source</a> and  send the Camel exchanges (OUT) through a Knative Event Sink.</p>
+<p>You can use the Camel K integration as part of the Knative Eventing architecture via a <code>Kamelet</code>.
+Simply speaking, you can make the Camel K integration act as a <a href="https://knative.dev/docs/eventing/sources/">Knative Event Source</a> and send the Camel exchanges (OUT) through a Knative Event Sink.
+To start working with Kamelets you will need to add the kamelet source plugin to <code>kn</code> CLI.</p>
 </div>
 <div class="paragraph">
-<p>To deploy CamelSource run the following command:</p>
+<p>As you probably already installed the <code>kn</code> CLI tooling, you can simply load the <a href="https://github.com/knative-sandbox/kn-plugin-source-kamelet/releases">Kamelet source plugin binaries</a> in order to add the commands for managing Kamelets as event sources.
+To verify your installation, please run the following command:</p>
 </div>
-<div id="deploy-camelsource" class="listingblock console-input">
+<div id="list-kn-plugins" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply \
-  -f "https://github.com/knative-sandbox/eventing-camel/releases/download/v0.19.0/camel.yaml"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn plugin list</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once you deploy, thee following new pod showing up the <code>knative-sources</code> namespace, wait for the <code>camel-controller-manager-0</code> to be running:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch 'kubectl -n knative-sources get pods'</code></pre>
-</div>
+<p>You should see an output similar to:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                        READY   STATUS    RESTARTS   AGE
-<strong>camel-controller-manager-0                  1/1     Running   0          88s</strong></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">- kn-quickstart : /usr/local/bin/kn-quickstart
+- kn-source-kamelet : /usr/local/bin/kn-source-kamelet</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Plus, CamelSource is now part of the API along with other Knative Eventing Sources that you might have deployed:</p>
+<p>By default, the <code>kn</code> CLI tool has a set of different event sources and its respective commands to manage those sources.
+You can list all the available Kamelets with the following command:</p>
 </div>
-<div id="camel-k-camelsource-api" class="listingblock console-input">
+<div id="list-kamelets" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl api-resources --api-group=sources.knative.dev</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The command above should list:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               SHORTNAMES   APIGROUP              NAMESPACED   KIND
-apiserversources                sources.knative.dev   true         ApiServerSource
-<mark>camelsources                    sources.knative.dev   true         CamelSource</mark>
-containersources                sources.knative.dev   true         ContainerSource
-pingsources                     sources.knative.dev   true         PingSource
-sinkbindings                    sources.knative.dev   true         SinkBinding    SinkBinding</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source kamelet list -n knativetutorial</code></pre>
 </div>
 </div>
 </div>
@@ -608,7 +593,7 @@ sinkbindings                    sources.knative.dev   true         SinkBinding  
 <h2 id="logging-ce-messages"><a class="anchor" href="#logging-ce-messages"></a>View CloudEvents Messages</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order for you to view the events drained from the CamelSource <code>timed-greeter</code>, you need to deploy a utility service called <code>event-display</code>. Run the following command to deploy the service:</p>
+<p>In order for you to view the events drained from the Kamelet <code>timed-greeter</code>, you need to deploy a utility service called <code>event-display</code>. Run the following command to deploy the service:</p>
 </div>
 <div id="deploy-ce-event-display" class="listingblock console-input">
 <div class="content">
@@ -657,8 +642,8 @@ EOF</code></pre>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                                LATEST                AGE   CONDITIONS   READY   REASON
-event-display   <a href="http://event-display.knativetutorial.example.com" class="bare">http://event-display.knativetutorial.example.com</a>   event-display-7jvmm   85s   3 OK / 3     True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            URL                                                          LATEST                AGE   CONDITIONS   READY   REASON
+event-display   <a href="http://event-display.knativetutorial.192.168.59.101.nip.io" class="bare">http://event-display.knativetutorial.192.168.59.101.nip.io</a>   event-display-00001   24s   3 OK / 3     True</code></pre>
 </div>
 </div>
 </div>
@@ -680,90 +665,107 @@ event-display   http://event-display.knativetutorial.example.com   event-display
 </div>
 </div>
 <div class="sect1">
-<h2 id="camel-k-es-sink"><a class="anchor" href="#camel-k-es-sink"></a>CamelSource to a Knative Eventing Sink</h2>
+<h2 id="camel-k-es-sink"><a class="anchor" href="#camel-k-es-sink"></a>Custom Kamlet as source for a Knative Eventing Sink</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Knative Eventing semantics allows you to link the Event Source to Event Sink using the <strong>sink</strong> block of the Knative Eventing source specification.</p>
 </div>
 <div class="paragraph">
-<p>As part of this exercise we will deploy the same <code>timed-greeter</code> integration that you deployed <a href="#deploy-camel-k-integration">earlier</a> but now as a CamelSource that was deployed <a href="#deploy-camel-k-source">in previous section</a>. The event source (CamelSource) is configured to drain the events to the sink <code>event-display</code>.</p>
+<p>As part of this exercise we will deploy the same <code>timed-greeter</code> integration that you deployed <a href="#deploy-camel-k-integration">earlier</a> but now as a Kamelet.</p>
 </div>
 <div class="paragraph">
-<p>The following listing provides the details of CamelSource configuration:</p>
+<p>The following listing provides the details of Kamelet configuration:</p>
 </div>
 <div class="listingblock">
-<div class="title">timed-greeter CamelSource</div>
+<div class="title">timed-greeter Kamelet</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: sources.knative.dev/v1alpha1 <i class="conum" data-value="1"></i><b>(1)</b>
-kind: CamelSource
+kind: Kamelet
 metadata:
   name: timed-greeter
 spec:
-  integration: <i class="conum" data-value="2"></i><b>(2)</b>
-    dependencies:
-      - camel:log
-  source: <i class="conum" data-value="3"></i><b>(3)</b>
-    flow:
-      from:
-        uri: "timer:tick"
-        parameters:
-          # time in milliseconds (10 s)
-          period: 10000
-        steps:
-          - set-body:
-              constant: "Welcome to Apache Camel K"
-          - set-header:
-              name: ContentType
-              simple: text/plain
-          - transform:
-              simple: "${body.toUpperCase()}"
-          - log:
-              message: "${body}"
-  sink: <i class="conum" data-value="4"></i><b>(4)</b>
-    ref:
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      name: event-display</code></pre>
+  definition:
+    title: Timed Greeter Source
+    description: Produces periodic events with a custom payload.
+    required:
+      - message
+    type: object
+    properties:
+      period:
+        title: Period
+        description: The interval between two events in milliseconds
+        type: integer
+        default: 1000
+      message:
+        title: Message
+        description: The message to generate
+        type: string
+        example: hello world
+      contentType:
+        title: Content Type
+        description: The content type of the message being generated
+        type: string
+        default: text/plain
+  dependencies:
+    - "camel:core"<i class="conum" data-value="2"></i><b>(2)</b>
+    - "camel:timer"
+    - "camel:kamelet"
+  template:
+    from: <i class="conum" data-value="3"></i><b>(3)</b>
+      uri: timer:tick
+      parameters:
+        period: 10000
+      steps:
+        - set-body:
+            constant: "{{message}}"
+        - set-header:
+            name: "Content-Type"
+            constant: "{{contentType}}"
+        - transform:
+            simple: "${body.toUpperCase()}"
+        - to: "kamelet:sink"<i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The CamelSource is provided by the API <code>sources.knative.dev</code>, it is now available as a result of deploying the CamelSource event source.</td>
+<td>The Kamelet is provided by the API <code>sources.knative.dev</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The CamelSource spec has two main sections: <code>integration</code> and <code>source</code>. The <code>integration</code> block is used to configure the Camel K integration specific properties such as dependencies, traits, etc. In this example we add the required dependencies such as <code>camel:log</code>, it is the dependency that you earlier passed via <code>kamel</code> CLI.</td>
+<td>The Kamelet spec has three main sections: <code>definition</code>, <code>dependencies</code> and <code>template</code>.
+The <code>dependencies</code> block is used to configure the Camel K integration specific properties such as dependencies, traits, etc.
+In this example we add the required dependencies such as <code>camel:core</code>, it is the dependency that you earlier passed via <code>kamel</code> CLI.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>source</code> block is used to define the Camel K integration definition. The <code>flow</code> attribute of the <code>source</code> block allows you define the Camel route.</td>
+<td>The <code>from</code> attribute allows you define the Camel route.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The event sink for messages from the Camel event source. The sink could be either a Knative Service, Knative Event Channel or Knative Event Broker. In this case it is configured to be the <code>event-display</code> Knative Service.</td>
+<td>The event sink for messages from the Camel event source. A Source Kamelet sends data to a <code>kamelet:sink</code>, that will be replaced at runtime by a different target.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To deploy the CamelSource run the following command:</p>
+<p>To deploy the Kamelet run the following command:</p>
 </div>
 <div id="deploy-greeter-camelsource" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f get-started/timed-greeter-source.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -n knativetutorial -f get-started/timed-greeter-kamelet.yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A successful deployment will show the CamelSource <code>timed-greeter</code> in ready state along with its pods in the knativetutorial namespace.</p>
+<p>A successful deployment will show the Kamelet <code>timed-greeter</code> in ready state along with its pods in the knativetutorial namespace.</p>
 </div>
 <div id="camel-k-watch-camelsources" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n knativetutorial get camelsources</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source kamelet list  -n knativetutorial</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When the camel source is successfully running you will see it in "READY" state <code>True</code>:</p>
+<p>When the Kamelet is successfully running you will see it in "READY" state <code>True</code>:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -772,7 +774,80 @@ timed-greeter   True    114s</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once the <code>timed-greeter</code> is ready, you will notice Knative sink <code>event-display</code> scale up to receive the events from <code>timed-greeter</code>.</p>
+<p>The event source is configured to drain the events to <code>kamelet:sink</code>.
+Now we just need to bind the Kamelet to the service <code>event-display</code> and we can do that by using a <code>KameletBinding</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">timed-greeter KameletBinding</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  name: timed-greeter-binding
+spec:
+  source:
+    ref: <i class="conum" data-value="1"></i><b>(1)</b>
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1alpha1
+      name: timed-greeter
+    properties:
+      period: 5000
+      message: Welcome to Apache Camel K
+  sink:
+    uri: &lt;INPUT_YOUR_EVENT_DISPLAY_URL&gt;<i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Kubernetes reference to the previously created Kamelet.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Sink the input to the URI of <code>event-display</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To find out the URI of <code>event-display</code> please run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn service describe event-display -o url -n knativetutorial</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy and paste somewhere the value of the URL as you will use it to customize the KameletBinding definition:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl create -f advanced/camel-k/get-started/timed-greeter-binding.yaml --edit -o yaml -n knativetutorial</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The previous command let&#8217;s you edit the definition of the KameletBinding with your URL and once you save it,
+Kubernetes will create an object based on it.</p>
+</div>
+<div class="paragraph">
+<p>You can validate the state of your KameletBinding using:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn source kamelet binding list  -n knativetutorial</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see an output stating it reached <code>Ready</code> state:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                          PHASE   AGE    CONDITIONS   READY   REASON
+timed-greeter-binding         Ready   45m    1 OK / 1     True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the <code>timed-greeter</code> and  <code>timed-greeter-binding</code> are ready, you will notice Knative sink <code>event-display</code> scale up to receive the events from <code>timed-greeter</code>.</p>
 </div>
 <div class="listingblock console-output">
 <div class="title">CamelSource <code>timed-greeter</code> pod and event-display pod</div>
@@ -797,16 +872,17 @@ timed-greeter-m4chq-7cbf4ddc66-kxpqd              1/1     Running   86s</code></
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">event-... user-container   id: ID-timed-greeter-m4chq-7cbf4ddc66-kxpqd-1577072133461-0-19
-event-... user-container   time: 2019-12-23T03:37:03.432Z
-event-... user-container Data,
-event-... user-container   WELCOME TO APACHE CAMEL K
-event-... user-container ☁️  cloudevents.Event
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">event-... user-container ☁️  cloudevents.Event
 event-... user-container Validation: valid
 event-... user-container Context Attributes,
-event-... user-container   specversion: 0.3
+event-... user-container   specversion: 1.0
 event-... user-container   type: org.apache.camel.event
-event-... user-container   source: camel-source:knativetutorial/timed-greeter</code></pre>
+event-... user-container   source: source
+event-... user-container   id: 3304E164DD1D7E1-0000000000000003
+event-... user-container   time: 2022-01-31T17:40:01.752Z
+event-... user-container   datacontenttype: text/plain
+event-... user-container Data,
+event-... user-container   WELCOME TO APACHE CAMEL K</code></pre>
 </div>
 </div>
 </div>
@@ -817,7 +893,8 @@ event-... user-container   source: camel-source:knativetutorial/timed-greeter</c
 <div id="camelk-eventing-cleanup" class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$TUTORIAL_HOME/bin/clean-completed.sh
-kubectl -n knativetutorial delete camelsource timed-greeter</code></pre>
+kubectl delete kameletbinding.camel.apache.org/timed-greeter-binding -n knativetutorial
+kubectl delete kamelet.camel.apache.org/timed-greeter -n knativetutorial</code></pre>
 </div>
 </div>
 <div class="paragraph">

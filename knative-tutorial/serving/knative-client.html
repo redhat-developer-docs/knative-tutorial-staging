@@ -561,7 +561,7 @@
 <p>Knative Client (<code>kn</code>) is still under aggressive development, so commands and options might change rapidly.</p>
 </li>
 <li>
-<p>As of writing the tutorial v0.19.1 was the latest version of the Knative Client</p>
+<p>As of writing the tutorial v1.1.0 was the latest version of the Knative Client</p>
 </li>
 </ul>
 </div>
@@ -575,7 +575,7 @@
 <h2 id="kn-install"><a class="anchor" href="#kn-install"></a>Install</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Download the <a href="https://github.com/knative/client/releases/tag/v0.19.1" target="_blank" rel="noopener">v0.19.1</a> Knative Client and add it to your <code>PATH</code>.</p>
+<p>Download the <a href="https://github.com/knative/client/releases/tag/v1.1.0" target="_blank" rel="noopener">v1.1.0</a> Knative Client and add it to your <code>PATH</code>.</p>
 </div>
 <div class="paragraph">
 <p>Verify installation by running the command:</p>
@@ -590,15 +590,15 @@
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Version:      v0.19.1
-Build Date:   2020-11-25 18:27:45
-Git Revision: f128d045
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Version:      v1.1.0
+Build Date:   2021-12-14T12:31:50Z
+Git Revision: 530841f1
 Supported APIs:
 * Serving
-  - serving.knative.dev/v1 (knative-serving v0.19.0)
+  - serving.knative.dev/v1 (knative-serving )
 * Eventing
-  - sources.knative.dev/v1alpha2 (knative-eventing v0.19.0)
-  - eventing.knative.dev/v1beta1 (knative-eventing v0.19.0)</code></pre>
+  - sources.knative.dev/v1 (knative-eventing )
+  - eventing.knative.dev/v1 (knative-eventing )</code></pre>
 </div>
 </div>
 </div>
@@ -842,9 +842,9 @@ Conditions:
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME              SERVICE   TRAFFIC   TAGS   GENERATION   AGE   CONDITIONS   READY   REASON
-greeter-tjtpm-2   greeter   100%             2            98s   4 OK / 4     True
-greeter-twpgf-1   greeter                    1            11h   3 OK / 4     True</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME            SERVICE   TRAFFIC   TAGS   GENERATION   AGE     CONDITIONS   READY   REASON
+greeter-00002   greeter   100%             2            3m37s   3 OK / 4     True
+greeter-00001   greeter                    1            16m     3 OK / 4     True</code></pre>
 </div>
 </div>
 </div>
@@ -855,23 +855,24 @@ greeter-twpgf-1   greeter                    1            11h   3 OK / 4     Tru
 </div>
 <div id="run-kn-desc-rev" class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision describe greeter-twpgf-1</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision describe greeter-00001</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name:       greeter-twpgf-1
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name:       greeter-00001
 Namespace:  knativetutorial
-Age:        10m
+Age:        17m
 Image:      quay.io/rhdevelopers/knative-tutorial-greeter:quarkus (pinned to 767e2f)
+Replicas:   0/0
 Service:    greeter
 
 Conditions:
   OK TYPE                  AGE REASON
-  ++ Ready                  9m
-  ++ ContainerHealthy       9m
-  ++ ResourcesAvailable     9m
-   I Active                 8m NoTraffic</code></pre>
+  ++ Ready                 17m
+  ++ ContainerHealthy      17m
+  ++ ResourcesAvailable    17m
+   I Active                16m NoTraffic</code></pre>
 </div>
 </div>
 </div>
@@ -882,12 +883,12 @@ Conditions:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision delete greeter-twpgf-1</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kn revision delete greeter-00001</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Revision 'greeter-twpgf-1' successfully deleted in namespace 'knativetutorial'.</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Revision 'greeter-00001' successfully deleted in namespace 'knativetutorial'.</code></pre>
 </div>
 </div>
 </div>
