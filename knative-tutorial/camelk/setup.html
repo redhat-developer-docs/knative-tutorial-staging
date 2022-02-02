@@ -663,8 +663,11 @@ camel-k-operator-84d7896b68-9mfdv   1/1     Running     0          2m7s</code></
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_deploy_nexus_to_local_cluster_optional"><a class="anchor" href="#_deploy_nexus_to_local_cluster_optional"></a>Deploy Nexus to Local Cluster (Optional)</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_nexus_to_local_cluster_optional"><a class="anchor" href="#_deploy_nexus_to_local_cluster_optional"></a>Deploy Nexus to Local Cluster (Optional)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If you don&#8217;t have a <a href="https://www.sonatype.com/download-oss-sonatype" class="ext-link" target="_blank" rel="noopener">Sonatype Nexus Repository</a>, you can deploy one into the cluster using the deployment <code>$TUTORIAL_HOME/install/utils/nexus/app.yaml</code>.</p>
 </div>
@@ -711,7 +714,6 @@ kubectl exec $NEXUS_POD -- cat /nexus-data/admin.password</code></pre>
 </div>
 <div class="paragraph">
 <p>You will be able to reset it after the first login. You can then <a href="#configure-maven-repo">Configure Camel K to build faster</a>.</p>
-</div>
 </div>
 </div>
 </div>
