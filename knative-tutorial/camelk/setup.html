@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Page Title :: Knative Tutorial(Staging)</title>
+    <title>Setup :: Knative Tutorial(Staging)</title>
     <link rel="canonical" href="http://redhat-developer-docs.github.io/knative-tutorial-staging/knative-tutorial/camelk/setup.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="camel-k-basics.html">
@@ -523,12 +523,10 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Page Title</h1>
+<h1 class="page">Setup</h1>
 <div class="sect1">
-<h2 id="camelk-setup"><a class="anchor" href="#camelk-setup"></a>Setup</h2>
+<h2 id="install-camel-k"><a class="anchor" href="#install-camel-k"></a>Install Apache Camel K</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="install-camel-k"><a class="anchor" href="#install-camel-k"></a>Install Apache Camel K</h3>
 <div class="paragraph">
 <p>Download the latest Apache Camel K release from <a href="https://github.com/apache/camel-k/releases/latest">here</a>. Extract the content and add the binary <code>kamel</code> to the PATH.</p>
 </div>
@@ -627,8 +625,10 @@ camel-k-operator-84d7896b68-9mfdv   1/1     Running     0          2m7s</code></
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="configure-maven-repo"><a class="anchor" href="#configure-maven-repo"></a>Configure Camel K to build faster</h3>
+</div>
+<div class="sect1">
+<h2 id="configure-maven-repo"><a class="anchor" href="#configure-maven-repo"></a>Configure Camel K to build faster</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Camel K uses <a href="https://maven.apache.org">Apache Maven</a> to build the integration kits and its related containers. The Apache Maven settings for Camel K are stored in a ConfigMap <code>camel-k-maven-settings</code> in the knativetutorial namespace. One of the ways to make the build faster is by using a maven repository manager such as <a href="https://www.sonatype.com/nexus-repository-oss">Sonatype Nexus</a>, the repository manager helps in caching the maven artifacts from remote repositories and serves them from local the subsequent times they are asked to be downloaded.</p>
 </div>
@@ -662,7 +662,6 @@ camel-k-operator-84d7896b68-9mfdv   1/1     Running     0          2m7s</code></
 <td><code>--force</code> is used to update any existing <code>Camel K</code> installs to use the new settings</td>
 </tr>
 </table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_deploy_nexus_to_local_cluster_optional"><a class="anchor" href="#_deploy_nexus_to_local_cluster_optional"></a>Deploy Nexus to Local Cluster (Optional)</h3>
