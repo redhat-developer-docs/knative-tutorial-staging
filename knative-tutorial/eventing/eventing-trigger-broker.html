@@ -932,7 +932,39 @@ hellobonjour True  default http://eventingbonjour.knativetutorial.svc.cluster.lo
 <h2 id="eventing-trigger-verification"><a class="anchor" href="#eventing-trigger-verification"></a>Verification</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pull out the broker URI:</p>
+<p>Pull out the subscriberUri for <code>eventhingaloha</code>:</p>
+</div>
+<div id="eventing-triggers-verify-sub1" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get trigger helloaloha -o jsonpath='{.status.subscriberUri}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command should show the output as:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://eventingaloha.knativetutorial.svc.cluster.local</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pull out the subscriberUri for <code>eventhingbonjour</code>:</p>
+</div>
+<div id="eventing-triggers-verify-sub2" class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get trigger hellobonjour -o jsonpath='{.status.subscriberUri}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command should show the output as:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://eventingbonjour.knativetutorial.svc.cluster.local</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As well as broker&#8217;s subscriberUri:</p>
 </div>
 <div id="eventing-triggers-verify-sub3" class="listingblock console-input">
 <div class="content">
@@ -948,7 +980,7 @@ hellobonjour True  default http://eventingbonjour.knativetutorial.svc.cluster.lo
 </div>
 </div>
 <div class="paragraph">
-<p>You should notice that the broker URI is a Kubernetes services with the suffix of <code>knativetutorial.svc.cluster.local</code>.  This means they can be interacted with from another pod within the Kubernetes cluster.</p>
+<p>You should notice that the subscriberURIs are Kubernetes services with the suffix of <code>knativetutorial.svc.cluster.local</code>.  This means they can be interacted with from another pod within the Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
 <p>Now that you have setup the Broker and Triggers you need to send in some test messages to see the behavior.</p>
@@ -1008,11 +1040,11 @@ spec:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v "http://broker-ingress.knativetutorial.svc.cluster.local" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v "http://broker-ingress.knative-eventing.svc.cluster.local/knativetutorial/default" \
 -X POST \
 -H "Ce-Id: say-hello" \
 -H "Ce-Specversion: 1.0" \
--H "Ce-Type: greeting" \
+-H "Ce-Type: aloha" \
 -H "Ce-Source: mycurl" \
 -H "Content-Type: application/json" \
 -d '{"key":"from a curl"}'</code></pre>
@@ -1041,11 +1073,11 @@ eventingaloha-1-deployment-6cdc888d9d-9xnnn 2/2   Running 30s</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v "http://broker-ingress.knativetutorial.svc.cluster.local" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -v "http://broker-ingress.knative-eventing.svc.cluster.local/knativetutorial/default" \
 -X POST \
 -H "Ce-Id: say-hello" \
 -H "Ce-Specversion: 1.0" \
--H "Ce-Type: greeting" \
+-H "Ce-Type: bonjour" \
 -H "Ce-Source: mycurl" \
 -H "Content-Type: application/json" \
 -d '{"key":"from a curl"}'</code></pre>
@@ -1066,15 +1098,16 @@ eventingaloha-1-deployment-6cdc888d9d-9xnnn 2/2   Running 30s</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                         READY STATUS  AGE
 curler                                       1/1   Running 82s
-eventingaloha-1-deployment-6cdc888d9d-9xnnn  2/2   Running 53s
 eventingbonjour-1-deployment-fc7858b5b-s9prj 2/2   Running 5s</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It was verified how each payload configured with either <code>type: aloha</code> or <code>type: bonjour</code> sent to the broker, then each trigger was able to filter each incoming message and send to the designated service set in the trigger.</p>
+<p>In the previous examples you sent to the broker a payload configured with <code>Ce-Type: aloha</code> or <code>Ce-Type: bonjour</code>.
+Each trigger filtered the incoming message and sent it to the configured Sink Service in case of a match.</p>
 </div>
 <div class="paragraph">
-<p>You can experiment by using different type filters in the Subscription to see how the different subscribed services respond. <code>Filters</code> may use an <a href="https://cloudevents.io/">CloudEvent</a> attribute for its criteria.</p>
+<p>You can experiment by using different type filters in the Subscription to see how the different subscribed services respond.
+<code>Filters</code> may use an <a href="https://cloudevents.io/">CloudEvent</a> attribute for its criteria.</p>
 </div>
 </div>
 </div>
